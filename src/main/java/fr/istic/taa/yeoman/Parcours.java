@@ -2,6 +2,8 @@ package fr.istic.taa.yeoman;
 import java.util.Set;
 import java.util.HashSet;
 
+import javax.persistence.GeneratedValue;
+
 
 /**
  * <!-- begin-user-doc -->
@@ -59,6 +61,7 @@ public class Parcours
 	 * @ordered
 	 */
 	@javax.persistence.Id 
+	@GeneratedValue
 	@javax.persistence.Column(nullable = false) 
 	protected final Long id = 0L;
 

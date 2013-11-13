@@ -1,8 +1,23 @@
 package fr.istic.taa.yeoman;
-import java.util.Set;
-import java.util.HashSet;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+import org.hibernate.annotations.NamedQueries;
+import org.hibernate.annotations.NamedQuery;
+
+@NamedQueries({
+	@NamedQuery(
+			name = "Utilisateur.findAll",
+			query = "SELECT * FROM Utilisateur"),
+	@NamedQuery(
+			name = "Utilisateur.findById",
+			query = "SELECT * FROM Utilisateur u WHERE u.id = :id")
+})
 
 /**
  * <!-- begin-user-doc -->
@@ -10,7 +25,7 @@ import java.util.Date;
  * @generated
  */
  
-@javax.persistence.Entity 
+@Entity 
 public class Utilisateur
 {
 	/**
@@ -140,7 +155,8 @@ public class Utilisateur
 	 * @generated
 	 * @ordered
 	 */
-	@javax.persistence.Id 
+	@Id 
+	@GeneratedValue
 	@javax.persistence.Column(nullable = false) 
 	protected final Long id = 0L;
 

@@ -1,5 +1,7 @@
 package fr.istic.taa.yeoman;
 
+import javax.persistence.GeneratedValue;
+
 
 /**
  * <!-- begin-user-doc -->
@@ -47,6 +49,7 @@ public class Meteo
 	 * @ordered
 	 */
 	@javax.persistence.Id 
+	@GeneratedValue
 	@javax.persistence.Column(nullable = false) 
 	protected final Long id = 0L;
 

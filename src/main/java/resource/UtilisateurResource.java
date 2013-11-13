@@ -1,9 +1,7 @@
 
 package resource;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -47,12 +45,13 @@ public class UtilisateurResource {
     @PUT @Path("update/{id}")
     @Consumes({MediaType.APPLICATION_JSON})
     public Utilisateur updateById(@PathParam("id") String arg0, Utilisateur u) {
-    	return manager.set(Integer.parseInt(arg0), u);
+    	return manager.set(u);
     }
     
     @PUT @Path("add")
     @Consumes({MediaType.APPLICATION_JSON})
-    public boolean add(Utilisateur u) {
-    	return manager.add(u);
+    public Utilisateur add(Utilisateur u) {
+    	manager.add(u);
+    	return u;
     } 
 }

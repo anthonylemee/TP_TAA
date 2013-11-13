@@ -3,6 +3,8 @@ import java.util.Set;
 import java.util.HashSet;
 import java.util.Date;
 
+import javax.persistence.GeneratedValue;
+
 
 /**
  * <!-- begin-user-doc -->
@@ -115,6 +117,7 @@ public class Seance
 	 * @ordered
 	 */
 	@javax.persistence.Id 
+	@GeneratedValue
 	@javax.persistence.Column(nullable = false) 
 	protected final Long id = 0L;
 

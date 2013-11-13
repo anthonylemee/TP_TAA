@@ -34,6 +34,11 @@
 			<version>4.1.7.Final</version>
 		</dependency>
 		<dependency>
+			<groupId>org.hibernate</groupId>
+      		<artifactId>hibernate-core</artifactId>
+      		<version>3.6.0.Final</version>
+		</dependency>
+		<dependency>
 			<groupId>javax.ejb</groupId>
 			<artifactId>ejb-api</artifactId>
 			<version>3.0</version>

@@ -2,6 +2,8 @@ package fr.istic.taa.yeoman;
 import java.util.Set;
 import java.util.HashSet;
 
+import javax.persistence.GeneratedValue;
+
 
 /**
  * <!-- begin-user-doc -->
@@ -20,6 +22,7 @@ public class Sport
 	 */
 	 
 	@javax.persistence.Id 
+	@GeneratedValue
 	@javax.persistence.Column(nullable = false) 
 	protected Long id;
 
