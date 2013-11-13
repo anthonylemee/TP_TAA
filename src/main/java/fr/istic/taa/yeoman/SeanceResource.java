@@ -16,7 +16,7 @@ import javax.ws.rs.core.MediaType;
 @Path("/sceance")
 public class SeanceResource {
 
-    private List<Parcour> seances = new ArrayList<Parcour>();
+    private List<Seance> seances = new ArrayList<Seance>();
     	
     public SeanceResource() {
         
@@ -24,31 +24,31 @@ public class SeanceResource {
 
     @GET
     @Produces({ MediaType.APPLICATION_JSON })
-    public Collection<Parcour> list() {
+    public Collection<Seance> list() {
         return seances;
     }
     
     @GET @Path("search/{id}")
     @Produces({ MediaType.APPLICATION_JSON })
-    public Parcour findById(@PathParam("id") String arg0) {
+    public Seance findById(@PathParam("id") String arg0) {
         return seances.get(Integer.parseInt(arg0));
     }
 
     @DELETE @Path("delete/{id}")
     @Produces({ MediaType.APPLICATION_JSON })
-    public Parcour deleteById(@PathParam("id") String arg0) {
+    public Seance deleteById(@PathParam("id") String arg0) {
         return seances.remove(Integer.parseInt(arg0));
     }
     
     @PUT @Path("update/{id}")
     @Produces({MediaType.APPLICATION_JSON})
-    public Parcour updateById(@PathParam("id") String arg0, Parcour u) {
+    public Seance updateById(@PathParam("id") String arg0, Seance u) {
     	return seances.set(Integer.parseInt(arg0), u);
     }
     
     @PUT @Path("add")
     @Produces({MediaType.APPLICATION_JSON})
-    public boolean add(Parcour u) {
+    public boolean add(Seance u) {
     	return seances.add(u);
     }
 }
