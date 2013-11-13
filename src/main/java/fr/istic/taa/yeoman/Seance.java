@@ -11,7 +11,7 @@ import java.util.Date;
  */
  
 @javax.persistence.Entity 
-public class Utilisateur
+public class Seance
 {
 	/**
 	 * <!-- begin-user-doc -->
@@ -20,18 +20,9 @@ public class Utilisateur
 	 * @ordered
 	 */
 	 
+	@javax.persistence.Temporal(javax.persistence.TemporalType.DATE) 
 	@javax.persistence.Column(nullable = false) 
-	protected String name;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	 
-	@javax.persistence.Column(nullable = false) 
-	protected String first_name;
+	protected Date date;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -42,7 +33,18 @@ public class Utilisateur
 	 
 	@javax.persistence.Temporal(javax.persistence.TemporalType.DATE) 
 	@javax.persistence.Column(nullable = false) 
-	protected Date birthDate;
+	protected Date endDate;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!--  end-user-doc  -->
+	 * @generated
+	 * @ordered
+	 */
+	 
+	@javax.persistence.Temporal(javax.persistence.TemporalType.DATE) 
+	@javax.persistence.Column(nullable = false) 
+	protected Date beginDate;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -52,7 +54,7 @@ public class Utilisateur
 	 */
 	 
 	@javax.persistence.Column(nullable = false) 
-	protected int weight;
+	protected int time;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -61,8 +63,9 @@ public class Utilisateur
 	 * @ordered
 	 */
 	 
-	@javax.persistence.Column(nullable = false) 
-	protected int height;
+	@javax.persistence.ManyToOne 
+	@javax.persistence.JoinColumn(nullable = false) 
+	protected Sport sport;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -71,8 +74,8 @@ public class Utilisateur
 	 * @ordered
 	 */
 	 
-	@javax.persistence.Column(nullable = false) 
-	protected boolean sex;
+	@javax.persistence.OneToOne 
+	protected Meteo meteo;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -81,8 +84,8 @@ public class Utilisateur
 	 * @ordered
 	 */
 	 
-	@javax.persistence.Column(nullable = false) 
-	protected String pseudo;
+	@javax.persistence.OneToOne 
+	protected Parcours parcours;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -91,38 +94,9 @@ public class Utilisateur
 	 * @ordered
 	 */
 	 
-	@javax.persistence.Column(nullable = false) 
-	protected String facebook;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	 
-	@javax.persistence.Column(nullable = false) 
-	protected String twitter;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	 
-	@javax.persistence.Column(nullable = false) 
-	protected String mail;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	 
-	@javax.persistence.Column(nullable = false) 
-	protected String avatar;
+	@javax.persistence.ManyToOne 
+	@javax.persistence.JoinColumn(nullable = false) 
+	protected Utilisateur utilisateur;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -132,7 +106,7 @@ public class Utilisateur
 	 */
 	 
 	@javax.persistence.OneToMany 
-	protected Set<Seance> seance;
+	protected Set<Cardio> cardio;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -149,7 +123,7 @@ public class Utilisateur
 	 * <!--  end-user-doc  -->
 	 * @generated
 	 */
-	public Utilisateur(){
+	public Seance(){
 		super();
 	}
 
@@ -159,8 +133,17 @@ public class Utilisateur
 	 * @generated
 	 * @ordered
 	 */
-	public String getName() {
-		return this.name;	
+	public void basicSetSport(Sport mySport) {
+		if (this.sport != mySport) {
+			if (mySport != null){
+				if (this.sport != mySport) {
+					Sport oldsport = this.sport;
+					this.sport = mySport;
+					if (oldsport != null)
+						oldsport.removeSeance(this);
+				}
+			}
+		}	
 	}
 	
 	/**
@@ -169,8 +152,17 @@ public class Utilisateur
 	 * @generated
 	 * @ordered
 	 */
-	public String getFirst_name() {
-		return this.first_name;	
+	public void basicSetMeteo(Meteo myMeteo) {
+		if (this.meteo != myMeteo) {
+			if (myMeteo != null){
+				if (this.meteo != myMeteo) {
+					Meteo oldmeteo = this.meteo;
+					this.meteo = myMeteo;
+					if (oldmeteo != null)
+						oldmeteo.unsetSeance();
+				}
+			}
+		}	
 	}
 	
 	/**
@@ -179,8 +171,17 @@ public class Utilisateur
 	 * @generated
 	 * @ordered
 	 */
-	public Date getBirthDate() {
-		return this.birthDate;	
+	public void basicSetParcours(Parcours myParcours) {
+		if (this.parcours != myParcours) {
+			if (myParcours != null){
+				if (this.parcours != myParcours) {
+					Parcours oldparcours = this.parcours;
+					this.parcours = myParcours;
+					if (oldparcours != null)
+						oldparcours.unsetSeance();
+				}
+			}
+		}	
 	}
 	
 	/**
@@ -189,8 +190,17 @@ public class Utilisateur
 	 * @generated
 	 * @ordered
 	 */
-	public int getWeight() {
-		return this.weight;	
+	public void basicSetUtilisateur(Utilisateur myUtilisateur) {
+		if (this.utilisateur != myUtilisateur) {
+			if (myUtilisateur != null){
+				if (this.utilisateur != myUtilisateur) {
+					Utilisateur oldutilisateur = this.utilisateur;
+					this.utilisateur = myUtilisateur;
+					if (oldutilisateur != null)
+						oldutilisateur.removeSeance(this);
+				}
+			}
+		}	
 	}
 	
 	/**
@@ -199,8 +209,8 @@ public class Utilisateur
 	 * @generated
 	 * @ordered
 	 */
-	public int getHeight() {
-		return this.height;	
+	public Date getDate() {
+		return this.date;	
 	}
 	
 	/**
@@ -209,8 +219,8 @@ public class Utilisateur
 	 * @generated
 	 * @ordered
 	 */
-	public boolean isSex() {
-		return this.sex;	
+	public Date getEndDate() {
+		return this.endDate;	
 	}
 	
 	/**
@@ -219,8 +229,8 @@ public class Utilisateur
 	 * @generated
 	 * @ordered
 	 */
-	public String getPseudo() {
-		return this.pseudo;	
+	public Date getBeginDate() {
+		return this.beginDate;	
 	}
 	
 	/**
@@ -229,8 +239,8 @@ public class Utilisateur
 	 * @generated
 	 * @ordered
 	 */
-	public String getFacebook() {
-		return this.facebook;	
+	public int getTime() {
+		return this.time;	
 	}
 	
 	/**
@@ -239,8 +249,8 @@ public class Utilisateur
 	 * @generated
 	 * @ordered
 	 */
-	public String getTwitter() {
-		return this.twitter;	
+	public Sport getSport() {
+		return this.sport;	
 	}
 	
 	/**
@@ -249,8 +259,8 @@ public class Utilisateur
 	 * @generated
 	 * @ordered
 	 */
-	public String getMail() {
-		return this.mail;	
+	public Meteo getMeteo() {
+		return this.meteo;	
 	}
 	
 	/**
@@ -259,8 +269,8 @@ public class Utilisateur
 	 * @generated
 	 * @ordered
 	 */
-	public String getAvatar() {
-		return this.avatar;	
+	public Parcours getParcours() {
+		return this.parcours;	
 	}
 	
 	/**
@@ -269,11 +279,21 @@ public class Utilisateur
 	 * @generated
 	 * @ordered
 	 */
-	public Set<Seance> getSeance() {
-		if(this.seance == null) {
-				this.seance = new HashSet<Seance>();
+	public Utilisateur getUtilisateur() {
+		return this.utilisateur;	
+	}
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!--  end-user-doc  -->
+	 * @generated
+	 * @ordered
+	 */
+	public Set<Cardio> getCardio() {
+		if(this.cardio == null) {
+				this.cardio = new HashSet<Cardio>();
 		}
-		return (Set<Seance>) this.seance;	
+		return (Set<Cardio>) this.cardio;	
 	}
 	
 	/**
@@ -292,12 +312,12 @@ public class Utilisateur
 	 * @generated
 	 * @ordered
 	 */
-	public void addAllSeance(Set<Seance> newSeance) {
-		if (this.seance == null) {
-			this.seance = new HashSet<Seance>();
+	public void addAllCardio(Set<Cardio> newCardio) {
+		if (this.cardio == null) {
+			this.cardio = new HashSet<Cardio>();
 		}
-		for (Seance tmp : newSeance)
-			tmp.setUtilisateur(this);
+		for (Cardio tmp : newCardio)
+			tmp.setSeance(this);
 			
 	}
 	
@@ -307,12 +327,12 @@ public class Utilisateur
 	 * @generated
 	 * @ordered
 	 */
-	public void removeAllSeance(Set<Seance> newSeance) {
-		if(this.seance == null) {
+	public void removeAllCardio(Set<Cardio> newCardio) {
+		if(this.cardio == null) {
 			return;
 		}
 		
-		this.seance.removeAll(newSeance);	
+		this.cardio.removeAll(newCardio);	
 	}
 	
 	/**
@@ -321,8 +341,8 @@ public class Utilisateur
 	 * @generated
 	 * @ordered
 	 */
-	public void setName(String myName) {
-		this.name = myName;	
+	public void setDate(Date myDate) {
+		this.date = myDate;	
 	}
 	
 	/**
@@ -331,8 +351,8 @@ public class Utilisateur
 	 * @generated
 	 * @ordered
 	 */
-	public void setFirst_name(String myFirst_name) {
-		this.first_name = myFirst_name;	
+	public void setEndDate(Date myEndDate) {
+		this.endDate = myEndDate;	
 	}
 	
 	/**
@@ -341,8 +361,8 @@ public class Utilisateur
 	 * @generated
 	 * @ordered
 	 */
-	public void setBirthDate(Date myBirthDate) {
-		this.birthDate = myBirthDate;	
+	public void setBeginDate(Date myBeginDate) {
+		this.beginDate = myBeginDate;	
 	}
 	
 	/**
@@ -351,8 +371,8 @@ public class Utilisateur
 	 * @generated
 	 * @ordered
 	 */
-	public void setWeight(int myWeight) {
-		this.weight = myWeight;	
+	public void setTime(int myTime) {
+		this.time = myTime;	
 	}
 	
 	/**
@@ -361,8 +381,9 @@ public class Utilisateur
 	 * @generated
 	 * @ordered
 	 */
-	public void setHeight(int myHeight) {
-		this.height = myHeight;	
+	public void setSport(Sport mySport) {
+		this.basicSetSport(mySport);
+		mySport.addSeance(this);	
 	}
 	
 	/**
@@ -371,8 +392,10 @@ public class Utilisateur
 	 * @generated
 	 * @ordered
 	 */
-	public void setSex(boolean mySex) {
-		this.sex = mySex;	
+	public void setMeteo(Meteo myMeteo) {
+		this.basicSetMeteo(myMeteo);
+		myMeteo.basicSetSeance(this);
+			
 	}
 	
 	/**
@@ -381,8 +404,10 @@ public class Utilisateur
 	 * @generated
 	 * @ordered
 	 */
-	public void setPseudo(String myPseudo) {
-		this.pseudo = myPseudo;	
+	public void setParcours(Parcours myParcours) {
+		this.basicSetParcours(myParcours);
+		myParcours.basicSetSeance(this);
+			
 	}
 	
 	/**
@@ -391,8 +416,9 @@ public class Utilisateur
 	 * @generated
 	 * @ordered
 	 */
-	public void setFacebook(String myFacebook) {
-		this.facebook = myFacebook;	
+	public void setUtilisateur(Utilisateur myUtilisateur) {
+		this.basicSetUtilisateur(myUtilisateur);
+		myUtilisateur.addSeance(this);	
 	}
 	
 	/**
@@ -401,43 +427,13 @@ public class Utilisateur
 	 * @generated
 	 * @ordered
 	 */
-	public void setTwitter(String myTwitter) {
-		this.twitter = myTwitter;	
-	}
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	public void setMail(String myMail) {
-		this.mail = myMail;	
-	}
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	public void setAvatar(String myAvatar) {
-		this.avatar = myAvatar;	
-	}
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	public void addSeance(Seance newSeance) {
-		if(this.seance == null) {
-			this.seance = new HashSet<Seance>();
+	public void addCardio(Cardio newCardio) {
+		if(this.cardio == null) {
+			this.cardio = new HashSet<Cardio>();
 		}
 		
-		if (this.seance.add(newSeance))
-			newSeance.basicSetUtilisateur(this);	
+		if (this.cardio.add(newCardio))
+			newCardio.basicSetSeance(this);	
 	}
 	
 	/**
@@ -446,8 +442,8 @@ public class Utilisateur
 	 * @generated
 	 * @ordered
 	 */
-	public void unsetName() {
-		this.name = "";	
+	public void unsetDate() {
+		this.date = new Date();	
 	}
 	
 	/**
@@ -456,8 +452,8 @@ public class Utilisateur
 	 * @generated
 	 * @ordered
 	 */
-	public void unsetFirst_name() {
-		this.first_name = "";	
+	public void unsetEndDate() {
+		this.endDate = new Date();	
 	}
 	
 	/**
@@ -466,8 +462,8 @@ public class Utilisateur
 	 * @generated
 	 * @ordered
 	 */
-	public void unsetBirthDate() {
-		this.birthDate = new Date();	
+	public void unsetBeginDate() {
+		this.beginDate = new Date();	
 	}
 	
 	/**
@@ -476,8 +472,8 @@ public class Utilisateur
 	 * @generated
 	 * @ordered
 	 */
-	public void unsetWeight() {
-		this.weight = 0;	
+	public void unsetTime() {
+		this.time = 0;	
 	}
 	
 	/**
@@ -486,8 +482,12 @@ public class Utilisateur
 	 * @generated
 	 * @ordered
 	 */
-	public void unsetHeight() {
-		this.height = 0;	
+	public void unsetSport() {
+		if (this.sport == null)
+			return;
+		Sport oldsport = this.sport;
+		this.sport = null;
+		oldsport.removeSeance(this);	
 	}
 	
 	/**
@@ -496,8 +496,12 @@ public class Utilisateur
 	 * @generated
 	 * @ordered
 	 */
-	public void unsetSex() {
-		this.sex = false;	
+	public void unsetMeteo() {
+		if (this.meteo == null)
+			return;
+		Meteo oldmeteo = this.meteo;
+		this.meteo = null;
+		oldmeteo.unsetSeance();	
 	}
 	
 	/**
@@ -506,8 +510,12 @@ public class Utilisateur
 	 * @generated
 	 * @ordered
 	 */
-	public void unsetPseudo() {
-		this.pseudo = "";	
+	public void unsetParcours() {
+		if (this.parcours == null)
+			return;
+		Parcours oldparcours = this.parcours;
+		this.parcours = null;
+		oldparcours.unsetSeance();	
 	}
 	
 	/**
@@ -516,8 +524,12 @@ public class Utilisateur
 	 * @generated
 	 * @ordered
 	 */
-	public void unsetFacebook() {
-		this.facebook = "";	
+	public void unsetUtilisateur() {
+		if (this.utilisateur == null)
+			return;
+		Utilisateur oldutilisateur = this.utilisateur;
+		this.utilisateur = null;
+		oldutilisateur.removeSeance(this);	
 	}
 	
 	/**
@@ -526,42 +538,12 @@ public class Utilisateur
 	 * @generated
 	 * @ordered
 	 */
-	public void unsetTwitter() {
-		this.twitter = "";	
-	}
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	public void unsetMail() {
-		this.mail = "";	
-	}
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	public void unsetAvatar() {
-		this.avatar = "";	
-	}
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	public void removeSeance(Seance oldSeance) {
-		if(this.seance == null)
+	public void removeCardio(Cardio oldCardio) {
+		if(this.cardio == null)
 			return;
 		
-		if (this.seance.remove(oldSeance))
-			oldSeance.unsetUtilisateur();
+		if (this.cardio.remove(oldCardio))
+			oldCardio.unsetSeance();
 			
 	}
 	

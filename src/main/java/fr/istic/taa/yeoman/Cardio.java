@@ -27,8 +27,9 @@ public class Cardio
 	 * @ordered
 	 */
 	 
-	@javax.persistence.OneToOne(mappedBy = "cardio") 
-	protected PointGPS pointGPS;
+	@javax.persistence.ManyToOne 
+	@javax.persistence.JoinColumn(nullable = false) 
+	protected Seance seance;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -55,14 +56,14 @@ public class Cardio
 	 * @generated
 	 * @ordered
 	 */
-	public void basicSetPointGPS(PointGPS myPointGPS) {
-		if (this.pointGPS != myPointGPS) {
-			if (myPointGPS != null){
-				if (this.pointGPS != myPointGPS) {
-					PointGPS oldpointGPS = this.pointGPS;
-					this.pointGPS = myPointGPS;
-					if (oldpointGPS != null)
-						oldpointGPS.unsetCardio();
+	public void basicSetSeance(Seance mySeance) {
+		if (this.seance != mySeance) {
+			if (mySeance != null){
+				if (this.seance != mySeance) {
+					Seance oldseance = this.seance;
+					this.seance = mySeance;
+					if (oldseance != null)
+						oldseance.removeCardio(this);
 				}
 			}
 		}	
@@ -84,8 +85,8 @@ public class Cardio
 	 * @generated
 	 * @ordered
 	 */
-	public PointGPS getPointGPS() {
-		return this.pointGPS;	
+	public Seance getSeance() {
+		return this.seance;	
 	}
 	
 	/**
@@ -114,10 +115,9 @@ public class Cardio
 	 * @generated
 	 * @ordered
 	 */
-	public void setPointGPS(PointGPS myPointGPS) {
-		this.basicSetPointGPS(myPointGPS);
-		myPointGPS.basicSetCardio(this);
-			
+	public void setSeance(Seance mySeance) {
+		this.basicSetSeance(mySeance);
+		mySeance.addCardio(this);	
 	}
 	
 	/**
@@ -136,12 +136,12 @@ public class Cardio
 	 * @generated
 	 * @ordered
 	 */
-	public void unsetPointGPS() {
-		if (this.pointGPS == null)
+	public void unsetSeance() {
+		if (this.seance == null)
 			return;
-		PointGPS oldpointGPS = this.pointGPS;
-		this.pointGPS = null;
-		oldpointGPS.unsetCardio();	
+		Seance oldseance = this.seance;
+		this.seance = null;
+		oldseance.removeCardio(this);	
 	}
 	
 }

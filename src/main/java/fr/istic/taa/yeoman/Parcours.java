@@ -1,4 +1,6 @@
 package fr.istic.taa.yeoman;
+import java.util.Set;
+import java.util.HashSet;
 
 
 /**
@@ -8,7 +10,7 @@ package fr.istic.taa.yeoman;
  */
  
 @javax.persistence.Entity 
-public class PointGPS
+public class Parcours
 {
 	/**
 	 * <!-- begin-user-doc -->
@@ -18,7 +20,7 @@ public class PointGPS
 	 */
 	 
 	@javax.persistence.Column(nullable = false) 
-	protected int xPoint;
+	protected String nbKilom;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -28,7 +30,7 @@ public class PointGPS
 	 */
 	 
 	@javax.persistence.Column(nullable = false) 
-	protected int yPoint;
+	protected String speed;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -37,8 +39,8 @@ public class PointGPS
 	 * @ordered
 	 */
 	 
-	@javax.persistence.Column(nullable = false) 
-	protected int zPoint;
+	@javax.persistence.OneToMany(mappedBy = "parcours") 
+	protected Set<PointGPS> pointGPS;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -47,9 +49,8 @@ public class PointGPS
 	 * @ordered
 	 */
 	 
-	@javax.persistence.ManyToOne 
-	@javax.persistence.JoinColumn(nullable = false) 
-	protected Parcours parcours;
+	@javax.persistence.OneToOne(mappedBy = "parcours") 
+	protected Seance seance;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -66,7 +67,7 @@ public class PointGPS
 	 * <!--  end-user-doc  -->
 	 * @generated
 	 */
-	public PointGPS(){
+	public Parcours(){
 		super();
 	}
 
@@ -76,14 +77,14 @@ public class PointGPS
 	 * @generated
 	 * @ordered
 	 */
-	public void basicSetParcours(Parcours myParcours) {
-		if (this.parcours != myParcours) {
-			if (myParcours != null){
-				if (this.parcours != myParcours) {
-					Parcours oldparcours = this.parcours;
-					this.parcours = myParcours;
-					if (oldparcours != null)
-						oldparcours.removePointGPS(this);
+	public void basicSetSeance(Seance mySeance) {
+		if (this.seance != mySeance) {
+			if (mySeance != null){
+				if (this.seance != mySeance) {
+					Seance oldseance = this.seance;
+					this.seance = mySeance;
+					if (oldseance != null)
+						oldseance.unsetParcours();
 				}
 			}
 		}	
@@ -95,8 +96,8 @@ public class PointGPS
 	 * @generated
 	 * @ordered
 	 */
-	public int getXPoint() {
-		return this.xPoint;	
+	public String getNbKilom() {
+		return this.nbKilom;	
 	}
 	
 	/**
@@ -105,8 +106,8 @@ public class PointGPS
 	 * @generated
 	 * @ordered
 	 */
-	public int getYPoint() {
-		return this.yPoint;	
+	public String getSpeed() {
+		return this.speed;	
 	}
 	
 	/**
@@ -115,8 +116,11 @@ public class PointGPS
 	 * @generated
 	 * @ordered
 	 */
-	public int getZPoint() {
-		return this.zPoint;	
+	public Set<PointGPS> getPointGPS() {
+		if(this.pointGPS == null) {
+				this.pointGPS = new HashSet<PointGPS>();
+		}
+		return (Set<PointGPS>) this.pointGPS;	
 	}
 	
 	/**
@@ -125,8 +129,8 @@ public class PointGPS
 	 * @generated
 	 * @ordered
 	 */
-	public Parcours getParcours() {
-		return this.parcours;	
+	public Seance getSeance() {
+		return this.seance;	
 	}
 	
 	/**
@@ -145,8 +149,13 @@ public class PointGPS
 	 * @generated
 	 * @ordered
 	 */
-	public void setXPoint(int myXPoint) {
-		this.xPoint = myXPoint;	
+	public void addAllPointGPS(Set<PointGPS> newPointGPS) {
+		if (this.pointGPS == null) {
+			this.pointGPS = new HashSet<PointGPS>();
+		}
+		for (PointGPS tmp : newPointGPS)
+			tmp.setParcours(this);
+			
 	}
 	
 	/**
@@ -155,73 +164,108 @@ public class PointGPS
 	 * @generated
 	 * @ordered
 	 */
-	public void setYPoint(int myYPoint) {
-		this.yPoint = myYPoint;	
-	}
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	public void setZPoint(int myZPoint) {
-		this.zPoint = myZPoint;	
-	}
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	public void setParcours(Parcours myParcours) {
-		this.basicSetParcours(myParcours);
-		myParcours.addPointGPS(this);	
-	}
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	public void unsetXPoint() {
-		this.xPoint = 0;	
-	}
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	public void unsetYPoint() {
-		this.yPoint = 0;	
-	}
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	public void unsetZPoint() {
-		this.zPoint = 0;	
-	}
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	public void unsetParcours() {
-		if (this.parcours == null)
+	public void removeAllPointGPS(Set<PointGPS> newPointGPS) {
+		if(this.pointGPS == null) {
 			return;
-		Parcours oldparcours = this.parcours;
-		this.parcours = null;
-		oldparcours.removePointGPS(this);	
+		}
+		
+		this.pointGPS.removeAll(newPointGPS);	
+	}
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!--  end-user-doc  -->
+	 * @generated
+	 * @ordered
+	 */
+	public void setNbKilom(String myNbKilom) {
+		this.nbKilom = myNbKilom;	
+	}
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!--  end-user-doc  -->
+	 * @generated
+	 * @ordered
+	 */
+	public void setSpeed(String mySpeed) {
+		this.speed = mySpeed;	
+	}
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!--  end-user-doc  -->
+	 * @generated
+	 * @ordered
+	 */
+	public void addPointGPS(PointGPS newPointGPS) {
+		if(this.pointGPS == null) {
+			this.pointGPS = new HashSet<PointGPS>();
+		}
+		
+		if (this.pointGPS.add(newPointGPS))
+			newPointGPS.basicSetParcours(this);	
+	}
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!--  end-user-doc  -->
+	 * @generated
+	 * @ordered
+	 */
+	public void setSeance(Seance mySeance) {
+		this.basicSetSeance(mySeance);
+		mySeance.basicSetParcours(this);
+			
+	}
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!--  end-user-doc  -->
+	 * @generated
+	 * @ordered
+	 */
+	public void unsetNbKilom() {
+		this.nbKilom = "";	
+	}
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!--  end-user-doc  -->
+	 * @generated
+	 * @ordered
+	 */
+	public void unsetSpeed() {
+		this.speed = "";	
+	}
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!--  end-user-doc  -->
+	 * @generated
+	 * @ordered
+	 */
+	public void removePointGPS(PointGPS oldPointGPS) {
+		if(this.pointGPS == null)
+			return;
+		
+		if (this.pointGPS.remove(oldPointGPS))
+			oldPointGPS.unsetParcours();
+			
+	}
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!--  end-user-doc  -->
+	 * @generated
+	 * @ordered
+	 */
+	public void unsetSeance() {
+		if (this.seance == null)
+			return;
+		Seance oldseance = this.seance;
+		this.seance = null;
+		oldseance.unsetParcours();	
 	}
 	
 }
