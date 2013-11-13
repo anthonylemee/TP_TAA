@@ -1,5 +1,5 @@
 
-package resource;
+package fr.istic.taa.resource;
 
 import java.util.Collection;
 
@@ -12,7 +12,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import service.UtilisateurManager;
+import fr.istic.taa.service.UtilisateurManager;
 import fr.istic.taa.yeoman.Utilisateur;
 
 @Path("/users")

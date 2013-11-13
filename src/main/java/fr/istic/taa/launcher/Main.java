@@ -1,8 +1,9 @@
+package fr.istic.taa.launcher;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import fr.istic.taa.service.UtilisateurManager;
 import fr.istic.taa.yeoman.Utilisateur;
-import service.UtilisateurManager;
 
 public class Main {
 

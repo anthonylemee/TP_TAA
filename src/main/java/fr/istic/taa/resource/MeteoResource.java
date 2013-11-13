@@ -1,5 +1,5 @@
 
-package resource;
+package fr.istic.taa.resource;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -13,44 +13,44 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import fr.istic.taa.yeoman.PointGPS;
+import fr.istic.taa.yeoman.Meteo;
 
-@Path("/ptsgps")
-public class PointGPSResource {
+@Path("/meteos")
+public class MeteoResource {
 
-    private List<PointGPS> gps = new ArrayList<PointGPS>();
+    private List<Meteo> meteos = new ArrayList<Meteo>();
     	
-    public PointGPSResource() {
+    public MeteoResource() {
         
     }
 
     @GET
     @Produces({ MediaType.APPLICATION_JSON })
-    public Collection<PointGPS> list() {
-        return gps;
+    public Collection<Meteo> list() {
+        return meteos;
     }
     
     @GET @Path("search/{id}")
     @Produces({ MediaType.APPLICATION_JSON })
-    public PointGPS findById(@PathParam("id") String arg0) {
-        return gps.get(Integer.parseInt(arg0));
+    public Meteo findById(@PathParam("id") String arg0) {
+        return meteos.get(Integer.parseInt(arg0));
     }
 
     @DELETE @Path("delete/{id}")
     @Produces({ MediaType.APPLICATION_JSON })
-    public PointGPS deleteById(@PathParam("id") String arg0) {
-        return gps.remove(Integer.parseInt(arg0));
+    public Meteo deleteById(@PathParam("id") String arg0) {
+        return meteos.remove(Integer.parseInt(arg0));
     }
     
     @PUT @Path("update/{id}")
     @Produces({MediaType.APPLICATION_JSON})
-    public PointGPS updateById(@PathParam("id") String arg0, PointGPS u) {
-    	return gps.set(Integer.parseInt(arg0), u);
+    public Meteo updateById(@PathParam("id") String arg0, Meteo u) {
+    	return meteos.set(Integer.parseInt(arg0), u);
     }
     
     @PUT @Path("add")
     @Produces({MediaType.APPLICATION_JSON})
-    public boolean add(PointGPS u) {
-    	return gps.add(u);
+    public boolean add(Meteo u) {
+    	return meteos.add(u);
     }
 }

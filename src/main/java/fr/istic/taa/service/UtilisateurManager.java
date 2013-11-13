@@ -1,4 +1,4 @@
-package service;
+package fr.istic.taa.service;
 
 import java.util.Collection;
 
@@ -21,6 +21,7 @@ public class UtilisateurManager {
 
 	public UtilisateurManager() {
 		emf = Persistence.createEntityManagerFactory("persistant");
+		entityManager = emf.createEntityManager();
 	}
 
 	public Collection<Utilisateur> getUsers() {

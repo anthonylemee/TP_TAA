@@ -6,8 +6,7 @@
  
    <persistence-unit name="persistant" transaction-type="RESOURCE_LOCAL">
      <description>My Persistence Unit</description>
-     
-     <provider>com.objectdb.jpa.Provider</provider>
+     <provider>org.hibernate.ejb.hibernatePersistence</provider>
      <class>fr.istic.taa.yeoman.Cardio</class>
      <class>fr.istic.taa.yeoman.Meteo</class>
      <class>fr.istic.taa.yeoman.Parcours</class>
@@ -16,10 +15,11 @@
      <class>fr.istic.taa.yeoman.Sport</class>
      <class>fr.istic.taa.yeoman.Utilisateur</class>
      <properties>
-      <property name="hibernate.jdbc.driver" value="org.hsqldb.jdbcDriver"/>
-      <property name="hibernate.jdbc.url" value="jdbc:hsqldb:mem:bddSport"/>
-      <property name="hibernate.jdbc.user" value="root"/>
-      <property name="hibernate.jdbc.password" value=""/>
+      <property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.EmbeddedDriver" />
+      <property name="javax.persistence.jdbc.url"
+        value="jdbc:derby:/home/sportDb;create=true" />
+      <property name="javax.persistence.jdbc.user" value="root" />
+      <property name="javax.persistence.jdbc.password" value="" />
       <property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect"/>
       <property name="hibernate.hbm2ddl.auto" value="update"/>
     </properties>

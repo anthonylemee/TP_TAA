@@ -1,5 +1,5 @@
 
-package resource;
+package fr.istic.taa.resource;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -13,44 +13,44 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import fr.istic.taa.yeoman.Parcours;
+import fr.istic.taa.yeoman.Seance;
 
-@Path("/parcours")
-public class ParcoursResource {
+@Path("/seances")
+public class SeanceResource {
 
-    private List<Parcours> parcours = new ArrayList<Parcours>();
+    private List<Seance> seances = new ArrayList<Seance>();
     	
-    public ParcoursResource() {
+    public SeanceResource() {
         
     }
 
     @GET
     @Produces({ MediaType.APPLICATION_JSON })
-    public Collection<Parcours> list() {
-        return parcours;
+    public Collection<Seance> list() {
+        return seances;
     }
     
     @GET @Path("search/{id}")
     @Produces({ MediaType.APPLICATION_JSON })
-    public Parcours findById(@PathParam("id") String arg0) {
-        return parcours.get(Integer.parseInt(arg0));
+    public Seance findById(@PathParam("id") String arg0) {
+        return seances.get(Integer.parseInt(arg0));
     }
 
     @DELETE @Path("delete/{id}")
     @Produces({ MediaType.APPLICATION_JSON })
-    public Parcours deleteById(@PathParam("id") String arg0) {
-        return parcours.remove(Integer.parseInt(arg0));
+    public Seance deleteById(@PathParam("id") String arg0) {
+        return seances.remove(Integer.parseInt(arg0));
     }
     
     @PUT @Path("update/{id}")
     @Produces({MediaType.APPLICATION_JSON})
-    public Parcours updateById(@PathParam("id") String arg0, Parcours u) {
-    	return parcours.set(Integer.parseInt(arg0), u);
+    public Seance updateById(@PathParam("id") String arg0, Seance u) {
+    	return seances.set(Integer.parseInt(arg0), u);
     }
     
     @PUT @Path("add")
     @Produces({MediaType.APPLICATION_JSON})
-    public boolean add(Parcours u) {
-    	return parcours.add(u);
+    public boolean add(Seance u) {
+    	return seances.add(u);
     }
 }

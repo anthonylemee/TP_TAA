@@ -1,5 +1,5 @@
 
-package resource;
+package fr.istic.taa.resource;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -13,44 +13,44 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import fr.istic.taa.yeoman.Seance;
+import fr.istic.taa.yeoman.Sport;
 
-@Path("/seances")
-public class SeanceResource {
+@Path("/sports")
+public class SportResource {
 
-    private List<Seance> seances = new ArrayList<Seance>();
+    private List<Sport> sports = new ArrayList<Sport>();
     	
-    public SeanceResource() {
+    public SportResource() {
         
     }
 
     @GET
     @Produces({ MediaType.APPLICATION_JSON })
-    public Collection<Seance> list() {
-        return seances;
+    public Collection<Sport> list() {
+        return sports;
     }
     
     @GET @Path("search/{id}")
     @Produces({ MediaType.APPLICATION_JSON })
-    public Seance findById(@PathParam("id") String arg0) {
-        return seances.get(Integer.parseInt(arg0));
+    public Sport findById(@PathParam("id") String arg0) {
+        return sports.get(Integer.parseInt(arg0));
     }
 
     @DELETE @Path("delete/{id}")
     @Produces({ MediaType.APPLICATION_JSON })
-    public Seance deleteById(@PathParam("id") String arg0) {
-        return seances.remove(Integer.parseInt(arg0));
+    public Sport deleteById(@PathParam("id") String arg0) {
+        return sports.remove(Integer.parseInt(arg0));
     }
     
     @PUT @Path("update/{id}")
     @Produces({MediaType.APPLICATION_JSON})
-    public Seance updateById(@PathParam("id") String arg0, Seance u) {
-    	return seances.set(Integer.parseInt(arg0), u);
+    public Sport updateById(@PathParam("id") String arg0, Sport u) {
+    	return sports.set(Integer.parseInt(arg0), u);
     }
     
     @PUT @Path("add")
     @Produces({MediaType.APPLICATION_JSON})
-    public boolean add(Seance u) {
-    	return seances.add(u);
+    public boolean add(Sport u) {
+    	return sports.add(u);
     }
 }
