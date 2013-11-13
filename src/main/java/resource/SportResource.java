@@ -1,5 +1,5 @@
 
-package fr.istic.taa.yeoman;
+package resource;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -12,6 +12,8 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+
+import fr.istic.taa.yeoman.Sport;
 
 @Path("/sports")
 public class SportResource {

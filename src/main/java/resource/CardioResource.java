@@ -1,5 +1,5 @@
 
-package fr.istic.taa.yeoman;
+package resource;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -13,42 +13,44 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-@Path("/ptsgps")
-public class PointGPSResource {
+import fr.istic.taa.yeoman.Cardio;
 
-    private List<PointGPS> gps = new ArrayList<PointGPS>();
+@Path("/cardios")
+public class CardioResource {
+
+    private List<Cardio> cardios = new ArrayList<Cardio>();
     	
-    public PointGPSResource() {
+    public CardioResource() {
         
     }
 
     @GET
     @Produces({ MediaType.APPLICATION_JSON })
-    public Collection<PointGPS> list() {
-        return gps;
+    public Collection<Cardio> list() {
+        return cardios;
     }
     
     @GET @Path("search/{id}")
     @Produces({ MediaType.APPLICATION_JSON })
-    public PointGPS findById(@PathParam("id") String arg0) {
-        return gps.get(Integer.parseInt(arg0));
+    public Cardio findById(@PathParam("id") String arg0) {
+        return cardios.get(Integer.parseInt(arg0));
     }
 
     @DELETE @Path("delete/{id}")
     @Produces({ MediaType.APPLICATION_JSON })
-    public PointGPS deleteById(@PathParam("id") String arg0) {
-        return gps.remove(Integer.parseInt(arg0));
+    public Cardio deleteById(@PathParam("id") String arg0) {
+        return cardios.remove(Integer.parseInt(arg0));
     }
     
     @PUT @Path("update/{id}")
     @Produces({MediaType.APPLICATION_JSON})
-    public PointGPS updateById(@PathParam("id") String arg0, PointGPS u) {
-    	return gps.set(Integer.parseInt(arg0), u);
+    public Cardio updateById(@PathParam("id") String arg0, Cardio u) {
+    	return cardios.set(Integer.parseInt(arg0), u);
     }
     
     @PUT @Path("add")
     @Produces({MediaType.APPLICATION_JSON})
-    public boolean add(PointGPS u) {
-    	return gps.add(u);
-    }
+    public boolean add(Cardio u) {
+    	return cardios.add(u);
+    } 
 }

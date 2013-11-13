@@ -1,5 +1,5 @@
 
-package fr.istic.taa.yeoman;
+package resource;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -13,42 +13,44 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-@Path("/seances")
-public class SeanceResource {
+import fr.istic.taa.yeoman.PointGPS;
 
-    private List<Seance> seances = new ArrayList<Seance>();
+@Path("/ptsgps")
+public class PointGPSResource {
+
+    private List<PointGPS> gps = new ArrayList<PointGPS>();
     	
-    public SeanceResource() {
+    public PointGPSResource() {
         
     }
 
     @GET
     @Produces({ MediaType.APPLICATION_JSON })
-    public Collection<Seance> list() {
-        return seances;
+    public Collection<PointGPS> list() {
+        return gps;
     }
     
     @GET @Path("search/{id}")
     @Produces({ MediaType.APPLICATION_JSON })
-    public Seance findById(@PathParam("id") String arg0) {
-        return seances.get(Integer.parseInt(arg0));
+    public PointGPS findById(@PathParam("id") String arg0) {
+        return gps.get(Integer.parseInt(arg0));
     }
 
     @DELETE @Path("delete/{id}")
     @Produces({ MediaType.APPLICATION_JSON })
-    public Seance deleteById(@PathParam("id") String arg0) {
-        return seances.remove(Integer.parseInt(arg0));
+    public PointGPS deleteById(@PathParam("id") String arg0) {
+        return gps.remove(Integer.parseInt(arg0));
     }
     
     @PUT @Path("update/{id}")
     @Produces({MediaType.APPLICATION_JSON})
-    public Seance updateById(@PathParam("id") String arg0, Seance u) {
-    	return seances.set(Integer.parseInt(arg0), u);
+    public PointGPS updateById(@PathParam("id") String arg0, PointGPS u) {
+    	return gps.set(Integer.parseInt(arg0), u);
     }
     
     @PUT @Path("add")
     @Produces({MediaType.APPLICATION_JSON})
-    public boolean add(Seance u) {
-    	return seances.add(u);
+    public boolean add(PointGPS u) {
+    	return gps.add(u);
     }
 }

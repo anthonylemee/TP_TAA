@@ -1,5 +1,5 @@
 
-package fr.istic.taa.yeoman;
+package resource;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -13,42 +13,44 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-@Path("/cardios")
-public class CardioResource {
+import fr.istic.taa.yeoman.Meteo;
 
-    private List<Cardio> cardios = new ArrayList<Cardio>();
+@Path("/meteos")
+public class MeteoResource {
+
+    private List<Meteo> meteos = new ArrayList<Meteo>();
     	
-    public CardioResource() {
+    public MeteoResource() {
         
     }
 
     @GET
     @Produces({ MediaType.APPLICATION_JSON })
-    public Collection<Cardio> list() {
-        return cardios;
+    public Collection<Meteo> list() {
+        return meteos;
     }
     
     @GET @Path("search/{id}")
     @Produces({ MediaType.APPLICATION_JSON })
-    public Cardio findById(@PathParam("id") String arg0) {
-        return cardios.get(Integer.parseInt(arg0));
+    public Meteo findById(@PathParam("id") String arg0) {
+        return meteos.get(Integer.parseInt(arg0));
     }
 
     @DELETE @Path("delete/{id}")
     @Produces({ MediaType.APPLICATION_JSON })
-    public Cardio deleteById(@PathParam("id") String arg0) {
-        return cardios.remove(Integer.parseInt(arg0));
+    public Meteo deleteById(@PathParam("id") String arg0) {
+        return meteos.remove(Integer.parseInt(arg0));
     }
     
     @PUT @Path("update/{id}")
     @Produces({MediaType.APPLICATION_JSON})
-    public Cardio updateById(@PathParam("id") String arg0, Cardio u) {
-    	return cardios.set(Integer.parseInt(arg0), u);
+    public Meteo updateById(@PathParam("id") String arg0, Meteo u) {
+    	return meteos.set(Integer.parseInt(arg0), u);
     }
     
     @PUT @Path("add")
     @Produces({MediaType.APPLICATION_JSON})
-    public boolean add(Cardio u) {
-    	return cardios.add(u);
-    } 
+    public boolean add(Meteo u) {
+    	return meteos.add(u);
+    }
 }
