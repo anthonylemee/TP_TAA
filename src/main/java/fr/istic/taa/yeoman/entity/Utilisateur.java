@@ -1,7 +1,11 @@
 package fr.istic.taa.yeoman.entity;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 
 
 /**
@@ -26,12 +30,51 @@ public class Utilisateur extends APersonne
 
 	@Column(nullable = false) 
 	protected String avatar;
+	
+	@OneToMany(mappedBy = "utilisateur") 
+	protected Set<Seance> seance;
 
 	/**
-	 * Constrcuteur de la classe Utilisateur
+	 * Constructeur de la classe Utilisateur
 	 */
 	public Utilisateur(){
 		super();
+	}
+	
+	public void addAllSeance(Set<Seance> newSeance) {
+		if (this.seance == null) {
+			this.seance = new HashSet<Seance>();
+		}
+		for (Seance tmp : newSeance)
+			tmp.setUtilisateur(this);
+			
+	}
+	
+	public void removeAllSeance(Set<Seance> newSeance) {
+		if(this.seance == null) {
+			return;
+		}
+		
+		this.seance.removeAll(newSeance);	
+	}
+	
+	public void addSeance(Seance newSeance) {
+		if(this.seance == null) {
+			this.seance = new HashSet<Seance>();
+		}
+		
+		if (this.seance.add(newSeance))
+			newSeance.basicSetUtilisateur(this);;	
+	}
+	
+	public void removeSeance(Seance oldSeance) {
+		
+		if(this.seance == null)
+			return;
+		
+		if (this.seance.remove(oldSeance))
+			oldSeance.unsetUtilisateur();
+			
 	}
 
 	public String getPseudo() {

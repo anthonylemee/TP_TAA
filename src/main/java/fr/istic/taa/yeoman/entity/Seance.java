@@ -41,7 +41,7 @@ public class Seance
 
 	@ManyToOne 
 	@JoinColumn(nullable = false) 
-	protected APersonne personne;
+	protected Utilisateur utilisateur;
 	
 	@OneToOne 
 	protected Parcours parcours;
@@ -121,8 +121,8 @@ public class Seance
 		return this.sport;	
 	}
 	
-	public APersonne getAPersonne() {
-		return this.personne;	
+	public Utilisateur getUtilisateur() {
+		return this.utilisateur;	
 	}
 
 	public Parcours getParcours() {
@@ -165,9 +165,9 @@ public class Seance
 		mySport.addSeance(this);	
 	}
 	
-	public void setAPersonne(APersonne myAPersonne) {
-		this.basicSetAPersonne(myAPersonne);
-		myAPersonne.addSeance(this);	
+	public void setUtilisateur(Utilisateur myUtilisateur) {
+		this.basicSetUtilisateur(myUtilisateur);
+		myUtilisateur.addSeance(this);	
 	}
 	
 	public void setParcours(Parcours myParcours) {
@@ -194,14 +194,14 @@ public class Seance
 		}	
 	}
 	
-	public void basicSetAPersonne(APersonne myAPersonne) {
-		if (this.personne != myAPersonne) {
-			if (myAPersonne != null){
-				if (this.personne != myAPersonne) {
-					APersonne oldpersonne = this.personne;
-					this.personne = myAPersonne;
-					if (oldpersonne != null)
-						oldpersonne.removeSeance(this);
+	public void basicSetUtilisateur(Utilisateur myUtilisateur) {
+		if (this.utilisateur != myUtilisateur) {
+			if (myUtilisateur != null){
+				if (this.utilisateur != myUtilisateur) {
+					Utilisateur oldutilisateur = this.utilisateur;
+					this.utilisateur = myUtilisateur;
+					if (oldutilisateur != null)
+						oldutilisateur.removeSeance(this);
 				}
 			}
 		}	
@@ -257,12 +257,12 @@ public class Seance
 		oldsport.removeSeance(this);	
 	}
 	
-	public void unsetAPersonne() {
-		if (this.personne == null)
+	public void unsetUtilisateur() {
+		if (this.utilisateur == null)
 			return;
-		APersonne oldpersonne = this.personne;
-		this.personne = null;
-		oldpersonne.removeSeance(this);	
+		Utilisateur oldutilisateur = this.utilisateur;
+		this.utilisateur = null;
+		oldutilisateur.removeSeance(this);	
 	}
 	
 	public void unsetParcours() {

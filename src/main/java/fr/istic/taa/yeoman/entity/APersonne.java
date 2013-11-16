@@ -54,42 +54,6 @@ public abstract class APersonne
 		super();
 	}
 	
-	public void addAllSeance(Set<Seance> newSeance) {
-		if (this.seance == null) {
-			this.seance = new HashSet<Seance>();
-		}
-		for (Seance tmp : newSeance)
-			tmp.setAPersonne(this);
-			
-	}
-	
-	public void removeAllSeance(Set<Seance> newSeance) {
-		if(this.seance == null) {
-			return;
-		}
-		
-		this.seance.removeAll(newSeance);	
-	}
-	
-	public void addSeance(Seance newSeance) {
-		if(this.seance == null) {
-			this.seance = new HashSet<Seance>();
-		}
-		
-		if (this.seance.add(newSeance))
-			newSeance.basicSetAPersonne(this);	
-	}
-	
-	public void removeSeance(Seance oldSeance) {
-		
-		if(this.seance == null)
-			return;
-		
-		if (this.seance.remove(oldSeance))
-			oldSeance.unsetAPersonne();
-			
-	}
-	
 	public void setName(String myName) {
 		this.name = myName;	
 	}
