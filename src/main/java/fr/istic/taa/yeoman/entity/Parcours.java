@@ -1,0 +1,144 @@
+package fr.istic.taa.yeoman.entity;
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+
+
+/**
+ * 	Class qui défini le modèle de l'entité Séance 
+ */
+@Entity 
+public class Parcours
+{
+
+	@Column(nullable = false) 
+	protected Integer nbKilom;
+
+	@Column(nullable = false) 
+	protected Integer speed;
+
+	@OneToMany(mappedBy = "parcours") 
+	protected Set<PointGPS> pointsGPS;
+
+	@OneToOne(mappedBy = "parcours") 
+	protected Seance seance;
+
+	@Id 
+	@Column(nullable = false) 
+	protected final Long id = 0L;
+
+	/**
+	 * Constructeur de la classe Parcours
+	 */
+	public Parcours(){
+		super();
+	}
+
+	public void addPointGPS(PointGPS newPointGPS) {
+		if(this.pointsGPS == null) {
+			this.pointsGPS = new HashSet<PointGPS>();
+		}
+		
+		if (this.pointsGPS.add(newPointGPS))
+			newPointGPS.basicSetParcours(this);	
+	}
+	
+	public void addAllPointGPS(Set<PointGPS> newPointGPS) {
+		if (this.pointsGPS == null) {
+			this.pointsGPS = new HashSet<PointGPS>();
+		}
+		for (PointGPS tmp : newPointGPS)
+			tmp.setParcours(this);
+			
+	}
+
+	public void removeAllPointGPS(Set<PointGPS> newPointGPS) {
+		if(this.pointsGPS == null) {
+			return;
+		}
+		
+		this.pointsGPS.removeAll(newPointGPS);	
+	}
+	
+	public void removePointGPS(PointGPS oldPointGPS) {
+		if(this.pointsGPS == null)
+			return;
+		
+		if (this.pointsGPS.remove(oldPointGPS))
+			oldPointGPS.unsetParcours();
+			
+	}
+	
+	public Integer getNbKilom() {
+		return this.nbKilom;	
+	}
+
+	public Integer getSpeed() {
+		return this.speed;	
+	}
+	
+	public Set<PointGPS> getPointGPS() {
+		if(this.pointsGPS == null) {
+				this.pointsGPS = new HashSet<PointGPS>();
+		}
+		return (Set<PointGPS>) this.pointsGPS;	
+	}
+	
+	public Seance getSeance() {
+		return this.seance;	
+	}
+	
+	public long getId() {
+		return this.id;	
+	}
+	
+	public void setNbKilom(Integer myNbKilom) {
+		this.nbKilom = myNbKilom;	
+	}
+	
+	public void setSpeed(Integer mySpeed) {
+		this.speed = mySpeed;	
+	}
+	
+	public void setSeance(Seance mySeance) {
+		this.basicSetSeance(mySeance);
+		mySeance.basicSetParcours(this);
+			
+	}
+	
+	public void basicSetSeance(Seance mySeance) {
+		if (this.seance != mySeance) {
+			if (mySeance != null){
+				if (this.seance != mySeance) {
+					Seance oldseance = this.seance;
+					this.seance = mySeance;
+					if (oldseance != null)
+						oldseance.unsetParcours();
+				}
+			}
+		}	
+	}
+	
+	public void unsetNbKilom() {
+		this.nbKilom = null;	
+	}
+	
+	public void unsetSpeed() {
+		this.speed = null;	
+	}
+	
+	public void unsetSeance() {
+		if (this.seance == null)
+			return;
+		Seance oldseance = this.seance;
+		this.seance = null;
+		oldseance.unsetParcours();	
+	}
+	
+} //class
+
