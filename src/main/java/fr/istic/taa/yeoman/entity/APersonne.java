@@ -1,7 +1,5 @@
 package fr.istic.taa.yeoman.entity;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,7 +8,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 
 
@@ -39,9 +36,6 @@ public abstract class APersonne
 	 
 	@Column(nullable = false) 
 	protected boolean sex;
-	
-	@OneToMany(mappedBy = "personne") 
-	protected Set<Seance> seance;
 	
 	@Id @GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(nullable = false) 
@@ -100,13 +94,6 @@ public abstract class APersonne
 	
 	public boolean isSex() {
 		return this.sex;	
-	}
-	
-	public Set<Seance> getSeance() {
-		if(this.seance == null) {
-				this.seance = new HashSet<Seance>();
-		}
-		return (Set<Seance>) this.seance;	
 	}
 	
 	public long getId() {

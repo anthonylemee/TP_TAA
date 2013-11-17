@@ -6,14 +6,14 @@
 
 	<persistence-unit transaction-type="RESOURCE_LOCAL" name="jpa">
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
-		<class>fr.istic.taa.yeoman.entity.Cardio</class>
-		<class>fr.istic.taa.yeoman.entity.Meteo</class>
-		<class>fr.istic.taa.yeoman.entity.Parcours</class>
-		<class>fr.istic.taa.yeoman.entity.PointGPS</class>
-		<class>fr.istic.taa.yeoman.entity.Seance</class>
-		<class>fr.istic.taa.yeoman.entity.Sport</class>
-		<class>fr.istic.taa.yeoman.entity.Utilisateur</class>
-		<exclude-unlisted-classes>true</exclude-unlisted-classes>
+<!-- 		<class>fr.istic.taa.yeoman.entity.Cardio</class> -->
+<!-- 		<class>fr.istic.taa.yeoman.entity.Meteo</class> -->
+<!-- 		<class>fr.istic.taa.yeoman.entity.Parcours</class> -->
+<!-- 		<class>fr.istic.taa.yeoman.entity.PointGPS</class> -->
+<!-- 		<class>fr.istic.taa.yeoman.entity.Seance</class> -->
+<!-- 		<class>fr.istic.taa.yeoman.entity.Sport</class> -->
+<!-- 		<class>fr.istic.taa.yeoman.entity.Utilisateur</class> -->
+<!-- 		<exclude-unlisted-classes>true</exclude-unlisted-classes> -->
 		
 		<properties>
             <property name="hibernate.show_sql" value="true"/>

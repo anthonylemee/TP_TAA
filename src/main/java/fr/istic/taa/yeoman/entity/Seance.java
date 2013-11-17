@@ -280,5 +280,41 @@ public class Seance
 		this.meteo = null;
 		oldmeteo.unsetSeance();	
 	}
+
+	/**
+	 * Méthode servant à afficher l'objet courant dans les logs
+	 * @return String
+	 */
+	public String log() {
+		
+		return  " [ID] " + this.id +
+				" [Date] " + this.date.toString() +
+				" [DateDeb] " + this.beginDate.toString() +
+				" [DateEnd] " + this.endDate.toString() +
+				" [Time] " + this.time +
+				" [IDSport] " + this.sport.id +
+				" [IDUser] " + this.utilisateur.id +
+				" [IDParcours] " + this.parcours.id + 
+				" [IDMeteo] " + this.meteo.id +
+				" [FreqCardio] " + this.logCardio();
+		
+	}
+
+	/**
+	 * Méthode qui permet d'afficher sous forme de 
+	 * log les fréquences cardiaques lors de la séance. 
+	 * @return String
+	 */
+	private String logCardio() {
+		
+		String frequences = " / ";
+		
+		for (Cardio cardio : this.cardio) {
+			frequences += cardio.frequency + " / ";
+		}
+		
+		return frequences;
+		
+	} // method
 	
 } // class
