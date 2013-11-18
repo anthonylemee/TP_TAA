@@ -3,12 +3,12 @@ package fr.istic.taa.yeoman.dao;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import fr.istic.taa.yeoman.client.TransactionManager;
 import fr.istic.taa.yeoman.entity.PointGPS;
+import fr.istic.taa.yeoman.entity.interfaces.IPointGPS;
 
 /**
  * Notre classe DaoPointGPS implémentant les méthodes de l'interface IDao
@@ -16,11 +16,12 @@ import fr.istic.taa.yeoman.entity.PointGPS;
  * @author Anthony
  * @since 
  */
-public class DaoPointGPS implements IDao<PointGPS> {
+public class DaoPointGPS implements IDao<IPointGPS> {
 
 	/** Attributs de la classe */
 	@PersistenceContext
 	private EntityManager em;
+	TransactionManager tm;
 	
 	/** 
 	 * @TODO Faire un fichier de configuration pour l'activation
@@ -32,52 +33,41 @@ public class DaoPointGPS implements IDao<PointGPS> {
 	 * Constructeur de la classe DaoPointGPS
 	 */
 	public DaoPointGPS (EntityManager em) {
-		
 		if (DEBUG) System.out.println("[DaoPointGPS] Instanciation de la DaoPointGPS...");
 		this.em	= em;
-		
+		tm = new TransactionManager();
 	} // constructeur
 	
 	@Override
-	public void insert(PointGPS pointGPS) {
-
+	public IPointGPS insert(IPointGPS pointGPS) {
 		if (DEBUG) System.out.println("[DaoPointGPS][INSERT] " + pointGPS.log());
-		em.persist(pointGPS);
-		
+		tm.persist(em, pointGPS);
+		return pointGPS;
 	}
 	@Override
-	public void delete(PointGPS pointGPS) {
-		
+	public IPointGPS delete(IPointGPS pointGPS) {
 		if (DEBUG) System.out.println("[DaoPointGPS][DELETE] " + pointGPS.log());
-		em.remove(pointGPS);
-		
+		tm.remove(em,pointGPS);
+		return pointGPS;
 	}
 	@Override
-	public PointGPS update(PointGPS pointGPS) {
-		
+	public IPointGPS update(IPointGPS pointGPS) {
 		if (DEBUG) System.out.println("[DaoPointGPS][UPDATE][Before] " + this.find(pointGPS.getId()).log());
-		PointGPS newPointGPS = em.merge(pointGPS);
-		if (DEBUG) System.out.println("[DaoPointGPS][UPDATE][After]  " + newPointGPS.log());
-		
-		return newPointGPS;
-		
+		tm.merge(em, pointGPS);
+		return pointGPS;
 	}
 	@Override
-	public PointGPS find(long id) {
-
+	public IPointGPS find(long id) {
 		if (DEBUG) System.out.println("[DaoPointGPS][FIND] " + id);
 		return em.find(PointGPS.class, id);
-		
 	}
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<PointGPS> findAll() {
-		
+	public List<IPointGPS> findAll() {
 		if (DEBUG) System.out.println("[DaoPointGPS][FINDALL] ");
 		Query q = em.createQuery("select p from PointGPS p");
-		return (List<PointGPS>)q.getResultList();
-		
+		return (List<IPointGPS>)q.getResultList();
 	}
 	
 } // class

@@ -3,12 +3,12 @@ package fr.istic.taa.yeoman.dao;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import fr.istic.taa.yeoman.client.TransactionManager;
 import fr.istic.taa.yeoman.entity.Sport;
+import fr.istic.taa.yeoman.entity.interfaces.ISport;
 
 /**
  * Notre classe DaoSport implémentant les méthodes de l'interface IDao
@@ -16,12 +16,12 @@ import fr.istic.taa.yeoman.entity.Sport;
  * @author Anthony
  * @since 
  */
-public class DaoSport implements IDao<Sport> {
+public class DaoSport implements IDao<ISport> {
 
 	/** Attributs de la classe */
 	@PersistenceContext
 	private EntityManager em;
-	
+	private TransactionManager tm;
 	/** 
 	 * @TODO Faire un fichier de configuration pour l'activation
 	 * ou non du mode DEBUG 
@@ -35,35 +35,33 @@ public class DaoSport implements IDao<Sport> {
 		
 		if (DEBUG) System.out.println("[DaoSport] Instanciation de la DaoSport...");
 		this.em	= em;
-		
+		tm = new TransactionManager();
 	} // constructeur
 	
 	@Override
-	public void insert(Sport sport) {
+	public ISport insert(ISport sport) {
 
 		if (DEBUG) System.out.println("[DaoSport][INSERT] " + sport.log());
-		em.persist(sport);
-		
+		tm.persist(em,sport);
+		return sport;
 	}
 	@Override
-	public void delete(Sport sport) {
+	public ISport delete(ISport sport) {
 		
 		if (DEBUG) System.out.println("[DaoSport][DELETE] " + sport.log());
-		em.remove(sport);
-		
+		tm.remove(em,sport);
+		return sport;
 	}
 	@Override
-	public Sport update(Sport sport) {
+	public ISport update(ISport sport) {
 		
 		if (DEBUG) System.out.println("[DaoSport][UPDATE][Before] " + this.find(sport.getId()).log());
-		Sport newSport = em.merge(sport);
-		if (DEBUG) System.out.println("[DaoSport][UPDATE][After]  " + newSport.log());
-		
-		return newSport;
+		tm.merge(em, sport);
+		return sport;
 		
 	}
 	@Override
-	public Sport find(long id) {
+	public ISport find(long id) {
 
 		if (DEBUG) System.out.println("[DaoSport][FIND] " + id);
 		return em.find(Sport.class, id);
@@ -72,11 +70,11 @@ public class DaoSport implements IDao<Sport> {
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Sport> findAll() {
+	public List<ISport> findAll() {
 		
 		if (DEBUG) System.out.println("[DaoSport][FINDALL] ");
 		Query q = em.createQuery("select s from Sport s ORDER BY s.nom_sport ASC");
-		return (List<Sport>)q.getResultList();
+		return (List<ISport>)q.getResultList();
 		
 	}
 	

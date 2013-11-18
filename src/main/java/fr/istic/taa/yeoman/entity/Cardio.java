@@ -9,12 +9,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import fr.istic.taa.yeoman.entity.interfaces.ICardio;
+
 /**
  * 	Class qui défini le modèle de l'entité Cardio 
  */
 @Entity 
 @Table(name="cardio")
-public class Cardio
+public class Cardio implements ICardio
 {
 
 	@Column(nullable = false) 
@@ -66,6 +68,7 @@ public class Cardio
 		return this.seance;	
 	}
 
+	@Override
 	public long getId() {
 		return this.id;	
 	}
@@ -86,10 +89,11 @@ public class Cardio
 	 * Méthode servant à afficher l'objet courant dans les logs
 	 * @return String
 	 */
+	@Override
 	public String log() {			
 		return  " [ID] " + this.id +
 				" [frequence] " + this.frequency +
-				" [Seance] " + (this.seance.id == null ? "null" : this.seance.id);
+				" [Seance] " + (this.seance == null ? "null" : this.seance.id);
 	}
 }
 

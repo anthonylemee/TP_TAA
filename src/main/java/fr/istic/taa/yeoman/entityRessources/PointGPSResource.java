@@ -2,7 +2,6 @@
 package fr.istic.taa.yeoman.entityRessources;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -70,7 +69,19 @@ public class PointGPSResource {
     
     @PUT @Path("add")
     @Produces({MediaType.APPLICATION_JSON})
-    public boolean add(PointGPS u) {
-    	return gps.add(u);
+    public Response add(PointGPS u) {
+    	EntityManagerFactory emf = Persistence.createEntityManagerFactory("config");
+    	EntityManager em = emf.createEntityManager();
+    	
+    	//I...
+    	DaoPointGPS gps = new DaoPointGPS(em);
+    	
+    	res = Response.ok(gps.insert(u));
+    	res.header("Access-Control-Allow-Origin", "*");
+    	res.header("Access-Control-Allow-Methods", "POST, GET, PUT, UPDATE, OPTIONS");
+    	res.header("Access-Control-Allow-Headers", "Content-Type, Accept, X-Requested-With");
+    	
+    	em.close();
+        return res.build();
     }
 }

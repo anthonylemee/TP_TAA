@@ -3,12 +3,12 @@ package fr.istic.taa.yeoman.dao;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import fr.istic.taa.yeoman.client.TransactionManager;
 import fr.istic.taa.yeoman.entity.Utilisateur;
+import fr.istic.taa.yeoman.entity.interfaces.IUtilisateur;
 
 /**
  * Notre classe DaoUtilisateur implémentant les méthodes de l'interface IDao
@@ -16,12 +16,12 @@ import fr.istic.taa.yeoman.entity.Utilisateur;
  * @author Anthony
  * @since 
  */
-public class DaoUtilisateur implements IDao<Utilisateur> {
+public class DaoUtilisateur implements IDao<IUtilisateur> {
 
 	/** Attributs de la classe */
 	@PersistenceContext
 	private EntityManager em;
-	
+	private TransactionManager tm;
 	/** 
 	 * @TODO Faire un fichier de configuration pour l'activation
 	 * ou non du mode DEBUG 
@@ -35,35 +35,33 @@ public class DaoUtilisateur implements IDao<Utilisateur> {
 		
 		if (DEBUG) System.out.println("[DaoUtilisateur] Instanciation de la DaoUtilisateur...");
 		this.em	= em;
-		
+		tm = new TransactionManager();
 	} // constructeur
 	
 	@Override
-	public void insert(Utilisateur utilisateur) {
+	public IUtilisateur insert(IUtilisateur utilisateur) {
 
 		if (DEBUG) System.out.println("[DaoUtilisateur][INSERT] " + utilisateur.log());
-		em.persist(utilisateur);
-		
+		tm.persist(em,utilisateur);
+		return utilisateur;
 	}
 	@Override
-	public void delete(Utilisateur utilisateur) {
+	public IUtilisateur delete(IUtilisateur utilisateur) {
 		
 		if (DEBUG) System.out.println("[DaoUtilisateur][DELETE] " + utilisateur.log());
-		em.remove(utilisateur);
-		
+		tm.remove(em,utilisateur);
+		return utilisateur;
 	}
 	@Override
-	public Utilisateur update(Utilisateur utilisateur) {
+	public IUtilisateur update(IUtilisateur utilisateur) {
 		
 		if (DEBUG) System.out.println("[DaoUtilisateur][UPDATE][Before] " + this.find(utilisateur.getId()).log());
-		Utilisateur newUtilisateur = em.merge(utilisateur);
-		if (DEBUG) System.out.println("[DaoUtilisateur][UPDATE][After]  " + newUtilisateur.log());
-		
-		return newUtilisateur;
+		tm.merge(em, utilisateur);
+		return utilisateur;
 		
 	}
 	@Override
-	public Utilisateur find(long id) {
+	public IUtilisateur find(long id) {
 
 		if (DEBUG) System.out.println("[DaoUtilisateur][FIND] " + id);
 		return em.find(Utilisateur.class, id);
@@ -72,11 +70,11 @@ public class DaoUtilisateur implements IDao<Utilisateur> {
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Utilisateur> findAll() {
+	public List<IUtilisateur> findAll() {
 		
 		if (DEBUG) System.out.println("[DaoUtilisateur][FINDALL] ");
 		Query q = em.createQuery("select u from Utilisateur u ORDER BY u.pseudo ASC");
-		return (List<Utilisateur>)q.getResultList();
+		return (List<IUtilisateur>)q.getResultList();
 		
 	}
 	

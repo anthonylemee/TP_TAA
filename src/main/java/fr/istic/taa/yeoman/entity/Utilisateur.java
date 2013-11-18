@@ -10,13 +10,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import fr.istic.taa.yeoman.entity.interfaces.IUtilisateur;
+
 
 /**
  * Class qui défini le modèle de l'entité Utilisateur
  * sous-type de Personne
  */
 @Entity 
-public class Utilisateur extends APersonne
+public class Utilisateur extends APersonne implements IUtilisateur
 {
 	 
 	@Column(nullable = false) 
@@ -101,6 +103,7 @@ public class Utilisateur extends APersonne
 		return this.avatar;	
 	}
 	
+	@Override
 	public long getId() {
 		return this.id;	
 	}
@@ -145,6 +148,7 @@ public class Utilisateur extends APersonne
 		this.avatar = "";	
 	}
 	
+	@Override
 	public String log() { return ""; }
 	
 } // class

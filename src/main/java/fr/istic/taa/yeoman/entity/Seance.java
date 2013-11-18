@@ -16,12 +16,14 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import fr.istic.taa.yeoman.entity.interfaces.ISeance;
+
 /**
  * 	Class qui défini le modèle de l'entité Séance 
  */
 @Entity 
 @Table(name="seance")
-public class Seance
+public class Seance implements ISeance
 {
 
 	@Temporal(TemporalType.DATE) 
@@ -145,6 +147,7 @@ public class Seance
 		return (Set<Cardio>) this.cardio;	
 	}
 	
+	@Override
 	public long getId() {
 		return this.id;	
 	}
@@ -290,6 +293,7 @@ public class Seance
 	 * Méthode servant à afficher l'objet courant dans les logs
 	 * @return String
 	 */
+	@Override
 	public String log() {
 		
 		return  " [ID] " + this.id +

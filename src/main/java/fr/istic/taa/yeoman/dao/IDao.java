@@ -9,8 +9,8 @@ import java.util.List;
  */
 public interface IDao<T> {
 
-	public void insert(T object);
-	public void delete(T object);
+	public T insert(T object);
+	public T delete(T object);
 	public T update(T object);
 	public T find(long id);
 	public List<T> findAll();

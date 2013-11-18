@@ -3,12 +3,12 @@ package fr.istic.taa.yeoman.dao;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import fr.istic.taa.yeoman.client.TransactionManager;
 import fr.istic.taa.yeoman.entity.Meteo;
+import fr.istic.taa.yeoman.entity.interfaces.IMeteo;
 
 /**
  * Notre classe Daometeo implémentant les méthodes de l'interface IDao
@@ -16,13 +16,12 @@ import fr.istic.taa.yeoman.entity.Meteo;
  * @author Anthony
  * @since 
  */
-public class DAOMeteo implements IDao<Meteo> {
+public class DAOMeteo implements IDao<IMeteo> {
 
 	/** Attributs de la classe */
 	@PersistenceContext
 	private EntityManager em;
-	private EntityManagerFactory emf;
-	
+	private TransactionManager tm;
 	/** 
 	 * @TODO Faire un fichier de configuration pour l'activation
 	 * ou non du mode DEBUG 
@@ -36,35 +35,34 @@ public class DAOMeteo implements IDao<Meteo> {
 		
 		if (DEBUG) System.out.println("[Daometeo] Instanciation de la DaoMeteo...");
 		this.em = em;
+		tm = new TransactionManager();
 		
 	} // constructeur
 	
 	@Override
-	public void insert(Meteo meteo) {
+	public IMeteo insert(IMeteo meteo) {
 
 		if (DEBUG) System.out.println("[DaoMeteo][INSERT] " + meteo.log());
-		em.persist(meteo);
-		
+		tm.persist(em,meteo);
+		return meteo;
 	}
 	@Override
-	public void delete(Meteo meteo) {
+	public IMeteo delete(IMeteo meteo) {
 		
 		if (DEBUG) System.out.println("[DaoMeteo][DELETE] " + meteo.log());
-		em.remove(meteo);
-		
+		tm.remove(em,meteo);
+		return meteo;
 	}
 	@Override
-	public Meteo update(Meteo meteo) {
+	public IMeteo update(IMeteo meteo) {
 		
 		if (DEBUG) System.out.println("[DaoMeteo][UPDATE][Before] " + this.find(meteo.getId()).log());
-		Meteo newmeteo = em.merge(meteo);
-		if (DEBUG) System.out.println("[DaoMeteo][UPDATE][After]  " + newmeteo.log());
-		
-		return newmeteo;
+		tm.merge(em, meteo);
+		return meteo;
 		
 	}
 	@Override
-	public Meteo find(long id) {
+	public IMeteo find(long id) {
 
 		if (DEBUG) System.out.println("[DaoMeteo][FIND] " + id);
 		return em.find(Meteo.class, id);
@@ -73,11 +71,11 @@ public class DAOMeteo implements IDao<Meteo> {
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Meteo> findAll() {
+	public List<IMeteo> findAll() {
 		
 		if (DEBUG) System.out.println("[DaoMeteo][FINDALL] ");
-		Query q = em.createQuery("select s from Meteo s");
-		return (List<Meteo>)q.getResultList();
+		Query q = em.createQuery("select m from Meteo m");
+		return (List<IMeteo>)q.getResultList();
 		
 	}
 	

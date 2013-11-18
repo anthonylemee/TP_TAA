@@ -3,12 +3,12 @@ package fr.istic.taa.yeoman.dao;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import fr.istic.taa.yeoman.client.TransactionManager;
 import fr.istic.taa.yeoman.entity.APersonne;
+import fr.istic.taa.yeoman.entity.interfaces.IAPersonne;
 
 /**
  * Notre classe Daopersonne implémentant les méthodes de l'interface IDao
@@ -16,11 +16,12 @@ import fr.istic.taa.yeoman.entity.APersonne;
  * @author Anthony
  * @since 
  */
-public class DAOPersonne implements IDao<APersonne> {
+public class DAOPersonne implements IDao<IAPersonne> {
 
 	/** Attributs de la classe */
 	@PersistenceContext
 	private EntityManager em;
+	private TransactionManager tm;
 	
 	/** 
 	 * @TODO Faire un fichier de configuration pour l'activation
@@ -34,48 +35,44 @@ public class DAOPersonne implements IDao<APersonne> {
 	public DAOPersonne(EntityManager em) {
 		if (DEBUG) System.out.println("[Daopersonne] Instanciation de la DaoPersonne...");
 		this.em	= em;
-		
+		tm = new TransactionManager();
 	} // constructeur
 	
 	@Override
-	public void insert(APersonne personne) {
+	public IAPersonne insert(IAPersonne personne) {
 
 		if (DEBUG) System.out.println("[DaoPersonne][INSERT] " + personne.log());
-		em.persist(personne);
-		
+		tm.persist(em,personne);
+		return personne;
 	}
 	@Override
-	public void delete(APersonne personne) {
+	public IAPersonne delete(IAPersonne personne) {
 		
 		if (DEBUG) System.out.println("[DaoPersonne][DELETE] " + personne.log());
-		em.remove(personne);
-		
+		tm.remove(em,personne);
+		return personne;
 	}
 	@Override
-	public APersonne update(APersonne personne) {
+	public IAPersonne update(IAPersonne personne) {
 		
 		if (DEBUG) System.out.println("[DaoPersonne][UPDATE][Before] " + this.find(personne.getId()).log());
-		APersonne newpersonne = em.merge(personne);
-		if (DEBUG) System.out.println("[DaoPersonne][UPDATE][After]  " + newpersonne.log());
-		
-		return newpersonne;
+		tm.merge(em, personne);		
+		return personne;
 		
 	}
 	@Override
-	public APersonne find(long id) {
-
+	public IAPersonne find(long id) {
 		if (DEBUG) System.out.println("[DaoPersonne][FIND] " + id);
 		return em.find(APersonne.class, id);
-		
 	}
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<APersonne> findAll() {
+	public List<IAPersonne> findAll() {
 		
 		if (DEBUG) System.out.println("[DaoPersonne][FINDALL] ");
-		Query q = em.createQuery("select s from APersonne s");
-		return (List<APersonne>)q.getResultList();
+		Query q = em.createQuery("select p from APersonne p");
+		return (List<IAPersonne>)q.getResultList();
 		
 	}
 	

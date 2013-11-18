@@ -9,13 +9,15 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import fr.istic.taa.yeoman.entity.interfaces.IPointGPS;
+
 
 /**
  * Class qui défini le modèle de l'entité PointGPS
  */ 
 @Entity 
 @Table(name="point_gps")
-public class PointGPS
+public class PointGPS implements IPointGPS
 {
 
 	@Column(nullable = false) 
@@ -59,6 +61,7 @@ public class PointGPS
 		return this.parcours;	
 	}
 
+	@Override
 	public long getId() {
 		return this.id;	
 	}
@@ -117,6 +120,7 @@ public class PointGPS
 	 * Méthode servant à afficher l'objet courant dans les logs
 	 * @return String
 	 */
+	@Override
 	public String log() { 
 		
 		return " [ID] " + this.id +

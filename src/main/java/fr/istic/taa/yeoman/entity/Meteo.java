@@ -8,12 +8,14 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import fr.istic.taa.yeoman.entity.interfaces.IMeteo;
+
 /**
  * 	Class qui défini le modèle de l'entité Météo 
  */
 @Entity 
 @Table(name="meteo")
-public class Meteo
+public class Meteo implements IMeteo
 {
 
 	@Column(nullable = false) 
@@ -62,6 +64,7 @@ public class Meteo
 		return this.seance;	
 	}
 
+	@Override
 	public long getId() {
 		return this.id;	
 	}
@@ -100,6 +103,7 @@ public class Meteo
 	 * Méthode servant à afficher l'objet courant dans les logs
 	 * @return String
 	 */
+	@Override
 	public String log(){
 		
 		return  " [ID] " + this.id +

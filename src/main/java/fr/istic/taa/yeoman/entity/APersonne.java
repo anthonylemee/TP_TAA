@@ -11,13 +11,15 @@ import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 
+import fr.istic.taa.yeoman.entity.interfaces.IAPersonne;
+
 /**
  * Entité Abstraite Personne
  */
 @Entity
 @Table(name="Personne")
 @Inheritance(strategy=InheritanceType.JOINED)
-public abstract class APersonne
+public abstract class APersonne implements IAPersonne
 {
 
 	@Column(nullable = false) 
@@ -99,6 +101,7 @@ public abstract class APersonne
 		return this.sex;	
 	}
 	
+	@Override
 	public long getId() {
 		return this.id;	
 	}
@@ -131,6 +134,7 @@ public abstract class APersonne
 	 * Méthode servant à afficher l'objet courant dans les logs
 	 * @return String
 	 */
+	@Override
 	public String log() {
 		
 		return  " [ID] " + this.id +

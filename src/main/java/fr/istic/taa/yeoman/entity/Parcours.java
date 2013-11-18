@@ -1,4 +1,5 @@
 package fr.istic.taa.yeoman.entity;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -11,114 +12,113 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import fr.istic.taa.yeoman.entity.interfaces.IParcours;
 
 /**
- * 	Class qui défini le modèle de l'entité Séance 
+ * Class qui défini le modèle de l'entité Séance
  */
-@Entity 
-@Table(name="parcours")
-public class Parcours
-{
+@Entity
+@Table(name = "parcours")
+public class Parcours implements IParcours {
 
-	@Column(nullable = false) 
+	@Column(nullable = false)
 	protected Integer nbKilom;
 
-	@Column(nullable = false) 
+	@Column(nullable = false)
 	protected Integer speed;
 
-	@OneToMany(mappedBy = "parcours") 
+	@OneToMany(mappedBy = "parcours")
 	protected Set<PointGPS> pointsGPS;
 
-	@OneToOne(mappedBy = "parcours") 
+	@OneToOne(mappedBy = "parcours")
 	protected Seance seance;
 
-	@Id 
+	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(nullable = false) 
+	@Column(nullable = false)
 	protected Long id;
 
 	/**
 	 * Constructeur de la classe Parcours
 	 */
-	public Parcours(){
+	public Parcours() {
 		super();
 	}
 
 	public void addPointGPS(PointGPS newPointGPS) {
-		if(this.pointsGPS == null) {
+		if (this.pointsGPS == null) {
 			this.pointsGPS = new HashSet<PointGPS>();
 		}
-		
+
 		if (this.pointsGPS.add(newPointGPS))
-			newPointGPS.basicSetParcours(this);	
+			newPointGPS.basicSetParcours(this);
 	}
-	
+
 	public void addAllPointGPS(Set<PointGPS> newPointGPS) {
 		if (this.pointsGPS == null) {
 			this.pointsGPS = new HashSet<PointGPS>();
 		}
-		for (PointGPS tmp : newPointGPS)
-			tmp.setParcours(this);
-			
+		if (pointsGPS.size() != 0) {
+			for (PointGPS tmp : newPointGPS)
+				tmp.setParcours(this);
+		}
 	}
 
 	public void removeAllPointGPS(Set<PointGPS> newPointGPS) {
-		if(this.pointsGPS == null) {
+		if (this.pointsGPS == null) {
 			return;
 		}
-		
-		this.pointsGPS.removeAll(newPointGPS);	
+		this.pointsGPS.removeAll(newPointGPS);
 	}
-	
+
 	public void removePointGPS(PointGPS oldPointGPS) {
-		if(this.pointsGPS == null)
+		if (this.pointsGPS == null)
 			return;
-		
 		if (this.pointsGPS.remove(oldPointGPS))
 			oldPointGPS.unsetParcours();
-			
 	}
-	
+
 	public Integer getNbKilom() {
-		return this.nbKilom;	
+		return this.nbKilom;
 	}
 
 	public Integer getSpeed() {
-		return this.speed;	
+		return this.speed;
 	}
-	
+
 	public Set<PointGPS> getPointGPS() {
-		if(this.pointsGPS == null) {
-				this.pointsGPS = new HashSet<PointGPS>();
+		if (this.pointsGPS == null) {
+			this.pointsGPS = new HashSet<PointGPS>();
 		}
-		return (Set<PointGPS>) this.pointsGPS;	
+		return (Set<PointGPS>) this.pointsGPS;
 	}
-	
+
 	public Seance getSeance() {
-		return this.seance;	
+		return this.seance;
 	}
-	
+
+	@Override
 	public long getId() {
-		return this.id;	
+		return this.id;
 	}
-	
+
 	public void setNbKilom(Integer myNbKilom) {
-		this.nbKilom = myNbKilom;	
+		this.nbKilom = myNbKilom;
 	}
-	
+
 	public void setSpeed(Integer mySpeed) {
-		this.speed = mySpeed;	
+		this.speed = mySpeed;
 	}
-	
+
 	public void setSeance(Seance mySeance) {
 		this.basicSetSeance(mySeance);
 		mySeance.basicSetParcours(this);
-			
+
 	}
-	
+
 	public void basicSetSeance(Seance mySeance) {
 		if (this.seance != mySeance) {
-			if (mySeance != null){
+			if (mySeance != null) {
 				if (this.seance != mySeance) {
 					Seance oldseance = this.seance;
 					this.seance = mySeance;
@@ -126,35 +126,36 @@ public class Parcours
 						oldseance.unsetParcours();
 				}
 			}
-		}	
+		}
 	}
-	
+
 	public void unsetNbKilom() {
-		this.nbKilom = null;	
+		this.nbKilom = null;
 	}
-	
+
 	public void unsetSpeed() {
-		this.speed = null;	
+		this.speed = null;
 	}
-	
+
 	public void unsetSeance() {
 		if (this.seance == null)
 			return;
 		Seance oldseance = this.seance;
 		this.seance = null;
-		oldseance.unsetParcours();	
+		oldseance.unsetParcours();
 	}
-	
+
 	/**
 	 * Méthode servant à afficher l'objet courant dans les logs
+	 * 
 	 * @return String
 	 */
+	@Override
 	public String log() {
 
-		return  " [ID] " + this.id +
-				" [nbKm] " + this.nbKilom +
-				" [km/h] " + this.speed  + 
-				" [Seance] " + (this.seance == null ? "null" : this.seance.id);
+		return " [ID] " + this.id + " [nbKm] " + this.nbKilom + " [km/h] "
+				+ this.speed + " [Seance] "
+				+ (this.seance == null ? "null" : this.seance.id);
 	}
-} //class
+} // class
 

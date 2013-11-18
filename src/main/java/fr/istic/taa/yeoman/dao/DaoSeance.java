@@ -3,12 +3,12 @@ package fr.istic.taa.yeoman.dao;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import fr.istic.taa.yeoman.client.TransactionManager;
 import fr.istic.taa.yeoman.entity.Seance;
+import fr.istic.taa.yeoman.entity.interfaces.ISeance;
 
 /**
  * Notre classe DaoSeance implémentant les méthodes de l'interface IDao
@@ -16,11 +16,12 @@ import fr.istic.taa.yeoman.entity.Seance;
  * @author Anthony
  * @since 
  */
-public class DaoSeance implements IDao<Seance> {
+public class DaoSeance implements IDao<ISeance> {
 
 	/** Attributs de la classe */
 	@PersistenceContext
 	private EntityManager em;
+	private TransactionManager tm;
 	
 	/** 
 	 * @TODO Faire un fichier de configuration pour l'activation
@@ -35,35 +36,33 @@ public class DaoSeance implements IDao<Seance> {
 		
 		if (DEBUG) System.out.println("[DaoSeance] Instanciation de la DaoSeance...");
 		this.em	= em;
-		
+		tm = new TransactionManager();
 	} // constructeur
 	
 	@Override
-	public void insert(Seance seance) {
+	public ISeance insert(ISeance seance) {
 
 		if (DEBUG) System.out.println("[DaoSeance][INSERT] " + seance.log());
-		em.persist(seance);
-		
+		tm.persist(em,seance);
+		return seance;
 	}
 	@Override
-	public void delete(Seance seance) {
+	public ISeance delete(ISeance seance) {
 		
 		if (DEBUG) System.out.println("[DaoSeance][DELETE] " + seance.log());
-		em.remove(seance);
-		
+		tm.remove(em,seance);
+		return seance;
 	}
 	@Override
-	public Seance update(Seance seance) {
+	public ISeance update(ISeance seance) {
 		
 		if (DEBUG) System.out.println("[DaoSeance][UPDATE][Before] " + this.find(seance.getId()).log());
-		Seance newSeance = em.merge(seance);
-		if (DEBUG) System.out.println("[DaoSeance][UPDATE][After]  " + newSeance.log());
-		
-		return newSeance;
+		tm.merge(em, seance);
+		return seance;
 		
 	}
 	@Override
-	public Seance find(long id) {
+	public ISeance find(long id) {
 
 		if (DEBUG) System.out.println("[DaoSeance][FIND] " + id);
 		return em.find(Seance.class, id);
@@ -72,11 +71,11 @@ public class DaoSeance implements IDao<Seance> {
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Seance> findAll() {
+	public List<ISeance> findAll() {
 		
 		if (DEBUG) System.out.println("[DaoSeance][FINDALL] ");
 		Query q = em.createQuery("select s from Seance s ORDER BY s.date ASC");
-		return (List<Seance>)q.getResultList();
+		return (List<ISeance>)q.getResultList();
 		
 	}
 	

@@ -10,12 +10,14 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import fr.istic.taa.yeoman.entity.interfaces.ISport;
+
 /**
  * Class qui défini le modèle de l'entité Sport
  */
 @Entity 
 @Table(name="sport")
-public class Sport
+public class Sport implements ISport
 {
 
 	@Id
@@ -75,6 +77,7 @@ public class Sport
 			
 	}
 	
+	@Override
 	public long getId() {
 		return this.id;	
 	}
@@ -122,6 +125,7 @@ public class Sport
 	 * Méthode servant à afficher l'objet courant dans les logs
 	 * @return String
 	 */
+	@Override
 	public String log() { 
 		
 		return " [ID] " + this.id +
