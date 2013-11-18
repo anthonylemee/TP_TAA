@@ -7,13 +7,14 @@ import fr.istic.taa.yeoman.entity.Seance;
 /**
  * Interface définissant le squelette d'un Dao
  * @author Jimmy DANO & Anthony LE MEE
+ * @param <T>
  */
-public interface IDao {
+public interface IDao<T> {
 
-	public void insert(Seance seance);
-	public void delete(Seance seance);
-	public Seance update(Seance seance);
-	public Seance find(long id);
-	public List<Seance> findAll();
+	public void insert(T object);
+	public void delete(T object);
+	public T update(T object);
+	public T find(long id);
+	public List<T> findAll();
 	
 }

@@ -21,7 +21,7 @@ import fr.istic.taa.yeoman.entity.Seance;
  * @author Anthony
  * @since 
  */
-public class DaoSeance implements IDao {
+public class DaoSeance implements IDao<Seance> {
 
 	/** Attributs de la classe */
 	@PersistenceContext
