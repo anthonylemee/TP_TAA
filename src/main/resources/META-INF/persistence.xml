@@ -6,19 +6,20 @@
 
 	<persistence-unit transaction-type="RESOURCE_LOCAL" name="jpa">
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
-		<class>fr.istic.taa.yeoman.entity.Cardio</class>
-		<class>fr.istic.taa.yeoman.entity.Meteo</class>
-		<class>fr.istic.taa.yeoman.entity.Parcours</class>
-		<class>fr.istic.taa.yeoman.entity.PointGPS</class>
-		<class>fr.istic.taa.yeoman.entity.Seance</class>
-		<class>fr.istic.taa.yeoman.entity.Sport</class>
-		<class>fr.istic.taa.yeoman.entity.Utilisateur</class>
-		<exclude-unlisted-classes>true</exclude-unlisted-classes>
+<!-- 		<class>fr.istic.taa.yeoman.entity.Cardio</class> -->
+<!-- 		<class>fr.istic.taa.yeoman.entity.Meteo</class> -->
+<!-- 		<class>fr.istic.taa.yeoman.entity.Parcours</class> -->
+<!-- 		<class>fr.istic.taa.yeoman.entity.PointGPS</class> -->
+<!-- 		<class>fr.istic.taa.yeoman.entity.Seance</class> -->
+<!-- 		<class>fr.istic.taa.yeoman.entity.Sport</class> -->
+<!-- 		<class>fr.istic.taa.yeoman.entity.Utilisateur</class> -->
+<!-- 		<exclude-unlisted-classes>true</exclude-unlisted-classes> -->
 		
 		<properties>
             <property name="hibernate.show_sql" value="true"/>
             <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
             <property name="hibernate.connection.password" value=""/>
+            <property name="hibernate.hbm2ddl.auto" value="create-drop"/>
             <property name="hibernate.connection.url" value="jdbc:mysql://localhost/runTracker"/>
             <property name="hibernate.connection.username" value="root"/>
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>

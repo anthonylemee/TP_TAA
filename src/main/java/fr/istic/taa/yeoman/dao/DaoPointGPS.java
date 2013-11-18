@@ -21,7 +21,6 @@ public class DaoPointGPS implements IDao<PointGPS> {
 	/** Attributs de la classe */
 	@PersistenceContext
 	private EntityManager em;
-	private EntityManagerFactory emf;
 	
 	/** 
 	 * @TODO Faire un fichier de configuration pour l'activation
@@ -32,11 +31,10 @@ public class DaoPointGPS implements IDao<PointGPS> {
 	/**
 	 * Constructeur de la classe DaoPointGPS
 	 */
-	public DaoPointGPS () {
+	public DaoPointGPS (EntityManager em) {
 		
 		if (DEBUG) System.out.println("[DaoPointGPS] Instanciation de la DaoPointGPS...");
-		emf = Persistence.createEntityManagerFactory( "jpa" );
-		em 	= emf.createEntityManager();
+		this.em	= em;
 		
 	} // constructeur
 	

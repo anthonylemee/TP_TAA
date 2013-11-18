@@ -21,7 +21,6 @@ public class DaoUtilisateur implements IDao<Utilisateur> {
 	/** Attributs de la classe */
 	@PersistenceContext
 	private EntityManager em;
-	private EntityManagerFactory emf;
 	
 	/** 
 	 * @TODO Faire un fichier de configuration pour l'activation
@@ -32,11 +31,10 @@ public class DaoUtilisateur implements IDao<Utilisateur> {
 	/**
 	 * Constructeur de la classe DaoUtilisateur
 	 */
-	public DaoUtilisateur () {
+	public DaoUtilisateur (EntityManager em) {
 		
 		if (DEBUG) System.out.println("[DaoUtilisateur] Instanciation de la DaoUtilisateur...");
-		emf = Persistence.createEntityManagerFactory( "jpa" );
-		em 	= emf.createEntityManager();
+		this.em	= em;
 		
 	} // constructeur
 	

@@ -12,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -19,6 +20,7 @@ import javax.persistence.TemporalType;
  * 	Class qui défini le modèle de l'entité Séance 
  */
 @Entity 
+@Table(name="seance")
 public class Seance
 {
 

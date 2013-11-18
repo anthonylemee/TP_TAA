@@ -21,7 +21,6 @@ public class DaoSport implements IDao<Sport> {
 	/** Attributs de la classe */
 	@PersistenceContext
 	private EntityManager em;
-	private EntityManagerFactory emf;
 	
 	/** 
 	 * @TODO Faire un fichier de configuration pour l'activation
@@ -32,11 +31,10 @@ public class DaoSport implements IDao<Sport> {
 	/**
 	 * Constructeur de la classe DaoSport
 	 */
-	public DaoSport () {
+	public DaoSport (EntityManager em) {
 		
 		if (DEBUG) System.out.println("[DaoSport] Instanciation de la DaoSport...");
-		emf = Persistence.createEntityManagerFactory( "jpa" );
-		em 	= emf.createEntityManager();
+		this.em	= em;
 		
 	} // constructeur
 	

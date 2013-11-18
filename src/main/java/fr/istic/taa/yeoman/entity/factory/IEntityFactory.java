@@ -9,14 +9,19 @@ import fr.istic.taa.yeoman.entity.Parcours;
 import fr.istic.taa.yeoman.entity.PointGPS;
 import fr.istic.taa.yeoman.entity.Seance;
 import fr.istic.taa.yeoman.entity.Sport;
+import fr.istic.taa.yeoman.entity.Utilisateur;
 
 public interface IEntityFactory {
 	
-	public Cardio createCardio(Double frequency, Seance seance);
-	public Meteo createMeteo(String weather, Integer humidity);
-	public Parcours createParcours(Integer nbKilom, Integer speed, Set<PointGPS> pointsGPS, Seance seance);
-	public PointGPS createPointGPS(Integer x, Integer y, Integer z);
-	public Seance createSeance(Date date, Date beginDate, Date endDate, Integer time);
-	public Sport createSport(String nom, String type);
+	public Cardio createCardio(double frequency, Seance seance);
+	public Meteo createMeteo(String weather, Integer humidity, Seance seance);
+	public Parcours createParcours(int nbKilom, int speed, Set<PointGPS> pointsGPS, Seance seance);
+	public PointGPS createPointGPS(int x, int y, int z, Parcours parcours);
+	public Seance createSeance(Date date, Date beginDate, Date endDate, 
+			int time, Meteo meteo, Parcours parcours, Sport sport, Utilisateur utilisateur, Set<Cardio> cardios);
+	public Sport createSport(String nom, String type, Seance seance);
+	public Utilisateur createUtilisateur(String firstName, String avatar, Date birthDate,
+			String facebook, int height, String mail, String name,
+			String pseudo, Character sexe, String twitter, int weight, Seance seance);
 	
 }

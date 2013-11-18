@@ -7,12 +7,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 
 /**
  * Class qui défini le modèle de l'entité PointGPS
  */ 
 @Entity 
+@Table(name="point_gps")
 public class PointGPS
 {
 

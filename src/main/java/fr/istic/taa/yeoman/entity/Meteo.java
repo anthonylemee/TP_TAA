@@ -6,11 +6,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 /**
  * 	Class qui défini le modèle de l'entité Météo 
  */
 @Entity 
+@Table(name="meteo")
 public class Meteo
 {
 
@@ -103,7 +105,7 @@ public class Meteo
 		return  " [ID] " + this.id +
 				" [weather] " + this.weather +
 				" [Humidity] " + this.humidity + 
-				" [Seance] " + this.seance.log();
+				" [Seance] " + (this.seance == null ? "null" : this.seance.id);
 	}
 	
 }

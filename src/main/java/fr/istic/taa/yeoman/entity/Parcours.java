@@ -9,12 +9,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 
 /**
  * 	Class qui défini le modèle de l'entité Séance 
  */
 @Entity 
+@Table(name="parcours")
 public class Parcours
 {
 
@@ -148,11 +150,11 @@ public class Parcours
 	 * @return String
 	 */
 	public String log() {
-		
+
 		return  " [ID] " + this.id +
 				" [nbKm] " + this.nbKilom +
 				" [km/h] " + this.speed  + 
-				" [Seance] " + this.seance.log();
+				" [Seance] " + (this.seance == null ? "null" : this.seance.id);
 	}
 } //class
 

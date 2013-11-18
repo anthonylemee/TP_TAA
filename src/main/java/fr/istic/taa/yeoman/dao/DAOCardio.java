@@ -11,7 +11,7 @@ import javax.persistence.Query;
 import fr.istic.taa.yeoman.entity.Cardio;
 
 /**
- * Notre classe Daocardio implémentant les méthodes de l'interface IDao
+ * Notre classe DaoCardio implémentant les méthodes de l'interface IDao
  * et qui implémente les méthodes d'accès aux données de la base.
  * @author Anthony
  * @since 
@@ -21,7 +21,6 @@ public class DAOCardio implements IDao<Cardio> {
 	/** Attributs de la classe */
 	@PersistenceContext
 	private EntityManager em;
-	private EntityManagerFactory emf;
 	
 	/** 
 	 * @TODO Faire un fichier de configuration pour l'activation
@@ -30,35 +29,34 @@ public class DAOCardio implements IDao<Cardio> {
 	private final static Boolean DEBUG = true;
 	
 	/**
-	 * Constructeur de la classe Daocardio
+	 * Constructeur de la classe DaoCardio
 	 */
-	public DAOCardio() {
-		if (DEBUG) System.out.println("[Daocardio] Instanciation de la Daocardio...");
-		emf = Persistence.createEntityManagerFactory( "jpa" );
-		em 	= emf.createEntityManager();
+	public DAOCardio(EntityManager em) {
+		if (DEBUG) System.out.println("[DaoCardio] Instanciation de la DaoCardio...");
+		this.em	= em;
 		
 	} // constructeur
 	
 	@Override
 	public void insert(Cardio cardio) {
 
-		if (DEBUG) System.out.println("[Daocardio][INSERT] " + cardio.log());
+		if (DEBUG) System.out.println("[DaoCardio][INSERT] " + cardio.log());
 		em.persist(cardio);
 		
 	}
 	@Override
 	public void delete(Cardio cardio) {
 		
-		if (DEBUG) System.out.println("[Daocardio][DELETE] " + cardio.log());
+		if (DEBUG) System.out.println("[DaoCardio][DELETE] " + cardio.log());
 		em.remove(cardio);
 		
 	}
 	@Override
 	public Cardio update(Cardio cardio) {
 		
-		if (DEBUG) System.out.println("[Daocardio][UPDATE][Before] " + this.find(cardio.getId()).log());
+		if (DEBUG) System.out.println("[DaoCardio][UPDATE][Before] " + this.find(cardio.getId()).log());
 		Cardio newcardio = em.merge(cardio);
-		if (DEBUG) System.out.println("[Daocardio][UPDATE][After]  " + newcardio.log());
+		if (DEBUG) System.out.println("[DaoCardio][UPDATE][After]  " + newcardio.log());
 		
 		return newcardio;
 		
@@ -66,7 +64,7 @@ public class DAOCardio implements IDao<Cardio> {
 	@Override
 	public Cardio find(long id) {
 
-		if (DEBUG) System.out.println("[Daocardio][FIND] " + id);
+		if (DEBUG) System.out.println("[DaoCardio][FIND] " + id);
 		return em.find(Cardio.class, id);
 		
 	}
@@ -75,7 +73,7 @@ public class DAOCardio implements IDao<Cardio> {
 	@Override
 	public List<Cardio> findAll() {
 		
-		if (DEBUG) System.out.println("[Daocardio][FINDALL] ");
+		if (DEBUG) System.out.println("[DaoCardio][FINDALL] ");
 		Query q = em.createQuery("select s from Cardio s");
 		return (List<Cardio>)q.getResultList();
 		

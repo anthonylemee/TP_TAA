@@ -32,33 +32,33 @@ public class DAOMeteo implements IDao<Meteo> {
 	/**
 	 * Constructeur de la classe Daometeo
 	 */
-	public DAOMeteo() {
-		if (DEBUG) System.out.println("[Daometeo] Instanciation de la DaoPersonne...");
-		emf = Persistence.createEntityManagerFactory( "jpa" );
-		em 	= emf.createEntityManager();
+	public DAOMeteo(EntityManager em) {
+		
+		if (DEBUG) System.out.println("[Daometeo] Instanciation de la DaoMeteo...");
+		this.em = em;
 		
 	} // constructeur
 	
 	@Override
 	public void insert(Meteo meteo) {
 
-		if (DEBUG) System.out.println("[DaoPersonne][INSERT] " + meteo.log());
+		if (DEBUG) System.out.println("[DaoMeteo][INSERT] " + meteo.log());
 		em.persist(meteo);
 		
 	}
 	@Override
 	public void delete(Meteo meteo) {
 		
-		if (DEBUG) System.out.println("[DaoPersonne][DELETE] " + meteo.log());
+		if (DEBUG) System.out.println("[DaoMeteo][DELETE] " + meteo.log());
 		em.remove(meteo);
 		
 	}
 	@Override
 	public Meteo update(Meteo meteo) {
 		
-		if (DEBUG) System.out.println("[DaoPersonne][UPDATE][Before] " + this.find(meteo.getId()).log());
+		if (DEBUG) System.out.println("[DaoMeteo][UPDATE][Before] " + this.find(meteo.getId()).log());
 		Meteo newmeteo = em.merge(meteo);
-		if (DEBUG) System.out.println("[DaoPersonne][UPDATE][After]  " + newmeteo.log());
+		if (DEBUG) System.out.println("[DaoMeteo][UPDATE][After]  " + newmeteo.log());
 		
 		return newmeteo;
 		
@@ -66,7 +66,7 @@ public class DAOMeteo implements IDao<Meteo> {
 	@Override
 	public Meteo find(long id) {
 
-		if (DEBUG) System.out.println("[DaoPersonne][FIND] " + id);
+		if (DEBUG) System.out.println("[DaoMeteo][FIND] " + id);
 		return em.find(Meteo.class, id);
 		
 	}
@@ -75,7 +75,7 @@ public class DAOMeteo implements IDao<Meteo> {
 	@Override
 	public List<Meteo> findAll() {
 		
-		if (DEBUG) System.out.println("[DaoPersonne][FINDALL] ");
+		if (DEBUG) System.out.println("[DaoMeteo][FINDALL] ");
 		Query q = em.createQuery("select s from Meteo s");
 		return (List<Meteo>)q.getResultList();
 		

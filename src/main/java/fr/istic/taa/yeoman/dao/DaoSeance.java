@@ -21,7 +21,6 @@ public class DaoSeance implements IDao<Seance> {
 	/** Attributs de la classe */
 	@PersistenceContext
 	private EntityManager em;
-	private EntityManagerFactory emf;
 	
 	/** 
 	 * @TODO Faire un fichier de configuration pour l'activation
@@ -32,11 +31,10 @@ public class DaoSeance implements IDao<Seance> {
 	/**
 	 * Constructeur de la classe DaoSeance
 	 */
-	public DaoSeance () {
+	public DaoSeance (EntityManager em) {
 		
 		if (DEBUG) System.out.println("[DaoSeance] Instanciation de la DaoSeance...");
-		emf = Persistence.createEntityManagerFactory( "jpa" );
-		em 	= emf.createEntityManager();
+		this.em	= em;
 		
 	} // constructeur
 	

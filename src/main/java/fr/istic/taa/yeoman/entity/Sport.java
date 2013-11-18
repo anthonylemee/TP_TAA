@@ -4,17 +4,22 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 /**
  * Class qui défini le modèle de l'entité Sport
  */
 @Entity 
+@Table(name="sport")
 public class Sport
 {
 
-	@Id 
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(nullable = false) 
 	protected Long id;
 

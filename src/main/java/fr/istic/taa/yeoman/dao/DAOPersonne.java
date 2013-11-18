@@ -21,8 +21,6 @@ public class DAOPersonne implements IDao<APersonne> {
 	/** Attributs de la classe */
 	@PersistenceContext
 	private EntityManager em;
-	private EntityManagerFactory emf;
-	//private final Logger logger = LoggerFactory.getLogger(DAOPersonne.class);
 	
 	/** 
 	 * @TODO Faire un fichier de configuration pour l'activation
@@ -33,10 +31,9 @@ public class DAOPersonne implements IDao<APersonne> {
 	/**
 	 * Constructeur de la classe Daopersonne
 	 */
-	public DAOPersonne() {
+	public DAOPersonne(EntityManager em) {
 		if (DEBUG) System.out.println("[Daopersonne] Instanciation de la DaoPersonne...");
-		emf = Persistence.createEntityManagerFactory( "jpa" );
-		em 	= emf.createEntityManager();
+		this.em	= em;
 		
 	} // constructeur
 	

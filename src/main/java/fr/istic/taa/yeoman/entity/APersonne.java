@@ -8,13 +8,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
-
 
 /**
  * Entité Abstraite Personne
  */
-@Entity @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
+@Entity
+@Table(name="Personne")
+@Inheritance(strategy=InheritanceType.JOINED)
 public abstract class APersonne
 {
 
@@ -35,11 +37,11 @@ public abstract class APersonne
 	protected int height;
 	 
 	@Column(nullable = false) 
-	protected boolean sex;
+	protected Character sex;
 	
 	@Id 
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(nullable = false) 
+	@Column(name = "personne_id",nullable = false) 
 	protected Long id;
 
 	/**
@@ -69,7 +71,7 @@ public abstract class APersonne
 		this.height = myHeight;	
 	}
 	
-	public void setSex(boolean mySex) {
+	public void setSex(char mySex) {
 		this.sex = mySex;	
 	}
 	
@@ -93,7 +95,7 @@ public abstract class APersonne
 		return this.height;	
 	}
 	
-	public boolean isSex() {
+	public char isSex() {
 		return this.sex;	
 	}
 	
@@ -122,7 +124,7 @@ public abstract class APersonne
 	}
 	
 	public void unsetSex() {
-		this.sex = false;	
+		this.sex = null;	
 	}
 	
 	/**
@@ -133,7 +135,7 @@ public abstract class APersonne
 		
 		return  " [ID] " + this.id +
 				" [BirthDate] " + this.birthDate.toString() +
-				" [sex] " + (this.sex ? "homme":"femme") +
+				" [sex] " + (this.sex.compareTo('H') == 0 ? "homme":"femme") +
 				" [Height] " + this.height +
 				" [Weight] " + this.weight +
 				" [Name] " + this.name + 

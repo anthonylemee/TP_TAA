@@ -7,11 +7,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 /**
  * 	Class qui défini le modèle de l'entité Cardio 
  */
 @Entity 
+@Table(name="cardio")
 public class Cardio
 {
 
@@ -19,7 +21,7 @@ public class Cardio
 	protected double frequency;
 
 	@ManyToOne 
-	@JoinColumn(nullable = false) 
+	@JoinColumn(nullable = true) 
 	protected Seance seance;
 
 	@Id 
@@ -87,7 +89,7 @@ public class Cardio
 	public String log() {			
 		return  " [ID] " + this.id +
 				" [frequence] " + this.frequency +
-				" [Seance] " + this.seance.log();
+				" [Seance] " + (this.seance.id == null ? "null" : this.seance.id);
 	}
 }
 
