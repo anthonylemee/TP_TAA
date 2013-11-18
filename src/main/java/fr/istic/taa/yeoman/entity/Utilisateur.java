@@ -5,11 +5,10 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.PrimaryKeyJoinColumn;
-import javax.persistence.Table;
-
-
 
 
 /**
@@ -17,8 +16,6 @@ import javax.persistence.Table;
  * sous-type de Personne
  */
 @Entity 
-@Table(name="utilisateur")
-@PrimaryKeyJoinColumn(name="personne_id")
 public class Utilisateur extends APersonne
 {
 	 
@@ -39,6 +36,7 @@ public class Utilisateur extends APersonne
 	
 	@OneToMany(mappedBy = "utilisateur") 
 	protected Set<Seance> seance;
+	
 
 	/**
 	 * Constructeur de la classe Utilisateur

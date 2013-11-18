@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.PUT;
@@ -12,6 +15,8 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.ResponseBuilder;
 
 import fr.istic.taa.yeoman.entity.PointGPS;
 
@@ -19,15 +24,23 @@ import fr.istic.taa.yeoman.entity.PointGPS;
 public class PointGPSResource {
 
     private List<PointGPS> gps = new ArrayList<PointGPS>();
-    	
+    private ResponseBuilder res;	
+    
     public PointGPSResource() {
         
     }
 
     @GET
     @Produces({ MediaType.APPLICATION_JSON })
-    public Collection<PointGPS> list() {
-        return gps;
+    public Response list() {
+    	
+    	EntityManagerFactory emf = Persistence.createEntityManagerFactory("config");
+    	EntityManager em = emf.createEntityManager();
+    	
+    	//I...
+    	DAOPointGPS gps = new PointGPS(em);
+    	
+        return res.;
     }
     
     @GET @Path("search/{id}")

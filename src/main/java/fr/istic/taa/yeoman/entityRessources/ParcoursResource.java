@@ -12,6 +12,9 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response.ResponseBuilder;
+
+import com.sun.research.ws.wadl.Response;
 
 import fr.istic.taa.yeoman.entity.Parcours;
 
@@ -19,7 +22,8 @@ import fr.istic.taa.yeoman.entity.Parcours;
 public class ParcoursResource {
 
     private List<Parcours> parcours = new ArrayList<Parcours>();
-    	
+    private ResponseBuilder res;	
+    
     public ParcoursResource() {
         
     }
@@ -27,6 +31,9 @@ public class ParcoursResource {
     @GET
     @Produces({ MediaType.APPLICATION_JSON })
     public Collection<Parcours> list() {
+    	
+    	res = javax.ws.rs.core.Response.ok();
+    	
         return parcours;
     }
     
