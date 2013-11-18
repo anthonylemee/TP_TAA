@@ -113,5 +113,35 @@ public class Sport
 		this.type_sport = "";	
 	}
 	
-}
+	/**
+	 * Méthode servant à afficher l'objet courant dans les logs
+	 * @return String
+	 */
+	public String log() { 
+		
+		return " [ID] " + this.id +
+				" [NOM] " + this.nom_sport +
+				" [TYPE] " + this.type_sport +
+				" [SEANCES] " + this.logSeance(); 
+	} // method
+	
+	/**
+	 * Méthode qui permet d'afficher sous forme de 
+	 * log les seances associées à ce sport 
+	 * @return String
+	 */
+	private String logSeance() {
+		
+		String seances = " / ";
+		
+		for (Seance seance : this.seance) {
+			seances += seance.id + " / ";
+		}
+		
+		return seances;
+		
+	} // method
+	
+} // class
 
+ 

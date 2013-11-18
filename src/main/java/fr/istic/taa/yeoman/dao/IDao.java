@@ -2,8 +2,6 @@ package fr.istic.taa.yeoman.dao;
 
 import java.util.List;
 
-import fr.istic.taa.yeoman.entity.Seance;
-
 /**
  * Interface définissant le squelette d'un Dao
  * @author Jimmy DANO & Anthony LE MEE

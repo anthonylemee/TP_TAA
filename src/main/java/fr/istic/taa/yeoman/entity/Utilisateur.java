@@ -137,5 +137,7 @@ public class Utilisateur extends APersonne
 		this.avatar = "";	
 	}
 	
+	public String log() { return ""; }
+	
 } // class
 

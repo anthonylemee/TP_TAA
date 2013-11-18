@@ -108,5 +108,18 @@ public class PointGPS
 		this.zPoint = 0;	
 	}
 	
+	/**
+	 * Méthode servant à afficher l'objet courant dans les logs
+	 * @return String
+	 */
+	public String log() { 
+		
+		return " [ID] " + this.id +
+				" [X] " + this.xPoint +
+				" [Y] " + this.yPoint +
+				" [Z] " + this.zPoint +
+				" [PARCOURS] " + this.parcours.id; 
+	} // method
+
 } // class
 
