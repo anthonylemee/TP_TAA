@@ -91,5 +91,17 @@ public class Meteo
 		oldseance.unsetMeteo();	
 	}
 	
+	/**
+	 * Méthode servant à afficher l'objet courant dans les logs
+	 * @return String
+	 */
+	public String log(){
+		
+		return  " [ID] " + this.id +
+				" [weather] " + this.weather +
+				" [Humidity] " + this.humidity + 
+				" [Seance] " + this.seance.log();
+	}
+	
 }
 

@@ -124,5 +124,20 @@ public abstract class APersonne
 		this.sex = false;	
 	}
 	
+	/**
+	 * Méthode servant à afficher l'objet courant dans les logs
+	 * @return String
+	 */
+	public String log() {
+		
+		return  " [ID] " + this.id +
+				" [BirthDate] " + this.birthDate.toString() +
+				" [sex] " + (this.sex ? "homme":"femme") +
+				" [Height] " + this.height +
+				" [Weight] " + this.weight +
+				" [Name] " + this.name + 
+				" [FName] " + this.first_name;
+		
+	}
 } // class
 

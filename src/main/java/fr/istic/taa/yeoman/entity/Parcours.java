@@ -140,5 +140,16 @@ public class Parcours
 		oldseance.unsetParcours();	
 	}
 	
+	/**
+	 * Méthode servant à afficher l'objet courant dans les logs
+	 * @return String
+	 */
+	public String log() {
+		
+		return  " [ID] " + this.id +
+				" [nbKm] " + this.nbKilom +
+				" [km/h] " + this.speed  + 
+				" [Seance] " + this.seance.log();
+	}
 } //class
 
