@@ -76,6 +76,15 @@ public class Cardio
 		this.seance = null;
 		oldseance.removeCardio(this);	
 	}
-	
+
+	/**
+	 * Méthode servant à afficher l'objet courant dans les logs
+	 * @return String
+	 */
+	public String log() {			
+		return  " [ID] " + this.id +
+				" [frequence] " + this.frequency +
+				" [Seance] " + this.seance.log();
+	}
 }
 

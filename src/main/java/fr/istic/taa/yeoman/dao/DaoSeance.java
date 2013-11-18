@@ -2,8 +2,6 @@ package fr.istic.taa.yeoman.dao;
 
 import java.util.List;
 
-import javassist.expr.Instanceof;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
