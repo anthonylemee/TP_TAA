@@ -18,6 +18,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.ResponseBuilder;
 
+import fr.istic.taa.yeoman.dao.DaoPointGPS;
 import fr.istic.taa.yeoman.entity.PointGPS;
 
 @Path("/ptsgps")
@@ -38,9 +39,15 @@ public class PointGPSResource {
     	EntityManager em = emf.createEntityManager();
     	
     	//I...
-    	DAOPointGPS gps = new PointGPS(em);
+    	DaoPointGPS gps = new DaoPointGPS(em);
     	
-        return res.;
+    	res = Response.ok(gps.findAll());
+    	res.header("Access-Control-Allow-Origin", "*");
+    	res.header("Access-Control-Allow-Methods", "POST, GET, PUT, UPDATE, OPTIONS");
+    	res.header("Access-Control-Allow-Headers", "Content-Type, Accept, X-Requested-With");
+    	
+    	em.close();
+        return res.build();
     }
     
     @GET @Path("search/{id}")
