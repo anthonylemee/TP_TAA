@@ -8,9 +8,6 @@ import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
 import fr.istic.taa.yeoman.entity.APersonne;
 
 /**
@@ -25,7 +22,7 @@ public class DAOPersonne implements IDao<APersonne> {
 	@PersistenceContext
 	private EntityManager em;
 	private EntityManagerFactory emf;
-	private final Log logger = LogFactory.getLog(DAOPersonne.class);
+	//private final Logger logger = LoggerFactory.getLogger(DAOPersonne.class);
 	
 	/** 
 	 * @TODO Faire un fichier de configuration pour l'activation
@@ -37,7 +34,7 @@ public class DAOPersonne implements IDao<APersonne> {
 	 * Constructeur de la classe Daopersonne
 	 */
 	public DAOPersonne() {
-		if (DEBUG) logger.info("[Daopersonne] Instanciation de la DaoPersonne...");
+		if (DEBUG) System.out.println("[Daopersonne] Instanciation de la DaoPersonne...");
 		emf = Persistence.createEntityManagerFactory( "jpa" );
 		em 	= emf.createEntityManager();
 		
@@ -46,23 +43,23 @@ public class DAOPersonne implements IDao<APersonne> {
 	@Override
 	public void insert(APersonne personne) {
 
-		if (DEBUG) logger.info("[DaoPersonne][INSERT] " + personne.log());
+		if (DEBUG) System.out.println("[DaoPersonne][INSERT] " + personne.log());
 		em.persist(personne);
 		
 	}
 	@Override
 	public void delete(APersonne personne) {
 		
-		if (DEBUG) logger.info("[DaoPersonne][DELETE] " + personne.log());
+		if (DEBUG) System.out.println("[DaoPersonne][DELETE] " + personne.log());
 		em.remove(personne);
 		
 	}
 	@Override
 	public APersonne update(APersonne personne) {
 		
-		if (DEBUG) logger.info("[DaoPersonne][UPDATE][Before] " + this.find(personne.getId()).log());
+		if (DEBUG) System.out.println("[DaoPersonne][UPDATE][Before] " + this.find(personne.getId()).log());
 		APersonne newpersonne = em.merge(personne);
-		if (DEBUG) logger.info("[DaoPersonne][UPDATE][After]  " + newpersonne.log());
+		if (DEBUG) System.out.println("[DaoPersonne][UPDATE][After]  " + newpersonne.log());
 		
 		return newpersonne;
 		
@@ -70,7 +67,7 @@ public class DAOPersonne implements IDao<APersonne> {
 	@Override
 	public APersonne find(long id) {
 
-		if (DEBUG) logger.info("[DaoPersonne][FIND] " + id);
+		if (DEBUG) System.out.println("[DaoPersonne][FIND] " + id);
 		return em.find(APersonne.class, id);
 		
 	}
@@ -79,7 +76,7 @@ public class DAOPersonne implements IDao<APersonne> {
 	@Override
 	public List<APersonne> findAll() {
 		
-		if (DEBUG) logger.info("[DaoPersonne][FINDALL] ");
+		if (DEBUG) System.out.println("[DaoPersonne][FINDALL] ");
 		Query q = em.createQuery("select s from APersonne s");
 		return (List<APersonne>)q.getResultList();
 		

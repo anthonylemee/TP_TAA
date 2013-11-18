@@ -37,9 +37,10 @@ public abstract class APersonne
 	@Column(nullable = false) 
 	protected boolean sex;
 	
-	@Id @GeneratedValue(strategy = GenerationType.AUTO)
+	@Id 
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(nullable = false) 
-	protected final Long id = 0L;
+	protected Long id;
 
 	/**
 	 * Constructeur de la classe APersonne

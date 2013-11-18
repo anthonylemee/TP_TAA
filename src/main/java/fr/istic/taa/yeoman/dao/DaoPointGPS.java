@@ -8,9 +8,6 @@ import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
 import fr.istic.taa.yeoman.entity.PointGPS;
 
 /**
@@ -25,7 +22,6 @@ public class DaoPointGPS implements IDao<PointGPS> {
 	@PersistenceContext
 	private EntityManager em;
 	private EntityManagerFactory emf;
-	private final Log logger = LogFactory.getLog(DaoPointGPS.class);
 	
 	/** 
 	 * @TODO Faire un fichier de configuration pour l'activation
@@ -38,7 +34,7 @@ public class DaoPointGPS implements IDao<PointGPS> {
 	 */
 	public DaoPointGPS () {
 		
-		if (DEBUG) logger.info("[DaoPointGPS] Instanciation de la DaoPointGPS...");
+		if (DEBUG) System.out.println("[DaoPointGPS] Instanciation de la DaoPointGPS...");
 		emf = Persistence.createEntityManagerFactory( "jpa" );
 		em 	= emf.createEntityManager();
 		
@@ -47,23 +43,23 @@ public class DaoPointGPS implements IDao<PointGPS> {
 	@Override
 	public void insert(PointGPS pointGPS) {
 
-		if (DEBUG) logger.info("[DaoPointGPS][INSERT] " + pointGPS.log());
+		if (DEBUG) System.out.println("[DaoPointGPS][INSERT] " + pointGPS.log());
 		em.persist(pointGPS);
 		
 	}
 	@Override
 	public void delete(PointGPS pointGPS) {
 		
-		if (DEBUG) logger.info("[DaoPointGPS][DELETE] " + pointGPS.log());
+		if (DEBUG) System.out.println("[DaoPointGPS][DELETE] " + pointGPS.log());
 		em.remove(pointGPS);
 		
 	}
 	@Override
 	public PointGPS update(PointGPS pointGPS) {
 		
-		if (DEBUG) logger.info("[DaoPointGPS][UPDATE][Before] " + this.find(pointGPS.getId()).log());
+		if (DEBUG) System.out.println("[DaoPointGPS][UPDATE][Before] " + this.find(pointGPS.getId()).log());
 		PointGPS newPointGPS = em.merge(pointGPS);
-		if (DEBUG) logger.info("[DaoPointGPS][UPDATE][After]  " + newPointGPS.log());
+		if (DEBUG) System.out.println("[DaoPointGPS][UPDATE][After]  " + newPointGPS.log());
 		
 		return newPointGPS;
 		
@@ -71,7 +67,7 @@ public class DaoPointGPS implements IDao<PointGPS> {
 	@Override
 	public PointGPS find(long id) {
 
-		if (DEBUG) logger.info("[DaoPointGPS][FIND] " + id);
+		if (DEBUG) System.out.println("[DaoPointGPS][FIND] " + id);
 		return em.find(PointGPS.class, id);
 		
 	}
@@ -80,7 +76,7 @@ public class DaoPointGPS implements IDao<PointGPS> {
 	@Override
 	public List<PointGPS> findAll() {
 		
-		if (DEBUG) logger.info("[DaoPointGPS][FINDALL] ");
+		if (DEBUG) System.out.println("[DaoPointGPS][FINDALL] ");
 		Query q = em.createQuery("select p from PointGPS p");
 		return (List<PointGPS>)q.getResultList();
 		

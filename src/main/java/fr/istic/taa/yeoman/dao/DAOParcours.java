@@ -8,9 +8,6 @@ import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
 import fr.istic.taa.yeoman.entity.Parcours;
 
 /**
@@ -25,7 +22,6 @@ public class DAOParcours implements IDao<Parcours> {
 	@PersistenceContext
 	private EntityManager em;
 	private EntityManagerFactory emf;
-	private final Log logger = LogFactory.getLog(DAOParcours.class);
 	
 	/** 
 	 * @TODO Faire un fichier de configuration pour l'activation
@@ -37,7 +33,7 @@ public class DAOParcours implements IDao<Parcours> {
 	 * Constructeur de la classe Daoparcours
 	 */
 	public DAOParcours() {
-		if (DEBUG) logger.info("[Daoparcours] Instanciation de la DaoPersonne...");
+		if (DEBUG) System.out.println("[Daoparcours] Instanciation de la DaoPersonne...");
 		emf = Persistence.createEntityManagerFactory( "jpa" );
 		em 	= emf.createEntityManager();
 		
@@ -46,23 +42,23 @@ public class DAOParcours implements IDao<Parcours> {
 	@Override
 	public void insert(Parcours parcours) {
 
-		if (DEBUG) logger.info("[DaoPersonne][INSERT] " + parcours.log());
+		if (DEBUG) System.out.println("[DaoPersonne][INSERT] " + parcours.log());
 		em.persist(parcours);
 		
 	}
 	@Override
 	public void delete(Parcours parcours) {
 		
-		if (DEBUG) logger.info("[DaoPersonne][DELETE] " + parcours.log());
+		if (DEBUG) System.out.println("[DaoPersonne][DELETE] " + parcours.log());
 		em.remove(parcours);
 		
 	}
 	@Override
 	public Parcours update(Parcours parcours) {
 		
-		if (DEBUG) logger.info("[DaoPersonne][UPDATE][Before] " + this.find(parcours.getId()).log());
+		if (DEBUG) System.out.println("[DaoPersonne][UPDATE][Before] " + this.find(parcours.getId()).log());
 		Parcours newparcours = em.merge(parcours);
-		if (DEBUG) logger.info("[DaoPersonne][UPDATE][After]  " + newparcours.log());
+		if (DEBUG) System.out.println("[DaoPersonne][UPDATE][After]  " + newparcours.log());
 		
 		return newparcours;
 		
@@ -70,7 +66,7 @@ public class DAOParcours implements IDao<Parcours> {
 	@Override
 	public Parcours find(long id) {
 
-		if (DEBUG) logger.info("[DaoPersonne][FIND] " + id);
+		if (DEBUG) System.out.println("[DaoPersonne][FIND] " + id);
 		return em.find(Parcours.class, id);
 		
 	}
@@ -78,7 +74,7 @@ public class DAOParcours implements IDao<Parcours> {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Parcours> findAll() {
-		if (DEBUG) logger.info("[DaoPersonne][FINDALL] ");
+		if (DEBUG) System.out.println("[DaoPersonne][FINDALL] ");
 		Query q = em.createQuery("select s from Parcours s");
 		return (List<Parcours>)q.getResultList();
 	}

@@ -2,6 +2,8 @@ package fr.istic.taa.yeoman.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -21,8 +23,9 @@ public class Cardio
 	protected Seance seance;
 
 	@Id 
+	@GeneratedValue(strategy = GenerationType.AUTO) 
 	@Column(nullable = false) 
-	protected final Long id = 0L;
+	protected Long id;
 
 	/**
 	 * Constructeur de la classe Cardio

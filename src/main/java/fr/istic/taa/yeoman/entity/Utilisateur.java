@@ -5,6 +5,9 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 
@@ -33,6 +36,11 @@ public class Utilisateur extends APersonne
 	
 	@OneToMany(mappedBy = "utilisateur") 
 	protected Set<Seance> seance;
+	
+	@Id 
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(nullable = false) 
+	protected Long id;
 
 	/**
 	 * Constructeur de la classe Utilisateur
@@ -95,6 +103,10 @@ public class Utilisateur extends APersonne
 	
 	public String getAvatar() {
 		return this.avatar;	
+	}
+	
+	public long getId() {
+		return this.id;	
 	}
 	
 	public void setPseudo(String myPseudo) {
