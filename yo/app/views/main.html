@@ -1,19 +1,34 @@
-<h2>Books</h2>
-<table class="table table-bordered table-striped table-hover">
-    <thead>
-        <td>ISBN</td>
-        <td>Title</td>
-        <td>Author</td>
-        <td>Note</td>
-    </thead>
-    <tbody>
-        <tr ng-repeat="book in books">
-            <td>{{book.isbn}}</td>
-            <td>{{book.title}}</td>
-            <td>{{book.author}}</td>
-            <td>{{book.note}}</td>
-        </tr>
-</tbody>
-</table>
-    Your name: <input ng-model="me">
-	Hello {{me}}!
+<div class="header">
+	<ul class="nav nav-pills pull-right">
+		<li class="active"><a href="#">Home</a></li>
+		<li><a href="#">About</a></li>
+		<li><a href="#">Contact</a></li>
+	</ul>
+	<h3 class="text-muted">yo</h3>
+</div>
+
+<div class="jumbotron">
+	<h1>'Allo, 'Allo!</h1>
+	<p class="lead">Always a pleasure scaffolding your apps.</p>
+	<p>
+		<a class="btn btn-lg btn-success" href="#">Splendid!</a>
+	</p>
+</div>
+
+<div class="row marketing">
+	<h4>HTML5 Boilerplate</h4>
+	<p>HTML5 Boilerplate is a professional front-end template for
+		building fast, robust, and adaptable web apps or sites.</p>
+
+	<h4>Angular</h4>
+	<p>AngularJS is a toolset for building the framework most suited to
+		your application development.</p>
+
+	<h4>Karma</h4>
+	<p>Spectacular Test Runner for JavaScript.</p>
+</div>
+</div>
+
+<div class="footer">
+	<p>♥ banana</p>
+</div>

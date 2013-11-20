@@ -37,7 +37,6 @@ public class PointGPSResource {
     	EntityManagerFactory emf = Persistence.createEntityManagerFactory("config");
     	EntityManager em = emf.createEntityManager();
     	
-    	//I...
     	DaoPointGPS gps = new DaoPointGPS(em);
     	
     	res = Response.ok(gps.findAll());
@@ -73,7 +72,6 @@ public class PointGPSResource {
     	EntityManagerFactory emf = Persistence.createEntityManagerFactory("config");
     	EntityManager em = emf.createEntityManager();
     	
-    	//I...
     	DaoPointGPS gps = new DaoPointGPS(em);
     	
     	res = Response.ok(gps.insert(u));
