@@ -23,7 +23,6 @@ import fr.istic.taa.yeoman.entity.PointGPS;
 @Path("/ptsgps")
 public class PointGPSResource {
 
-    private List<PointGPS> gps = new ArrayList<PointGPS>();
     private ResponseBuilder res;	
     
     public PointGPSResource() {
@@ -34,7 +33,7 @@ public class PointGPSResource {
     @Produces({ MediaType.APPLICATION_JSON })
     public Response list() {
     	
-    	EntityManagerFactory emf = Persistence.createEntityManagerFactory("config");
+    	EntityManagerFactory emf = Persistence.createEntityManagerFactory("jpa");
     	EntityManager em = emf.createEntityManager();
     	
     	DaoPointGPS gps = new DaoPointGPS(em);
@@ -50,20 +49,20 @@ public class PointGPSResource {
     
     @GET @Path("search/{id}")
     @Produces({ MediaType.APPLICATION_JSON })
-    public PointGPS findById(@PathParam("id") String arg0) {
-        return gps.get(Integer.parseInt(arg0));
+    public Response findById(@PathParam("id") String arg0) {
+    	return null;
     }
 
     @DELETE @Path("delete/{id}")
     @Produces({ MediaType.APPLICATION_JSON })
-    public PointGPS deleteById(@PathParam("id") String arg0) {
-        return gps.remove(Integer.parseInt(arg0));
+    public Response deleteById(@PathParam("id") String arg0) {
+    	return null;
     }
     
     @PUT @Path("update/{id}")
     @Produces({MediaType.APPLICATION_JSON})
-    public PointGPS updateById(@PathParam("id") String arg0, PointGPS u) {
-    	return gps.set(Integer.parseInt(arg0), u);
+    public Response updateById(@PathParam("id") String arg0, PointGPS u) {
+    	return null;
     }
     
     @PUT @Path("add")

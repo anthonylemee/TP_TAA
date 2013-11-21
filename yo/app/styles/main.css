@@ -4,6 +4,30 @@ body {
   padding-bottom: 20px;
 }
 
+div#loginForm {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+div#loginForm h1 {
+	text-align : center;
+	color: red; 
+	font-size: 16pt; 
+	font-family: arial;
+}
+
+div#loginForm fieldset {
+	border:1px solid green;
+    -moz-border-radius:8px;
+    -webkit-border-radius:8px;	
+    border-radius:8px;
+    text-indent: 10px;
+}
+
+div#loginForm legend {
+	color: green; font-size: 12pt; font-family: arial
+}
+
 /* Everything but the jumbotron gets side spacing for mobile first views */
 .header,
 .marketing,

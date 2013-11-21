@@ -1,0 +1,23 @@
+
+<div id="loginForm" ng-controller="LoginCtrl">
+	<h1>Welcome in Run Tracker</h1>
+	<fieldset>
+		<legend>please Identify yourself</legend>
+		<form ng-submit="getUser()">
+			<table >
+				<tr>
+					<td align='right'>Votre login</td>
+					<td><input ng-model="user.login" maxlength="10" value="" size=12 id='login'></td>
+				</tr>
+				<tr>
+					<td align='right'>Votre mot de passe</TD>
+					<td><input ng-model="user.password" maxlength="12" value="" type=password size=12 name='pass'></td>
+				</tr>
+				<Ttr>
+					<Ttd></td>
+					<td><input type=submit value="login"></td>
+				</tr>
+			</table>
+		</form>
+	</fieldset>
+</div>

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('yoApp', [
+angular.module('runTracker', [
   'ngCookies',
   'ngResource',
   'ngSanitize',
@@ -11,6 +11,10 @@ angular.module('yoApp', [
       .when('/', {
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
+      })
+      .when('/login', {
+        templateUrl: 'views/Login.html',
+        controller: 'LoginCtrl'
       })
       .otherwise({
         redirectTo: '/'
