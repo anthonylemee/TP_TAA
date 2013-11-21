@@ -4,8 +4,11 @@ angular.module('runTracker')
   .controller('LoginCtrl', function ($scope,$http,$location) {
 	  $scope.user = {};
 	    $scope.getUser = function() {
-	    	if($scope.user.login.value != ""){
-		    	$http({ method: 'GET', url: 'http://localhost:8080/taa/rest/Utilisateur/search/',data: { id: $scope.user.login }}).
+	    	if($scope.user.login != null){
+		    	$http({ method: 'GET', url: 'http://localhost:8080/taa/rest/Utilisateur/search/',
+		    		data: { id: $scope.user.login },
+		    		headers: { "Content-Type": "application/json; charset=utf-8" }
+		    	}).
 		    	  success(function (data, status, headers, config) {
 		    	    // ...
 		    		  alert(data)

@@ -52,7 +52,7 @@ public class UtilisateurResource {
     	
     	DaoUtilisateur usrs = new DaoUtilisateur(em);
     	System.out.println("passé par la ");
-    	res = Response.ok(usrs.find(Integer.parseInt(arg0)));
+    	res = Response.ok(usrs.findByLogin(arg0));
     	res.header("Access-Control-Allow-Origin", "*");
     	res.header("Access-Control-Allow-Methods", "POST, GET, PUT, UPDATE, OPTIONS");
     	res.header("Access-Control-Allow-Headers", "Content-Type, Accept, X-Requested-With");
@@ -78,6 +78,16 @@ public class UtilisateurResource {
     public Response add(Utilisateur u) {
     	return null;
     } 
+    
+    @OPTIONS
+    @Path("search/")
+    public Response getOptionsSearch()
+    {
+	    return Response.ok()
+	    .header("Access-Control-Allow-Origin", "*")
+	    .header("Access-Control-Allow-Methods", "POST, GET, PUT, UPDATE, OPTIONS")
+	    .header("Access-Control-Allow-Headers", "Content-Type, Accept, X-Requested-With").build();
+    }
     
     @OPTIONS
     @Path("add")
