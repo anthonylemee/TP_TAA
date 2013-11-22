@@ -101,7 +101,7 @@ public abstract class APersonne implements IAPersonne
 		return this.height;	
 	}
 	
-	public char getSex() {
+	public Character getSex() {
 		return this.sex;	
 	}
 	
