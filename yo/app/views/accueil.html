@@ -3,19 +3,127 @@
 <div id="form" ng-controller="AccueilCtrl">
 	<fieldset>
 		<legend>Welcome</legend>
-		<form ng-submit="getUserConnected()">
+		<form ng-submit="goToSeances()">
 			<table >
 				<tr>
-					<td align='right'>avatar</td>
-					<td><input ng-model="user.avatar" value={{user.avatar}} maxlength="10" size=12 id='avatar'></td>
+					<td align='right'>Pseudo : </td>
+					<td margin-left="20px">{{user.pseudo}}</td>
 				</tr>
 				<tr>
-					<td align='right'>birthdate</TD>
-					<td><input ng-model="user.birth" maxlength="12" value={{user.birth}} type=password size=12 name='birth'></td>
+					<td align='right'>Avatar : </TD>
+					<td margin-left="20px">{{user.avatar}}</td>
 				</tr>
 				<tr>
 					<td></td>
-					<td><input type=submit value="login"></td>
+					<td><input type=submit value="See seances done"></td>
+				</tr>
+			</table>
+		</form>
+	</fieldset>
+</div>
+
+<div id="createUser" ng-controller="AccueilCtrl">
+	<fieldset>
+		<legend>Welcome</legend>
+		<form ng-submit="createUser()">
+			<table >
+				<tr>
+					<td align='right'>Name : </td>
+					<td><input ng-model="create.name" maxlength="10" value="" size=12 id='name'></td>
+				</tr>
+				<tr>
+					<td align='right'>First Name : </td>
+					<td><input ng-model="create.first_name" maxlength="10" value="" size=12 id='fname'></td>
+				</tr>
+				<tr>
+					<td align='right'>BirthDate : </td>
+					<td><input ng-model="create.birthDate" maxlength="10" value="" size=12 id='birthdate'></td>
+				</tr>
+				<tr>
+					<td align='right'>Pseudo : </td>
+					<td><input ng-model="create.pseudo" maxlength="10" value="" size=12 id='pseudo'></td>
+				</tr>
+				<tr>
+					<td align='right'>Avatar : </td>
+					<td><input ng-model="create.avatar" maxlength="10" value="" size=12 id='avatar'></td>
+				</tr>
+				<tr>
+					<td align='right'>Mail : </td>
+					<td><input ng-model="create.mail" maxlength="10" value="" size=12 id='mail'></td>
+				</tr>
+				<tr>
+					<td align='right'>Twitter : </td>
+					<td><input ng-model="create.twitter" maxlength="10" value="" size=12 id='twitter'></td>
+				</tr>
+				<tr>
+					<td align='right'>Height : </td>
+					<td><input ng-model="create.height" maxlength="10" value="" size=12 id='Height'></td>
+				</tr>
+				<tr>
+					<td align='right'>Weight : </td>
+					<td><input ng-model="create.weight" maxlength="10" value="" size=12 id='weight'></td>
+				</tr>
+				<tr>
+					<td align='right'>Sex : </td>
+					<td><input ng-model="create.sex" maxlength="10" value="" size=12 id='sex'></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td><input type=submit value="Create User"></td>
+				</tr>
+			</table>
+		</form>
+	</fieldset>
+</div>
+
+<div id="updateUser" ng-controller="AccueilCtrl">
+	<fieldset>
+		<legend>Welcome</legend>
+		<form ng-submit="updateUser()">
+			<table >
+				<tr>
+					<td align='right'>Name : </td>
+					<td><input ng-model="user.name" maxlength="10" size=12 id='name'></td>
+				</tr>
+				<tr>
+					<td align='right'>First Name : </td>
+					<td><input ng-model="user.first_name" maxlength="10" size=12 id='first_name'></td>
+				</tr>
+				<tr>
+					<td align='right'>BirthDate : </td>
+					<td><input ng-model="user.birthDate" maxlength="10" size=12 id='birthdate'></td>
+				</tr>
+				<tr>
+					<td align='right'>Pseudo : </td>
+					<td><input ng-model="user.pseudo" maxlength="10" size=12 id='pseudo'></td>
+				</tr>
+				<tr>
+					<td align='right'>Avatar : </td>
+					<td><input ng-model="user.avatar" maxlength="10" size=12 id='avatar'></td>
+				</tr>
+				<tr>
+					<td align='right'>Mail : </td>
+					<td><input ng-model="user.mail" maxlength="10" size=12 id='mail'></td>
+				</tr>
+				<tr>
+					<td align='right'>Twitter : </td>
+					<td><input ng-model="user.twitter" maxlength="10" size=12 id='twitter'></td>
+				</tr>
+				<tr>
+					<td align='right'>Height : </td>
+					<td><input ng-model="user.height" maxlength="10" size=12 id='height'></td>
+				</tr>
+				<tr>
+					<td align='right'>Weight : </td>
+					<td><input ng-model="user.weight" maxlength="10" size=12 id='weight'></td>
+				</tr>
+				<tr>
+					<td align='right'>Sex : </td>
+					<td><input ng-model="user.sex" maxlength="10" size=12 id='sex'></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td><input type=submit value="Update User"></td>
 				</tr>
 			</table>
 		</form>

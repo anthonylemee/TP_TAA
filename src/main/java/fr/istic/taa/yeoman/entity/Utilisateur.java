@@ -21,16 +21,16 @@ public class Utilisateur extends APersonne implements IUtilisateur
 	@Column(nullable = false) 
 	protected String pseudo;
 	 
-	@Column(nullable = false) 
+	@Column(nullable = true) 
 	protected String facebook;
 	
-	@Column(nullable = false) 
+	@Column(nullable = true) 
 	protected String twitter;
 
 	@Column(nullable = false) 
 	protected String mail;
 
-	@Column(nullable = false) 
+	@Column(nullable = true) 
 	protected String avatar;
 	
 	@OneToMany(mappedBy = "utilisateur") 

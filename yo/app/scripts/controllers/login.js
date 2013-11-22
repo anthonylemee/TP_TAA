@@ -6,7 +6,6 @@ angular.module('runTracker')
 	  $rootScope.user = {};
 	    $scope.getUser = function() {
 	    	if($scope.user.login != null && $scope.user.password != null){
-	    		console.log($scope.user.login);
 		    	$http.get("http://localhost:8080/taa/rest/Utilisateur/search/"+
 		    		$scope.user.login).
 		    	  success(function (data, status, headers, config) {
@@ -20,6 +19,7 @@ angular.module('runTracker')
 		    	  error(function (data, status, headers, config) {
 		    	    // ...
 		    		  console.log("login / mot de passe incorrect");
+		    		  console.log(angular.element( document.querySelector( '#my_alert' ) )[0]);
 		    	  });
 	    	} else {
 	    		console.log("login / mot de passe inexistant");

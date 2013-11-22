@@ -51,7 +51,6 @@ public class UtilisateurResource {
     	EntityManager em = emf.createEntityManager();
     	
     	DaoUtilisateur usrs = new DaoUtilisateur(em);
-    	System.out.println("passé par la ");
     	res = Response.ok(usrs.findByLogin(arg0));
     	res.header("Access-Control-Allow-Origin", "*");
     	res.header("Access-Control-Allow-Methods", "POST, GET, PUT, UPDATE, OPTIONS");
@@ -67,16 +66,38 @@ public class UtilisateurResource {
         return null;
     }
     
-    @PUT @Path("update/{id}")
+    @PUT @Path("update")
     @Consumes({MediaType.APPLICATION_JSON})
-    public Response updateById(@PathParam("id") String arg0, Utilisateur u) {
-    	return null;
+    public Response update(Utilisateur u) {
+    	EntityManagerFactory emf = Persistence.createEntityManagerFactory("jpa");
+    	EntityManager em = emf.createEntityManager();
+    
+    	DaoUtilisateur usrs = new DaoUtilisateur(em);
+    	System.out.println("update");
+    	res = Response.ok(usrs.update(u));
+    	res.header("Access-Control-Allow-Origin", "*");
+    	res.header("Access-Control-Allow-Methods", "POST, GET, PUT, UPDATE, OPTIONS");
+    	res.header("Access-Control-Allow-Headers", "Content-Type, Accept, X-Requested-With");
+    	
+    	em.close();
+        return res.build();
     }
     
     @PUT @Path("add")
     @Consumes({MediaType.APPLICATION_JSON})
     public Response add(Utilisateur u) {
-    	return null;
+    	EntityManagerFactory emf = Persistence.createEntityManagerFactory("jpa");
+    	EntityManager em = emf.createEntityManager();
+    	
+    	DaoUtilisateur usrs = new DaoUtilisateur(em);
+    	System.out.println("passé par la ");
+    	res = Response.ok(usrs.insert(u));
+    	res.header("Access-Control-Allow-Origin", "*");
+    	res.header("Access-Control-Allow-Methods", "POST, GET, PUT, UPDATE, OPTIONS");
+    	res.header("Access-Control-Allow-Headers", "Content-Type, Accept, X-Requested-With");
+    	
+    	em.close();
+        return res.build();
     } 
     
     @OPTIONS
@@ -100,7 +121,7 @@ public class UtilisateurResource {
     }
     
     @OPTIONS
-    @Path("delete/{id}")
+    @Path("delete/")
     public Response getOptionsDelete()
     {
 	    return Response.ok()
@@ -110,7 +131,7 @@ public class UtilisateurResource {
     }
     
     @OPTIONS
-    @Path("update/{id}")
+    @Path("update")
     public Response getOptionsUpdate()
     {
 	    return Response.ok()

@@ -20,6 +20,10 @@ angular.module('runTracker', [
         templateUrl: 'views/accueil.html',
         controller: 'AccueilCtrl'
       })
+      .when('/seances', {
+        templateUrl: 'views/seances.html',
+        controller: 'SeancesCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });

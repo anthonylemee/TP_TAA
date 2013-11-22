@@ -29,16 +29,16 @@ public abstract class APersonne implements IAPersonne
 	protected String first_name;
 	 
 	@Temporal(javax.persistence.TemporalType.DATE) 
-	@Column(nullable = false) 
+	@Column(nullable = true) 
 	protected Date birthDate;
 
-	@Column(nullable = false) 
+	@Column(nullable = true) 
 	protected int weight;
 	 
-	@Column(nullable = false) 
+	@Column(nullable = true) 
 	protected int height;
 	 
-	@Column(nullable = false) 
+	@Column(nullable = true) 
 	protected Character sex;
 	
 	@Id 
@@ -51,6 +51,10 @@ public abstract class APersonne implements IAPersonne
 	 */
 	public APersonne(){
 		super();
+	}
+	
+	public void setId(long id){
+		this.id = id;
 	}
 	
 	public void setName(String myName) {
