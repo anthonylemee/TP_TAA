@@ -16,6 +16,10 @@ angular.module('runTracker', [
         templateUrl: 'views/Login.html',
         controller: 'LoginCtrl'
       })
+      .when('/accueil', {
+        templateUrl: 'views/accueil.html',
+        controller: 'AccueilCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });

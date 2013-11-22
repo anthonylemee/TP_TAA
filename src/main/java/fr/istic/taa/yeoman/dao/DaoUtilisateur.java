@@ -80,7 +80,7 @@ public class DaoUtilisateur implements IDao<IUtilisateur> {
 
 	public Utilisateur findByLogin(String arg0) {
 		if (DEBUG) System.out.println("[DaoUtilisateur][FINDALL] ");
-		Query q = em.createQuery("select u from Utilisateur u where login = " + arg0);
+		Query q = em.createQuery("select u from Utilisateur u where pseudo = '" + arg0 + "'");
 		return (Utilisateur) q.getSingleResult();
 	}
 	

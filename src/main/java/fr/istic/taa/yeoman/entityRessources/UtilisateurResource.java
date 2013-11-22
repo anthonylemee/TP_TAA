@@ -62,7 +62,7 @@ public class UtilisateurResource {
     }
 
     @DELETE @Path("delete/{id}")
-    @Produces({ MediaType.APPLICATION_JSON })
+    @Produces({ MediaType.APPLICATION_JSON }) 
     public Response deleteById(@PathParam("id") String arg0) {
         return null;
     }

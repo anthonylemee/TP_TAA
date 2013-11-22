@@ -1,0 +1,23 @@
+<p>This is the accueil view.</p>
+
+<div id="form" ng-controller="AccueilCtrl">
+	<fieldset>
+		<legend>Welcome</legend>
+		<form ng-submit="getUserConnected()">
+			<table >
+				<tr>
+					<td align='right'>avatar</td>
+					<td><input ng-model="user.avatar" value={{user.avatar}} maxlength="10" size=12 id='avatar'></td>
+				</tr>
+				<tr>
+					<td align='right'>birthdate</TD>
+					<td><input ng-model="user.birth" maxlength="12" value={{user.birth}} type=password size=12 name='birth'></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td><input type=submit value="login"></td>
+				</tr>
+			</table>
+		</form>
+	</fieldset>
+</div>

@@ -1,39 +1,28 @@
 'use strict';
 
 angular.module('runTracker')
-  .controller('LoginCtrl', function ($scope,$http,$location) {
+  .controller('LoginCtrl', function ($scope,$http,$location,$rootScope) {
 	  $scope.user = {};
+	  $rootScope.user = {};
 	    $scope.getUser = function() {
-	    	if($scope.user.login != null){
-		    	$http({ method: 'GET', url: 'http://localhost:8080/taa/rest/Utilisateur/search/',
-		    		data: { id: $scope.user.login },
-		    		headers: { "Content-Type": "application/json; charset=utf-8" }
-		    	}).
+	    	if($scope.user.login != null && $scope.user.password != null){
+	    		console.log($scope.user.login);
+		    	$http.get("http://localhost:8080/taa/rest/Utilisateur/search/"+
+		    		$scope.user.login).
 		    	  success(function (data, status, headers, config) {
 		    	    // ...
-		    		  alert(data)
+		    		  //var pass = data[x] if(pass == $scope.user.password)
+		    		  console.log(data);
+		    		  $rootScope.user = data;
+		    		  $location.path("/accueil");
+		    		  //else console.log("login / mot de passe incorrect")
 		    	  }).
 		    	  error(function (data, status, headers, config) {
 		    	    // ...
-		    		  alert(data)
+		    		  console.log("login / mot de passe incorrect");
 		    	  });
 	    	} else {
-	    		alert("oups")
+	    		console.log("login / mot de passe inexistant");
 	    	}
-	    }
+	    };
   });
-
-angular.module('runTracker')
-	.factory('myService', function($http, $location) {
-	   return {
-	        getUser: function() {
-	             // return the promise directly.
-	             return $http.get('/rest/Utilisateur/search/'+$scope.user.login)
-	                       .then(function(result) {
-	                            // resolve the promise as the data
-	                    	   	// $location.path("/")
-	                    	   	return result.data;
-	                        });
-	        }
-	   }
-	});
