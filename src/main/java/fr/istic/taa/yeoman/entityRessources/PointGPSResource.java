@@ -9,6 +9,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
+import javax.ws.rs.OPTIONS;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -50,19 +51,52 @@ public class PointGPSResource {
     @GET @Path("search/{id}")
     @Produces({ MediaType.APPLICATION_JSON })
     public Response findById(@PathParam("id") String arg0) {
-    	return null;
+    	EntityManagerFactory emf = Persistence.createEntityManagerFactory("jpa");
+    	EntityManager em = emf.createEntityManager();
+    	
+    	DaoPointGPS gps = new DaoPointGPS(em);
+    	
+    	res = Response.ok(gps.find(Integer.parseInt(arg0)));
+    	res.header("Access-Control-Allow-Origin", "*");
+    	res.header("Access-Control-Allow-Methods", "POST, GET, PUT, UPDATE, OPTIONS");
+    	res.header("Access-Control-Allow-Headers", "Content-Type, Accept, X-Requested-With");
+    	
+    	em.close();
+        return res.build();
     }
 
     @DELETE @Path("delete/{id}")
     @Produces({ MediaType.APPLICATION_JSON })
     public Response deleteById(@PathParam("id") String arg0) {
-    	return null;
+    	EntityManagerFactory emf = Persistence.createEntityManagerFactory("jpa");
+    	EntityManager em = emf.createEntityManager();
+    	
+    	DaoPointGPS gps = new DaoPointGPS(em);
+    	
+    	//res = Response.ok(gps.delete());
+    	res.header("Access-Control-Allow-Origin", "*");
+    	res.header("Access-Control-Allow-Methods", "POST, GET, PUT, UPDATE, OPTIONS");
+    	res.header("Access-Control-Allow-Headers", "Content-Type, Accept, X-Requested-With");
+    	
+    	em.close();
+        return res.build();
     }
     
     @PUT @Path("update/{id}")
     @Produces({MediaType.APPLICATION_JSON})
     public Response updateById(@PathParam("id") String arg0, PointGPS u) {
-    	return null;
+    	EntityManagerFactory emf = Persistence.createEntityManagerFactory("jpa");
+    	EntityManager em = emf.createEntityManager();
+    	
+    	DaoPointGPS gps = new DaoPointGPS(em);
+    	
+    	res = Response.ok(gps.update(u));
+    	res.header("Access-Control-Allow-Origin", "*");
+    	res.header("Access-Control-Allow-Methods", "POST, GET, PUT, UPDATE, OPTIONS");
+    	res.header("Access-Control-Allow-Headers", "Content-Type, Accept, X-Requested-With");
+    	
+    	em.close();
+        return res.build();
     }
     
     @PUT @Path("add")
@@ -80,5 +114,45 @@ public class PointGPSResource {
     	
     	em.close();
         return res.build();
+    }
+    
+    @OPTIONS
+    @Path("search/")
+    public Response getOptionsSearch()
+    {
+	    return Response.ok()
+	    .header("Access-Control-Allow-Origin", "*")
+	    .header("Access-Control-Allow-Methods", "POST, GET, PUT, UPDATE, OPTIONS")
+	    .header("Access-Control-Allow-Headers", "Content-Type, Accept, X-Requested-With").build();
+    }
+    
+    @OPTIONS
+    @Path("add")
+    public Response getOptionsAdd()
+    {
+	    return Response.ok()
+	    .header("Access-Control-Allow-Origin", "*")
+	    .header("Access-Control-Allow-Methods", "POST, GET, PUT, UPDATE, OPTIONS")
+	    .header("Access-Control-Allow-Headers", "Content-Type, Accept, X-Requested-With").build();
+    }
+    
+    @OPTIONS
+    @Path("delete")
+    public Response getOptionsDelete()
+    {
+	    return Response.ok()
+	    .header("Access-Control-Allow-Origin", "*")
+	    .header("Access-Control-Allow-Methods", "POST, GET,DELETE, PUT, UPDATE, OPTIONS")
+	    .header("Access-Control-Allow-Headers", "Content-Type, Accept, X-Requested-With").build();
+    }
+    
+    @OPTIONS
+    @Path("update")
+    public Response getOptionsUpdate()
+    {
+	    return Response.ok()
+	    .header("Access-Control-Allow-Origin", "*")
+	    .header("Access-Control-Allow-Methods", "POST, GET, PUT, UPDATE, OPTIONS")
+	    .header("Access-Control-Allow-Headers", "Content-Type, Accept, X-Requested-With").build();
     }
 }
