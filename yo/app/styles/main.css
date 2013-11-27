@@ -1,103 +1,107 @@
-/* Space out content a bit */
-body {
-  padding-top: 20px;
-  padding-bottom: 20px;
-}
-
-div#loginForm {
-	margin-left: auto;
-	margin-right: auto;
-}
-
-div#loginForm h1 {
-	text-align : center;
-	color: red; 
-	font-size: 16pt; 
-	font-family: arial;
-}
-
-div#loginForm fieldset {
-	border:1px solid green;
-    -moz-border-radius:8px;
-    -webkit-border-radius:8px;	
-    border-radius:8px;
-    text-indent: 10px;
-}
-
-div#loginForm legend {
-	color: green; font-size: 12pt; font-family: arial
-}
-
-/* Everything but the jumbotron gets side spacing for mobile first views */
-.header,
-.marketing,
 .footer {
-  padding-left: 15px;
-  padding-right: 15px;
+	padding: 30px 15px;
+	background-color: #f8f8f8;
+	height: 100%;
+	width: 100%;
 }
 
-/* Custom page header */
-.header {
-  border-bottom: 1px solid #e5e5e5;
-}
-/* Make the masthead heading the same height as the navigation */
-.header h3 {
-  margin-top: 0;
-  margin-bottom: 0;
-  line-height: 40px;
-  padding-bottom: 19px;
-}
-
-/* Custom page footer */
-.footer {
-  padding-top: 19px;
-  color: #777;
-  border-top: 1px solid #e5e5e5;
+.bs-mastheadDefault {
+	color: #46414D;
+	display: table;
+	height: 100%;
+	width: 100%;
+	background: url(./img/bg.jpg) no-repeat center center;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
 }
 
-/* Customize container */
-@media (min-width: 768px) {
-  .container {
-    max-width: 730px;
-  }
-}
-.container-narrow > hr {
-  margin: 30px 0;
-}
-
-/* Main marketing message and sign up button */
-.jumbotron {
-  text-align: center;
-  border-bottom: 1px solid #e5e5e5;
-}
-.jumbotron .btn {
-  font-size: 21px;
-  padding: 14px 24px;
+.bs-masthead {
+	color: #46414D;
+	display: table;
+	height: 100%;
+	width: 100%;
+	background: url(./img/bg.jpg) no-repeat center center;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
 }
 
-/* Supporting marketing content */
-.marketing {
-  margin: 40px 0;
+.bs-masthead, .bs-mastheadDefault {
+	position: relative;
+	padding: 30px 15px;
+	text-align: center;
+	text-shadow: 0 1px 0 rgba(0, 0, 0, .15);
 }
-.marketing p + h4 {
-  margin-top: 28px;
+
+.bs-masthead h1 {
+	font-size: 50px;
+	line-height: 1;
+	color: #fff;
+}
+
+.bs-masthead .myBtn {
+	margin-top: 10px !important;
+	margin-bottom: 10px !important;
+	padding: 18px;
+}
+
+.myBtnHigh {
+	padding: 18px 58px !important;
+}
+
+.bs-masthead-links a {
+	color: #fff;
+}
+
+@media ( min-width : 768px) {
+	.bs-masthead {
+		text-align: center;
+		padding-top: 140px;
+		padding-bottom: 140px;
+	}
+	.bs-mastheadDefault {
+		text-align: left;
+		padding-top: 140px;
+		padding-bottom: 140px;
+	}
+	.bs-masthead h1 {
+		font-size: 100px;
+	}
+	.bs-masthead .lead {
+		font-size: 30px;
+	}
+	
+	.myBtn {
+		width: auto;
+		margin: 20px 0px 20px 0;
+		padding: 18px 24px;
+		font-size: 21px;
+	}
+	.myBtnHigh {
+		padding: 18px 58px !important;
+	}
+	.bs-masthead-links {
+		padding: 0;
+		text-align: center;
+	}
 }
 
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
-  /* Remove the padding we set earlier */
-  .header,
-  .marketing,
-  .footer {
-    padding-left: 0;
-    padding-right: 0;
-  }
-  /* Space out the masthead */
-  .header {
-    margin-bottom: 30px;
-  }
-  /* Remove the bottom border on the jumbotron for visual effect */
-  .jumbotron {
-    border-bottom: 0;
-  }
+	/* Remove the padding we set earlier */
+	.header,.marketing,.footer {
+		padding-left: 0;
+		padding-right: 0;
+	}
+	/* Space out the masthead */
+	.header {
+		margin-bottom: 30px;
+	}
+	/* Remove the bottom border on the jumbotron for visual effect */
+	.jumbotron {
+		border-bottom: 0;
+	}
 }

@@ -1,26 +1,41 @@
-<div id="my_alert" style="position:absolute; left:500px; top:500px; border:1px; visible:hidden;">
-	TAA
-</div>
+<div id="my_alert"
+	style="position: absolute; left: 500px; top: 500px; border: 1px; visible: hidden;">
+	TAA</div>
 
-<div id="loginForm" ng-controller="LoginCtrl">
-	<h1>Welcome in Run Tracker</h1>
-	<fieldset>
-		<legend>please Identify yourself</legend>
-		<form ng-submit="getUser()">
-			<table >
-				<tr>
-					<td align='right'>Votre login</td>
-					<td><input ng-model="user.login" maxlength="10" value="" size=12 id='login'></td>
-				</tr>
-				<tr>
-					<td align='right'>Votre mot de passe</TD>
-					<td><input ng-model="user.password" maxlength="12" value="" type=password size=12 name='pass'></td>
-				</tr>
-				<tr>
-					<td></td>
-					<td><input type=submit value="login"></td>
-				</tr>
-			</table>
-		</form>
-	</fieldset>
+<div class="bs-mastheadDefault">
+	<div class="col-md-4">
+		<p class="lead"> <br /> <br />RunTraker is the best way to make your exercice
+			easy and fun, to improve your fitness and also to stay motivated. <br /> <br />
+			<h3><span class="label label-success">So, Sign up and start now!</span></h3>
+			</p>
+	</div>
+	<div class="col-md-8">
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<h3 class="panel-title">Log in</h3>
+			</div>
+			<div class="panel-body">
+
+
+				<form role="form" ng-submit="getUser()">
+					<div class="form-group">
+						<label for="user">Your username</label> <input type="text"
+							class="form-control" id="user" placeholder="Enter username"
+							ng-model="user.login">
+					</div>
+					<div class="form-group">
+						<label for="password">Your password</label> <input type="password"
+							class="form-control" id="password" placeholder="Password"
+							ng-model="user.password">
+					</div>
+					<div class="checkbox">
+						<label> <input type="checkbox"> Remember me
+						</label>
+					</div>
+					<button type="submit" value="login" class="btn btn-primary">Access
+						to your account</button>
+				</form>
+			</div>
+		</div>
+	</div>
 </div>
