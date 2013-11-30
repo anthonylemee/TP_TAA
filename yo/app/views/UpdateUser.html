@@ -1,0 +1,54 @@
+<div id="updateUser" ng-controller="AccueilCtrl">
+	<fieldset>
+		<legend>Welcome</legend>
+		<form ng-submit="updateUser()">
+			<table >
+				<tr>
+					<td align='right'>Name : </td>
+					<td><input ng-model="user.name" maxlength="10" size=12 id='name'></td>
+				</tr>
+				<tr>
+					<td align='right'>First Name : </td>
+					<td><input ng-model="user.first_name" maxlength="10" size=12 id='first_name'></td>
+				</tr>
+				<tr>
+					<td align='right'>BirthDate : </td>
+					<td><input type="date" ng-model="user.birthDate" maxlength="10" size=12 id='birthdate'></td>
+				</tr>
+				<tr>
+					<td align='right'>Pseudo : </td>
+					<td><input ng-model="user.pseudo" maxlength="10" size=12 id='pseudo'></td>
+				</tr>
+				<tr>
+					<td align='right'>Avatar : </td>
+					<td><input ng-model="user.avatar" maxlength="10" size=12 id='avatar'></td>
+				</tr>
+				<tr>
+					<td align='right'>Mail : </td>
+					<td><input type="email" ng-model="user.mail" maxlength="10" size=12 id='mail'></td>
+				</tr>
+				<tr>
+					<td align='right'>Twitter : </td>
+					<td><input ng-model="user.twitter" maxlength="10" size=12 id='twitter'></td>
+				</tr>
+				<tr>
+					<td align='right'>Height : </td>
+					<td><input type="number" ng-model="user.height" maxlength="10" size=12 id='height'></td>
+				</tr>
+				<tr>
+					<td align='right'>Weight : </td>
+					<td><input type="number" ng-model="user.weight" maxlength="10" size=12 id='weight'></td>
+				</tr>
+				<tr>
+					<td align='right'>Sex : </td>
+					<td> <input type="radio" name="sex" value="H">Male 
+					<input type="radio" name="sex" value="F">Female </td>
+				</tr>
+				<tr>
+					<td></td>
+					<td><input type=submit value="Update User"></td>
+				</tr>
+			</table>
+		</form>
+	</fieldset>
+</div>

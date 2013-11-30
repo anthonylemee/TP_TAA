@@ -28,6 +28,18 @@ angular.module('runTracker', [
         templateUrl: 'views/SignIn.html',
         controller: 'SigninCtrl'
       })
+      .when('/DeleteUser', {
+        templateUrl: 'views/DeleteUser.html',
+        controller: 'DeleteuserCtrl'
+      })
+      .when('/Parcours', {
+        templateUrl: 'views/Parcours.html',
+        controller: 'ParcoursCtrl'
+      })
+      .when('/UpdateUser', {
+        templateUrl: 'views/UpdateUser.html',
+        controller: 'UpdateuserCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
