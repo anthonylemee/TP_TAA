@@ -33,6 +33,9 @@ public class Utilisateur extends APersonne implements IUtilisateur
 	@Column(nullable = true) 
 	protected String avatar;
 	
+	@Column(nullable = true) 
+	protected String password;
+	
 	@OneToMany(mappedBy = "utilisateur") 
 	protected Set<Seance> seance;
 	
@@ -88,6 +91,10 @@ public class Utilisateur extends APersonne implements IUtilisateur
 		return this.facebook;	
 	}
 	
+	public String getPassword() {
+		return this.password;	
+	}
+	
 	public String getTwitter() {
 		return this.twitter;	
 	}
@@ -111,6 +118,10 @@ public class Utilisateur extends APersonne implements IUtilisateur
 	
 	public void setFacebook(String myFacebook) {
 		this.facebook = myFacebook;	
+	}
+	
+	public void setPassword(String myPassword) {
+		this.password = myPassword;	
 	}
 	
 	public void setTwitter(String myTwitter) {
