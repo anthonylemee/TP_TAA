@@ -1,62 +1,80 @@
-<div id="createUser" ng-controller="SigninCtrl">
-	<fieldset>
-		<legend>Welcome to our banana application</legend>
-		<form ng-submit="createUser()">
-			<table >
-				<tr>
-					<td align='right'>Name : </td>
-					<td><input ng-model="create.name" maxlength="10" value="" size=12 id='name'></td>
-				</tr>
-				<tr>
-					<td align='right'>First Name : </td>
-					<td><input ng-model="create.first_name" maxlength="10" value="" size=12 id='fname'></td>
-				</tr>
-				<tr>
-					<td align='right'>BirthDate : </td>
-					<td><input type="date" ng-model="create.birthDate" maxlength="10" value={{$scope.create.birthDate}} size=12 id='birthdate'></td>
-				</tr>
-				<tr>
-					<td align='right'>Pseudo (Login) : </td>
-					<td><input ng-model="create.pseudo" maxlength="10" value="" size=12 id='pseudo'></td>
-				</tr>
-				<tr>
-					<td align='right'>Password : </td>
-					<td><input type="password" ng-model="create.password" maxlength="10" value="" size=12 id='pass'></td>
-				</tr>
-				<tr>
-					<td align='right'>Password (confirm) : </td>
-					<td><input type="password" ng-model="pass.passConfirm" maxlength="10" value="" size=12 id='passConfirm'></td>
-				</tr>
-				<tr>
-					<td align='right'>Avatar : </td>
-					<td><input ng-model="create.avatar" maxlength="10" value="" size=12 id='avatar'></td>
-				</tr>
-				<tr>
-					<td align='right'>Mail : </td>
-					<td><input type="email" ng-model="create.mail" maxlength="10" value="" size=12 id='mail'></td>
-				</tr>
-				<tr>
-					<td align='right'>Twitter : </td>
-					<td><input ng-model="create.twitter" maxlength="10" value="" size=12 id='twitter'></td>
-				</tr>
-				<tr>
-					<td align='right'>Height : </td>
-					<td><input type="number" ng-model="create.height" maxlength="10" value="" size=12 id='Height'></td>
-				</tr>
-				<tr>
-					<td align='right'>Weight : </td>
-					<td><input type="number" ng-model="create.weight" maxlength="10" value="" size=12 id='weight'></td>
-				</tr>
-				<tr>
-					<td align='right'>Sex : </td>
-					<td> <input type="radio" name="sex" value="H" checked>Male 
-					<input type="radio" name="sex" value="F">Female </td>
-				</tr>
-				<tr>
-					<td></td>
-					<td><input type=submit value="Create User"></td>
-				</tr>
-			</table>
-		</form>
-	</fieldset>
+<div class="bs-masthead bs-mastheadDefault">
+	<div class="col-md-12">
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<h3 class="panel-title">Sign in</h3>
+			</div>
+			<div class="panel-body">
+				<form role="form" ng-submit="createUser()">
+					<div class="col-md-6">
+						<div class="form-group">
+							<label for="lastname">What's your lastname ?</label> <input
+								type="text" class="form-control" id="lastname"
+								placeholder="Enter lastname" ng-model="create.name">
+						</div>
+						<div class="form-group">
+							<label for="firstname">What's your firstname ?</label> <input
+								type="text" class="form-control" id="firstname"
+								placeholder="Enter firstname" ng-model="create.first_name">
+						</div>
+						<div class="form-group">
+							<label for="birth">Indicate your birth date</label> <input
+								type="date" class="form-control" id="birth"
+								placeholder="Indicate your birth date"
+								ng-model="create.birthDate" value="{{$scope.create.birthDate}}">
+						</div>
+						<div class="form-group">
+							<label for="username">Choose a username</label> <input
+								type="text" class="form-control" id="username"
+								placeholder="Choose a username" ng-model="create.pseudo">
+						</div>
+						<div class="form-group">
+							<label for="password">Choose a password</label> <input
+								type="password" class="form-control" id="password"
+								placeholder="Choose a password" ng-model="create.password">
+						</div>
+						<div class="form-group">
+							<label for="passwordCOnf">Confirm your password</label> <input
+								type="password" class="form-control" id="passwordCOnf"
+								placeholder="Confirm your password<" ng-model="pass.passConfirm">
+						</div>
+						<div class="form-group">
+							<label for="avatar">Import an avatar image</label> <input
+								type="file" class="form-control" id="avatar"
+								placeholder="Import an avatar image" ng-model="create.avatar">
+						</div>
+					</div>
+					<div class="col-md-6">
+					<div class="form-group">
+						<label for="email">Indicate your email address</label> <input type="text"
+							class="form-control" id="email" placeholder="Indicate your email address"
+							ng-model="create.mail">
+					</div>
+					<div class="form-group">
+						<label for="twitter">Indicate your twitter profile</label> <input type="text"
+							class="form-control" id="twitter" placeholder="Indicate your twitter profile"
+							ng-model="create.twitter">
+					</div>
+					<div class="form-group">
+						<label for="height">Indicate your height</label> <input type="number"
+							class="form-control" id="height" placeholder="Indicate your height"
+							ng-model="create.height">
+					</div>
+					<div class="form-group">
+						<label for="weight">Indicate your weight</label> <input type="number"
+							class="form-control" id="weight" placeholder="Indicate your weight"
+							ng-model="create.weight">
+					</div>	
+					<div class="form-group">
+						<input type="radio" name="sex" value="H" checked>Male
+						<input type="radio" name="sex" value="F">Female		
+					</div>	
+						
+					<button type="submit" value="signin" class="btn btn-success">Create
+						my account</button>
+						</div>
+				</form>
+			</div>
+		</div>
+	</div>
 </div>

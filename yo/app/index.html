@@ -30,7 +30,7 @@
 	    <![endif]-->
 
 	<!-- Add your site or application content here -->
-	<header class="navbar navbar-default navbar-fixed-top">
+	<header class="navbar navbar-fixed-top bs-docs-nav">
 		<div class="container">
 			<div class="navbar-header">
 				<button class="navbar-toggle" type="button" data-toggle="collapse"
@@ -44,35 +44,26 @@
 				<ul class="nav navbar-nav">
 					<!-- 				<li><a href="#/login">test</a></li> -->
 				</ul>
-				<ul class="nav navbar-nav navbar-right">
-					<li><a href="#/login">Login</a></li>
+				<ul class="nav navbar-nav navbar-right" ng-controller="AccueilCtrl">
+					<li><a ng-click="goAccueil()" href="">Accueil</a></li>
+					<li><a ng-click="goSeances()" href="">Seances</a></li>
+					<li><a ng-click="goParcours()" href="">Parcours</a></li>
+					<li>
+						<a class="dropdown-toggle" data-toggle="dropdown">
+								My Account <span class="caret"></span>
+						</a>
+						<ul class="dropdown-menu">
+							<li><a ng-click="goUpdate()" href="">Update my
+									informations</a></li>
+							<li><a ng-click="goDelete()" href="">Delete my account</a></li>
+
+						</ul>
+					</li>
 				</ul>
 			</nav>
 		</div>
 	</header>
-	<div id="navigation" ng-controller="AccueilCtrl">
-		<fieldset>
-			<nav>
-				<ul>
-					<li><a ng-click="goAccueil()" href="">Accueil</a></li>
-					<li><a ng-click="goSeances()" href="">Seances</a></li>
-					<li><a ng-click="goParcours()" href="">Parcours</a></li>
-					<li><a ng-click="goUpdate()" href="">Mettre a jour le compte</a></li>
-					<li><a ng-click="goDelete()" href="">Supprimer le compte</a></li>
-					<li><a href="#/login">Logout</a></li>
-				</ul>
-			</nav>
-		</fieldset>
-	</div>
 	<div ng-view=""></div>
-	<footer class="footer">
-
-		<div class="container">
-			<p>Created by Jimmy DANO et Anthony LE MEE</p>
-		</div>
-
-	</footer>
-
 	<!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
 	<script>
 		(function(i, s, o, g, r, a, m) {
@@ -113,9 +104,9 @@
 	<script src="scripts/controllers\accueil.js"></script>
 	<script src="scripts/controllers\seances.js"></script>
 	<script src="scripts/controllers\SignIn.js"></script>
-<script src="scripts/controllers\DeleteUser.js"></script>
-<script src="scripts/controllers\Parcours.js"></script>
-<script src="scripts/controllers\UpdateUser.js"></script>
+	<script src="scripts/controllers\DeleteUser.js"></script>
+	<script src="scripts/controllers\Parcours.js"></script>
+	<script src="scripts/controllers\UpdateUser.js"></script>
 	<!-- endbuild -->
 </body>
 </html>

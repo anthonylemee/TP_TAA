@@ -1,13 +1,16 @@
 
-<div id="delete" ng-controller="DeleteuserCtrl">
-	<fieldset>
-		<legend>Bye Bye</legend>
-		<form ng-submit="deleteUser()">
-			<table >
-				<tr>
-					<td><input type=submit value="Delete User"></td>
-				</tr>
-			</table>
-		</form>
-	</fieldset>
+<div class="bs-masthead bs-mastheadDefault">
+	<div class="col-md-7">
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<h3 class="panel-title">Account actions</h3>
+			</div>
+			<div class="panel-body" style="text-align: center !important;">
+				<form role="form" ng-submit="deleteUser()">
+					<button type="submit" value="delete" class="btn btn-primary">Delete
+						your account</button>
+				</form>
+			</div>
+		</div>
+	</div>
 </div>
