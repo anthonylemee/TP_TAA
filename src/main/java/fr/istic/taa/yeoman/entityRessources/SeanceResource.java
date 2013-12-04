@@ -44,9 +44,26 @@ public class SeanceResource {
         return res.build();
     }
     
-    @GET @Path("search/{id}")
+    @GET @Path("search/of/{nom}")
     @Produces({ MediaType.APPLICATION_JSON })
-    public Response findById(@PathParam("id") String arg0) {
+    public Response findOfUser(@PathParam("nom") String arg0) {
+    	EntityManagerFactory emf = Persistence.createEntityManagerFactory("jpa");
+    	EntityManager em = emf.createEntityManager();
+    	
+    	DaoSeance seances = new DaoSeance(em);
+    	
+    	res = Response.ok(seances.findOfUser(arg0));
+    	res.header("Access-Control-Allow-Origin", "*");
+    	res.header("Access-Control-Allow-Methods", "POST, GET, PUT, UPDATE, OPTIONS");
+    	res.header("Access-Control-Allow-Headers", "Content-Type, Accept, X-Requested-With");
+    	
+    	em.close();
+        return res.build();
+    }
+    
+    @GET @Path("search/{nom}")
+    @Produces({ MediaType.APPLICATION_JSON })
+    public Response findById(@PathParam("nom") String arg0) {
     	EntityManagerFactory emf = Persistence.createEntityManagerFactory("jpa");
     	EntityManager em = emf.createEntityManager();
     	

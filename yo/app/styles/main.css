@@ -2,6 +2,10 @@ body {
 	background-color: #323a45 !important;
 }
 
+.dropdown-toggle {
+	cursor: pointer;
+}
+
 .panel-body {
 	text-align:left;
 }

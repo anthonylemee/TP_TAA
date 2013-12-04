@@ -5,12 +5,15 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import org.codehaus.jackson.annotate.JsonIgnore;
 
 import fr.istic.taa.yeoman.entity.interfaces.IParcours;
 
@@ -27,10 +30,11 @@ public class Parcours implements IParcours {
 	@Column(nullable = false)
 	protected Integer speed;
 
-	@OneToMany(mappedBy = "parcours")
+	@OneToMany(mappedBy = "parcours", fetch=FetchType.EAGER)
 	protected Set<PointGPS> pointsGPS;
 
 	@OneToOne(mappedBy = "parcours")
+	@JsonIgnore
 	protected Seance seance;
 
 	@Id

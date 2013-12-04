@@ -18,7 +18,7 @@ angular.module('runTracker', [
       })
       .when('/accueil', {
         templateUrl: 'views/accueil.html',
-        controller: 'AccueilCtrl'
+        controller: 'UserCtrl'
       })
       .when('/seances', {
         templateUrl: 'views/seances.html',

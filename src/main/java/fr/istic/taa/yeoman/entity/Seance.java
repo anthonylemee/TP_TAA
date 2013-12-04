@@ -5,6 +5,7 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -41,21 +42,21 @@ public class Seance implements ISeance
 	@Column(nullable = false) 
 	protected int time;
 
-	@ManyToOne 
+	@ManyToOne (fetch=FetchType.EAGER)
 	@JoinColumn(nullable = false) 
 	protected Sport sport;
 
-	@ManyToOne 
+	@ManyToOne (fetch=FetchType.EAGER)
 	@JoinColumn(nullable = false) 
 	protected Utilisateur utilisateur;
 	
-	@OneToOne 
+	@OneToOne(fetch=FetchType.EAGER)
 	protected Parcours parcours;
 
-	@OneToOne 
+	@OneToOne (fetch=FetchType.EAGER)
 	protected Meteo meteo;
 
-	@OneToMany 
+	@OneToMany (fetch=FetchType.EAGER)
 	protected Set<Cardio> cardio;
 
 	@Id 

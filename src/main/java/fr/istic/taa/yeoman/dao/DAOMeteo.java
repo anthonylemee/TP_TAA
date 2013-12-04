@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceContextType;
 import javax.persistence.Query;
 
 import fr.istic.taa.yeoman.client.TransactionManager;
@@ -19,7 +20,7 @@ import fr.istic.taa.yeoman.entity.interfaces.IMeteo;
 public class DAOMeteo implements IDao<IMeteo> {
 
 	/** Attributs de la classe */
-	@PersistenceContext
+	@PersistenceContext//(type=PersistenceContextType.EXTENDED)
 	private EntityManager em;
 	private TransactionManager tm;
 	/** 
