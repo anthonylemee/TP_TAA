@@ -9,6 +9,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+
 import fr.istic.taa.yeoman.entity.interfaces.ICardio;
 
 /**
@@ -24,6 +26,7 @@ public class Cardio implements ICardio
 
 	@ManyToOne 
 	@JoinColumn(nullable = true) 
+	@JsonIgnore
 	protected Seance seance;
 
 	@Id 

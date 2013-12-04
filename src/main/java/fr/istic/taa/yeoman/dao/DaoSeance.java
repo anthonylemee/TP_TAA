@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceContextType;
 import javax.persistence.Query;
 
 import fr.istic.taa.yeoman.client.TransactionManager;
@@ -19,7 +20,7 @@ import fr.istic.taa.yeoman.entity.interfaces.ISeance;
 public class DaoSeance implements IDao<ISeance> {
 
 	/** Attributs de la classe */
-	@PersistenceContext
+	@PersistenceContext//(type=PersistenceContextType.EXTENDED) 
 	private EntityManager em;
 	private TransactionManager tm;
 	
@@ -61,11 +62,22 @@ public class DaoSeance implements IDao<ISeance> {
 		return seance;
 		
 	}
+	
 	@Override
 	public ISeance find(long id) {
 
 		if (DEBUG) System.out.println("[DaoSeance][FIND] " + id);
 		return em.find(Seance.class, id);
+		
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<ISeance> findOfUser(String name) {
+
+		if (DEBUG) System.out.println("[DaoSeance][findOfUser] " + name);
+		Query q = em.createQuery("SELECT s FROM Seance s "); // WHERE s.utilisateur.pseudo = '" + name + "'"); 
+		
+		return (List<ISeance>)q.getResultList();
 		
 	}
 	

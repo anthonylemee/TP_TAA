@@ -1,21 +1,53 @@
-<div id="form" ng-controller="AccueilCtrl">
-	<fieldset>
-		<legend>Welcome</legend>
-		<form ng-submit="goToSeances()">
-			<table >
-				<tr>
-					<td align='right'>Pseudo : </td>
-					<td margin-left="20px">{{user.pseudo}}</td>
-				</tr>
-				<tr>
-					<td align='right'>Avatar : </TD>
-					<td margin-left="20px">{{user.avatar}}</td>
-				</tr>
-				<tr>
-					<td></td>
-					<td><input type=submit value="See seances done"></td>
-				</tr>
-			</table>
-		</form>
-	</fieldset>
+<div class="bs-masthead bs-mastheadDefault">
+	<div class="col-md-5">
+		<p class="lead loginPageSlogan" ng-controller="WeatherCtrl">
+			{{date | date:longDate}}<br />
+			<weather-icon cloudiness="{{ weather.clouds }}"
+				style="text-align:center !important;float:center !important;margin-bottom:-42px;"></weather-icon>
+			<br /> <span style="font-size: 18px !important;">&nbsp;{{
+				weather.temp.current | temp:2 }}</span> <br />
+			<!-- 		<span style="font-size:10px !important;">min: {{ weather.temp.min | temp }}, max: {{ weather.temp.max | temp }}</span> -->
+		<h3>
+			<a class="label label-success" href="#/SignIn">Do my daily sport
+			</a>
+		</h3>
+		</p>
+	</div>
+	<div class="col-md-7">
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<h3 class="panel-title">Hi {{user.pseudo}} !</h3>
+			</div>
+			<div class="panel-body">
+				
+				<div class="col-md-3">
+				<img src="{{user.avatar}}" alt="your image profile"
+					class="img-thumbnail" style="width: 140px; height: 140px;display:inline !important;" />
+				</div>
+				<div class="col-md-9">
+				<table class="table table-hover">
+					<thead>
+						<tr>
+							<th>#</th>
+							<th>Sport</th>
+							<th>Date</th>
+							<th>Heure</th>
+							<th>M&eacute;t&eacute;o</th>
+							<th>Parcours</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="s in seancesOfUser">
+							<td>{{s.date}}</td>
+							<td>{{s.time | date:'h:mma'}}</td>
+							<td>{{s.meteo.weather}}</td>
+							<td></td>
+						</tr>
+					</tbody>
+				</table>
+				</div>
+				
+			</div>
+		</div>
+	</div>
 </div>

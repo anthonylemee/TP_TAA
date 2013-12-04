@@ -8,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+
 import fr.istic.taa.yeoman.entity.interfaces.IMeteo;
 
 /**
@@ -25,6 +27,7 @@ public class Meteo implements IMeteo
 	protected Integer humidity;
 	 
 	@OneToOne(mappedBy = "meteo") 
+	@JsonIgnore
 	protected Seance seance;
 
 	@Id 
