@@ -4,6 +4,12 @@ angular.module('runTracker')
   .controller('SigninCtrl', function ($http,$scope,$rootScope,$location) {
 	  $scope.create = {};
 	  $scope.pass = {};
+	  $scope.isCorrectPassword = function() {
+		  if($scope.create.password != null && $scope.pass.passConfirm != null){
+			  return angular.equals($scope.create.password, $scope.pass.passConfirm);
+		  }
+		  return false;
+	  };
 		$scope.createUser = function (){
 			$scope.utilisateur = {};
 			if($scope.create.pseudo != null && $scope.create.name != null && $scope.create.first_name != null){
