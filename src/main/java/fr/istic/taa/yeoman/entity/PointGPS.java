@@ -9,6 +9,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+
 import fr.istic.taa.yeoman.entity.interfaces.IPointGPS;
 
 
@@ -31,6 +33,7 @@ public class PointGPS implements IPointGPS
 
 	@ManyToOne 
 	@JoinColumn(nullable = false) 
+	@JsonIgnore
 	protected Parcours parcours;
 
 	@Id 

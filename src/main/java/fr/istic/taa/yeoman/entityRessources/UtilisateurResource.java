@@ -80,7 +80,7 @@ public class UtilisateurResource {
         return res.build();
     }
     
-    @POST @Path("delete/{id}")
+    @DELETE @Path("delete/{id}")
     @Produces({MediaType.APPLICATION_JSON }) 
     public Response deleteById(@PathParam("id") String arg) {
     	EntityManagerFactory emf = Persistence.createEntityManagerFactory("jpa");
@@ -151,7 +151,7 @@ public class UtilisateurResource {
     }
     
     @OPTIONS
-    @Path("delete")
+    @Path("delete/{id}")
     public Response getOptionsDelete()
     {
 	    return Response.ok()
