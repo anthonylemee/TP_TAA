@@ -1,5 +1,6 @@
 package fr.istic.taa.yeoman.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -32,7 +33,7 @@ public class PointGPS implements IPointGPS
 	@Column(nullable = false) 
 	protected int zPoint;
 
-	@ManyToOne 
+	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(nullable = false)
 	protected Parcours parcours;
 

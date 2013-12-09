@@ -2,6 +2,7 @@ package fr.istic.taa.yeoman.entity;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -35,7 +36,7 @@ public class Sport implements ISport
 	@Column(nullable = false) 
 	protected String type_sport;
 
-	@OneToMany (fetch=FetchType.EAGER)
+	@OneToMany (fetch=FetchType.EAGER,cascade=CascadeType.ALL)
 	protected Set<Seance> seance;
 
 	/**

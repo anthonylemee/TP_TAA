@@ -1,5 +1,6 @@
 package fr.istic.taa.yeoman.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -25,7 +26,7 @@ public class Cardio implements ICardio
 	@Column(nullable = false) 
 	protected double frequency;
 
-	@ManyToOne 
+	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(nullable = true) 
 	protected Seance seance;
 

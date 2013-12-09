@@ -3,6 +3,7 @@ package fr.istic.taa.yeoman.entity;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -31,10 +32,10 @@ public class Parcours implements IParcours {
 	@Column(nullable = false)
 	protected Integer speed;
 
-	@OneToMany(mappedBy = "parcours", fetch=FetchType.EAGER)
+	@OneToMany(mappedBy = "parcours", fetch=FetchType.EAGER,cascade=CascadeType.ALL)
 	protected Set<PointGPS> pointsGPS;
 
-	@OneToOne(mappedBy = "parcours")
+	@OneToOne(mappedBy = "parcours",cascade=CascadeType.ALL)
 	protected Seance seance;
 
 	@Id
