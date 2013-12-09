@@ -3,13 +3,11 @@ package fr.istic.taa.yeoman.entity;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
-import org.codehaus.jackson.annotate.JsonIgnore;
-import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+import org.codehaus.jackson.annotate.JsonManagedReference;
 
 import fr.istic.taa.yeoman.entity.interfaces.IUtilisateur;
 
@@ -40,8 +38,8 @@ public class Utilisateur extends APersonne implements IUtilisateur
 	@Column(nullable = true) 
 	protected String password;
 	
-	@OneToMany(mappedBy = "utilisateur",cascade=CascadeType.REMOVE)
-	@JsonIgnore
+	@OneToMany(mappedBy = "utilisateur") 
+	@JsonManagedReference
 	protected Set<Seance> seance;
 	
 

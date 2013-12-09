@@ -9,7 +9,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import org.codehaus.jackson.annotate.JsonIgnore;
+import org.codehaus.jackson.annotate.JsonBackReference;
+import org.codehaus.jackson.annotate.JsonManagedReference;
 
 import fr.istic.taa.yeoman.entity.interfaces.ICardio;
 
@@ -25,7 +26,7 @@ public class Cardio implements ICardio
 	protected double frequency;
 
 	@ManyToOne 
-	@JoinColumn(nullable = true)
+	@JoinColumn(nullable = true) 
 	protected Seance seance;
 
 	@Id 
@@ -62,10 +63,12 @@ public class Cardio implements ICardio
 		mySeance.addCardio(this);	
 	}
 
+	@JsonManagedReference
 	public double getFrequency() {
 		return this.frequency;	
 	}
 
+	@JsonBackReference
 	public Seance getSeance() {
 		return this.seance;	
 	}

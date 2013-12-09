@@ -9,7 +9,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import org.codehaus.jackson.annotate.JsonIgnore;
+import org.codehaus.jackson.annotate.JsonBackReference;
+import org.codehaus.jackson.annotate.JsonManagedReference;
 
 import fr.istic.taa.yeoman.entity.interfaces.IPointGPS;
 
@@ -32,8 +33,7 @@ public class PointGPS implements IPointGPS
 	protected int zPoint;
 
 	@ManyToOne 
-	@JoinColumn(nullable = false) 
-	@JsonIgnore
+	@JoinColumn(nullable = false)
 	protected Parcours parcours;
 
 	@Id 
@@ -48,18 +48,22 @@ public class PointGPS implements IPointGPS
 		super();
 	}
 
+	@JsonManagedReference
 	public int getXPoint() {
 		return this.xPoint;	
 	}
 	
+	@JsonManagedReference
 	public int getYPoint() {
 		return this.yPoint;	
 	}
 
+	@JsonManagedReference
 	public int getZPoint() {
 		return this.zPoint;	
 	}
 
+	@JsonBackReference
 	public Parcours getParcours() {
 		return this.parcours;	
 	}

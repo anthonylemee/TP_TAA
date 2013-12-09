@@ -11,8 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import org.codehaus.jackson.annotate.JsonIgnore;
-import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+import org.codehaus.jackson.annotate.JsonBackReference;
+import org.codehaus.jackson.annotate.JsonManagedReference;
 
 import fr.istic.taa.yeoman.entity.interfaces.ISport;
 
@@ -36,7 +36,6 @@ public class Sport implements ISport
 	protected String type_sport;
 
 	@OneToMany (fetch=FetchType.EAGER)
-	@JsonIgnore
 	protected Set<Seance> seance;
 
 	/**
@@ -87,14 +86,17 @@ public class Sport implements ISport
 		return this.id;	
 	}
 	
+	@JsonManagedReference
 	public String getNom_sport() {
 		return this.nom_sport;	
 	}
 
+	@JsonManagedReference
 	public String getType_sport() {
 		return this.type_sport;	
 	}
 
+	@JsonBackReference
 	public Set<Seance> getSeance() {
 		if(this.seance == null) {
 				this.seance = new HashSet<Seance>();

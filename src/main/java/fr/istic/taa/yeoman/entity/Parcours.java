@@ -3,7 +3,6 @@ package fr.istic.taa.yeoman.entity;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -14,7 +13,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import org.codehaus.jackson.annotate.JsonIgnore;
+import org.codehaus.jackson.annotate.JsonBackReference;
+import org.codehaus.jackson.annotate.JsonManagedReference;
 
 import fr.istic.taa.yeoman.entity.interfaces.IParcours;
 
@@ -31,11 +31,10 @@ public class Parcours implements IParcours {
 	@Column(nullable = false)
 	protected Integer speed;
 
-	@OneToMany(mappedBy = "parcours", fetch=FetchType.EAGER,cascade=CascadeType.ALL)
+	@OneToMany(mappedBy = "parcours", fetch=FetchType.EAGER)
 	protected Set<PointGPS> pointsGPS;
 
-	@OneToOne(mappedBy = "parcours",cascade=CascadeType.ALL)
-	@JsonIgnore
+	@OneToOne(mappedBy = "parcours")
 	protected Seance seance;
 
 	@Id
@@ -83,14 +82,17 @@ public class Parcours implements IParcours {
 			oldPointGPS.unsetParcours();
 	}
 
+	@JsonManagedReference
 	public Integer getNbKilom() {
 		return this.nbKilom;
 	}
 
+	@JsonManagedReference
 	public Integer getSpeed() {
 		return this.speed;
 	}
 
+	@JsonManagedReference
 	public Set<PointGPS> getPointGPS() {
 		if (this.pointsGPS == null) {
 			this.pointsGPS = new HashSet<PointGPS>();
@@ -98,6 +100,7 @@ public class Parcours implements IParcours {
 		return (Set<PointGPS>) this.pointsGPS;
 	}
 
+	@JsonBackReference
 	public Seance getSeance() {
 		return this.seance;
 	}

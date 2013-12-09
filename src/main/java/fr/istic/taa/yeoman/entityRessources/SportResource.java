@@ -1,10 +1,6 @@
 
 package fr.istic.taa.yeoman.entityRessources;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -19,7 +15,6 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.ResponseBuilder;
 
-import fr.istic.taa.yeoman.dao.DaoPointGPS;
 import fr.istic.taa.yeoman.dao.DaoSport;
 import fr.istic.taa.yeoman.entity.Sport;
 
