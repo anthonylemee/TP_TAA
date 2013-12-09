@@ -53,7 +53,7 @@ public class Seance implements ISeance {
 	@OneToOne(cascade=CascadeType.ALL)
 	protected Parcours parcours;
 
-	@OneToOne(cascade=CascadeType.ALL)
+	@OneToOne
 	protected Meteo meteo;
 
 	@OneToMany (fetch = FetchType.EAGER,cascade=CascadeType.ALL)

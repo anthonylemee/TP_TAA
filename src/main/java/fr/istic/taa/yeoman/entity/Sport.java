@@ -36,7 +36,7 @@ public class Sport implements ISport
 	@Column(nullable = false) 
 	protected String type_sport;
 
-	@OneToMany (fetch=FetchType.EAGER,cascade=CascadeType.ALL)
+	@OneToMany (fetch=FetchType.EAGER)
 	protected Set<Seance> seance;
 
 	/**
