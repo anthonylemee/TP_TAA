@@ -13,7 +13,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import org.codehaus.jackson.annotate.JsonIgnore;
+import org.codehaus.jackson.annotate.JsonBackReference;
+import org.codehaus.jackson.annotate.JsonManagedReference;
 
 import fr.istic.taa.yeoman.entity.interfaces.IParcours;
 
@@ -34,7 +35,6 @@ public class Parcours implements IParcours {
 	protected Set<PointGPS> pointsGPS;
 
 	@OneToOne(mappedBy = "parcours")
-	@JsonIgnore
 	protected Seance seance;
 
 	@Id
@@ -82,14 +82,17 @@ public class Parcours implements IParcours {
 			oldPointGPS.unsetParcours();
 	}
 
+	@JsonManagedReference
 	public Integer getNbKilom() {
 		return this.nbKilom;
 	}
 
+	@JsonManagedReference
 	public Integer getSpeed() {
 		return this.speed;
 	}
 
+	@JsonManagedReference
 	public Set<PointGPS> getPointGPS() {
 		if (this.pointsGPS == null) {
 			this.pointsGPS = new HashSet<PointGPS>();
@@ -97,6 +100,7 @@ public class Parcours implements IParcours {
 		return (Set<PointGPS>) this.pointsGPS;
 	}
 
+	@JsonBackReference
 	public Seance getSeance() {
 		return this.seance;
 	}

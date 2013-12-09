@@ -17,8 +17,6 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.ResponseBuilder;
 
-import com.mysql.jdbc.Util;
-
 import fr.istic.taa.yeoman.dao.DaoUtilisateur;
 import fr.istic.taa.yeoman.entity.Utilisateur;
 
@@ -30,7 +28,7 @@ public class UtilisateurResource {
 	public UtilisateurResource() {
     }
 
-    @GET
+    @GET	
     @Produces({MediaType.APPLICATION_JSON })
     public Response list() {
     	EntityManagerFactory emf = Persistence.createEntityManagerFactory("jpa");

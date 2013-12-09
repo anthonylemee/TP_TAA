@@ -7,8 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
-import org.codehaus.jackson.annotate.JsonIgnore;
-import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+import org.codehaus.jackson.annotate.JsonManagedReference;
 
 import fr.istic.taa.yeoman.entity.interfaces.IUtilisateur;
 
@@ -40,7 +39,7 @@ public class Utilisateur extends APersonne implements IUtilisateur
 	protected String password;
 	
 	@OneToMany(mappedBy = "utilisateur") 
-	@JsonIgnore
+	@JsonManagedReference
 	protected Set<Seance> seance;
 	
 

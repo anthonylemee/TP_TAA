@@ -10,6 +10,7 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import fr.istic.taa.yeoman.entity.interfaces.IAPersonne;
 
@@ -28,7 +29,7 @@ public abstract class APersonne implements IAPersonne
 	@Column(nullable = false) 
 	protected String first_name;
 	 
-	@Temporal(javax.persistence.TemporalType.DATE) 
+	@Temporal(TemporalType.DATE) 
 	@Column(nullable = true) 
 	protected Date birthDate;
 
