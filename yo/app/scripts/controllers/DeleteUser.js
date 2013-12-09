@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('runTracker')
-  .controller('DeleteuserCtrl', function ($rootScope,$http,$scope) {
+  .controller('DeleteuserCtrl', function ($rootScope,$location,$http,$scope) {
 	  $scope.user = {};
 	  $scope.user = $rootScope.user;
 	  $scope.deleteUser = function (){
