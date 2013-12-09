@@ -38,19 +38,18 @@
 					<span class="sr-only">Navigation</span> <span class="icon-bar"></span>
 					<span class="icon-bar"></span> <span class="icon-bar"></span>
 				</button>
-				<a class="pull-left navbar-brand" href="/">Welcome</a>
+				<a class="pull-left navbar-brand" href="/">Welcome</a> 
 			</div>
-			<nav class="collapse navbar-collapse bs-navbar-collapse">
+			<nav class="collapse navbar-collapse bs-navbar-collapse" ng-controller="UserCtrl" style="display: {{display}};">
 				<ul class="nav navbar-nav">
-					<!-- 				<li><a href="#/login">test</a></li> -->
-				</ul>
-				<ul class="nav navbar-nav navbar-right" ng-controller="AccueilCtrl">
 					<li><a ng-click="goAccueil()" href="">Accueil</a></li>
 					<li><a ng-click="goSeances()" href="">Seances</a></li>
 					<li><a ng-click="goParcours()" href="">Parcours</a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
 					<li>
 						<a class="dropdown-toggle" data-toggle="dropdown">
-								My Account <span class="caret"></span>
+								My Account - {{username}} <span class="caret"></span>
 						</a>
 						<ul class="dropdown-menu">
 							<li><a ng-click="goUpdate()" href="">Update my
@@ -95,18 +94,21 @@
 	<script src="bower_components/angular-cookies/angular-cookies.js"></script>
 	<script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
 	<script src="bower_components/angular-route/angular-route.js"></script>
+	<script src="bower_components/angular-loader/angular-loader.js"></script>
 	<!-- endbuild -->
 
 	<!-- build:js({.tmp,app}) scripts/scripts.js -->
 	<script src="scripts/app.js"></script>
 	<script src="scripts/controllers\main.js"></script>
 	<script src="scripts/controllers\login.js"></script>
-	<script src="scripts/controllers\accueil.js"></script>
+	<script src="scripts/controllers\user.js"></script>
 	<script src="scripts/controllers\seances.js"></script>
 	<script src="scripts/controllers\SignIn.js"></script>
 	<script src="scripts/controllers\DeleteUser.js"></script>
 	<script src="scripts/controllers\Parcours.js"></script>
 	<script src="scripts/controllers\UpdateUser.js"></script>
+	<script src="scripts/controllers\weather.js"></script>
+	<script src="scripts/services\serviceSession.js"></script>
 	<!-- endbuild -->
 </body>
 </html>
