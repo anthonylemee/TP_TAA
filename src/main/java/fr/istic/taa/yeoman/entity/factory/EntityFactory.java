@@ -59,9 +59,8 @@ public class EntityFactory implements IEntityFactory {
 	public Seance createSeance(Date date, Date beginDate, Date endDate,
 			int time, Meteo meteo, Parcours parcours, Sport sport, Utilisateur utilisateur, Set<Cardio> cardios) {
 		Seance seance = new Seance();
-		seance.setDate(date);
 		seance.setBeginDate(beginDate);
-		seance.setEndDate(endDate);
+		seance.setTimeFin(endDate);
 		seance.setTime(time);
 		seance.basicSetMeteo(meteo);
 		seance.basicSetParcours(parcours);

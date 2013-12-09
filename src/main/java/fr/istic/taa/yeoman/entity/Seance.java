@@ -31,13 +31,9 @@ import fr.istic.taa.yeoman.entity.interfaces.ISeance;
 @Table(name = "seance")
 public class Seance implements ISeance {
 
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(nullable = false)
-	protected Date date;
-
-	@Temporal(TemporalType.DATE)
-	@Column(nullable = false)
-	protected Date endDate;
+	protected Date timeFin;
 
 	@Temporal(TemporalType.DATE)
 	@Column(nullable = false)
@@ -46,7 +42,7 @@ public class Seance implements ISeance {
 	@Column(nullable = false)
 	protected int time;
 
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(nullable = false)
 	protected Sport sport;
 
@@ -116,13 +112,8 @@ public class Seance implements ISeance {
 	}
 
 	@JsonManagedReference
-	public Date getDate() {
-		return this.date;
-	}
-
-	@JsonManagedReference
-	public Date getEndDate() {
-		return this.endDate;
+	public Date getTimeFin() {
+		return this.timeFin;
 	}
 
 	@JsonManagedReference
@@ -168,12 +159,8 @@ public class Seance implements ISeance {
 		return this.id;
 	}
 
-	public void setDate(Date myDate) {
-		this.date = myDate;
-	}
-
-	public void setEndDate(Date myEndDate) {
-		this.endDate = myEndDate;
+	public void setTimeFin(Date myTimeFin) {
+		this.timeFin = myTimeFin;
 	}
 
 	public void setBeginDate(Date myBeginDate) {
@@ -257,12 +244,8 @@ public class Seance implements ISeance {
 		}
 	}
 
-	public void unsetDate() {
-		this.date = new Date();
-	}
-
-	public void unsetEndDate() {
-		this.endDate = new Date();
+	public void unsetTimeFin() {
+		this.timeFin = new Date();
 	}
 
 	public void unsetBeginDate() {
@@ -313,9 +296,9 @@ public class Seance implements ISeance {
 	@Override
 	public String log() {
 
-		return " [ID] " + this.id + " [Date] " + this.date.toString()
+		return " [ID] " + this.id
 				+ " [DateDeb] " + this.beginDate.toString() + " [DateEnd] "
-				+ this.endDate.toString() + " [Time] " + this.time
+				+ this.timeFin.toString() + " [Time] " + this.time
 				+ " [IDSport] " + this.sport.id + " [IDUser] "
 				+ this.utilisateur.id + " [IDParcours] " + this.parcours.id
 				+ " [IDMeteo] " + this.meteo.id + " [FreqCardio] "
