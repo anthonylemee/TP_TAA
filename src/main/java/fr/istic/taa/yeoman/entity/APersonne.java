@@ -18,7 +18,7 @@ import fr.istic.taa.yeoman.entity.interfaces.IAPersonne;
  */
 @Entity
 @Table(name="Personne")
-@Inheritance(strategy=InheritanceType.JOINED)
+@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 public abstract class APersonne implements IAPersonne
 {
 

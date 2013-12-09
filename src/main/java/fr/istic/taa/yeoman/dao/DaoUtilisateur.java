@@ -57,8 +57,10 @@ public class DaoUtilisateur implements IDao<IUtilisateur> {
 		
 		if (DEBUG) System.out.println("[DaoUtilisateur][DELETE] " + id);
 		em.getTransaction().begin();
-		em.createQuery("delete from Utilisateur u where u.id = " + id ).executeUpdate();
+		em.remove(find(id));
 		em.getTransaction().commit();
+		//em.createQuery("delete from Utilisateur u where u.id = " + id ).executeUpdate();
+		//em.getTransaction().commit();
 		return null;
 	}
 

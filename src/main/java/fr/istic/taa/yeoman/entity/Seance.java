@@ -3,6 +3,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -42,21 +43,21 @@ public class Seance implements ISeance
 	@Column(nullable = false) 
 	protected int time;
 
-	@ManyToOne (fetch=FetchType.EAGER)
+	@ManyToOne (fetch=FetchType.EAGER,cascade=CascadeType.ALL)
 	@JoinColumn(nullable = false) 
 	protected Sport sport;
 
-	@ManyToOne (fetch=FetchType.EAGER)
+	@ManyToOne (fetch=FetchType.EAGER,cascade=CascadeType.ALL)
 	@JoinColumn(nullable = false) 
 	protected Utilisateur utilisateur;
 	
-	@OneToOne(fetch=FetchType.EAGER)
+	@OneToOne(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
 	protected Parcours parcours;
 
-	@OneToOne (fetch=FetchType.EAGER)
+	@OneToOne (fetch=FetchType.EAGER,cascade=CascadeType.ALL)
 	protected Meteo meteo;
 
-	@OneToMany (fetch=FetchType.EAGER)
+	@OneToMany (fetch=FetchType.EAGER,cascade=CascadeType.ALL)
 	protected Set<Cardio> cardio;
 
 	@Id 

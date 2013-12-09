@@ -3,6 +3,14 @@
 angular.module('runTracker')
   .controller('UpdateuserCtrl', function ($rootScope,$http,$scope) {
 	  $scope.user = $rootScope.user;
+	  $scope.create = {};
+	  $scope.pass = {};
+	  $scope.isCorrectPassword = function() {
+		  if($scope.create.password != null && $scope.pass.passConfirm != null){
+			  return angular.equals($scope.create.password, $scope.pass.passConfirm);
+		  }
+		  return false;
+	  };
 	  var radios = document.getElementsByName('sex');
 		if($rootScope.user.sex == "H") {
 			radios[0].checked = true;

@@ -5,17 +5,18 @@
 				<h3 class="panel-title">Update of your informations</h3>
 			</div>
 			<div class="panel-body">
-				<form role="form" ng-submit="updateUser()">
+				<form name="form" role="form" ng-submit="updateUser()">
 					<div class="col-md-6">
 						<div class="form-group">
 							<label for="lastname">What's your new lastname ?</label> <input
 								type="text" class="form-control" id="lastname"
-								placeholder="Enter lastname" ng-model="create.name">
+								placeholder="Enter lastname" ng-model="create.name" required>
 						</div>
 						<div class="form-group">
 							<label for="firstname">What's your new firstname ?</label> <input
 								type="text" class="form-control" id="firstname"
-								placeholder="Enter firstname" ng-model="create.first_name">
+								placeholder="Enter firstname" ng-model="create.first_name"
+								required>
 						</div>
 						<div class="form-group">
 							<label for="birth">Indicate your new birth date</label> <input
@@ -26,7 +27,20 @@
 						<div class="form-group">
 							<label for="username">Choose a new username</label> <input
 								type="text" class="form-control" id="username"
-								placeholder="Choose a username" ng-model="create.pseudo">
+								placeholder="Choose a username" ng-model="create.pseudo"
+								required>
+						</div>
+						<div class="form-group">
+							<label for="password">Change your password</label> <input
+								type="password" class="form-control" id="password"
+								placeholder="Choose a password" ng-model="create.password"
+								required>
+						</div>
+						<div class="form-group">
+							<label for="passwordCOnf">Confirm your password</label> <input
+								type="password" class="form-control" id="passwordCOnf"
+								placeholder="Confirm your password<" ng-model="pass.passConfirm"
+								required>
 						</div>
 						<div class="form-group">
 							<label for="avatar">Import a new avatar image</label> <input
@@ -35,34 +49,41 @@
 						</div>
 					</div>
 					<div class="col-md-6">
-					<div class="form-group">
-						<label for="email">Indicate your new email address</label> <input type="text"
-							class="form-control" id="email" placeholder="Indicate your email address"
-							ng-model="create.mail">
-					</div>
-					<div class="form-group">
-						<label for="twitter">Indicate your new twitter profile</label> <input type="text"
-							class="form-control" id="twitter" placeholder="Indicate your twitter profile"
-							ng-model="create.twitter">
-					</div>
-					<div class="form-group">
-						<label for="height">Indicate your new height</label> <input type="number"
-							class="form-control" id="height" placeholder="Indicate your height"
-							ng-model="create.height">
-					</div>
-					<div class="form-group">
-						<label for="weight">Indicate your new weight</label> <input type="number"
-							class="form-control" id="weight" placeholder="Indicate your weight"
-							ng-model="create.weight">
-					</div>	
-					<div class="form-group">
-						<input type="radio" name="sex" value="H" checked>Male
-						<input type="radio" name="sex" value="F">Female		
-					</div>	
-						
-					<button type="submit" value="signin" class="btn btn-success">Update
-						your account informations</button>
+						<div class="form-group">
+							<label for="email">Indicate your new email address</label> <input
+								type="text" class="form-control" id="email"
+								placeholder="Indicate your email address" ng-model="create.mail"
+								required>
 						</div>
+						<div class="form-group">
+							<label for="twitter">Indicate your new twitter profile</label> <input
+								type="text" class="form-control" id="twitter"
+								placeholder="Indicate your twitter profile"
+								ng-model="create.twitter">
+						</div>
+						<div class="form-group">
+							<label for="height">Indicate your new height</label> <input
+								type="number" class="form-control" id="height"
+								placeholder="Indicate your height" ng-model="create.height">
+						</div>
+						<div class="form-group">
+							<label for="weight">Indicate your new weight</label> <input
+								type="number" class="form-control" id="weight"
+								placeholder="Indicate your weight" ng-model="create.weight">
+						</div>
+						<div class="form-group">
+							<input type="radio" name="sex" value="H" checked>Male <input
+								type="radio" name="sex" value="F">Female
+						</div>
+
+						<button type="submit" value="signin" class="btn btn-success"
+							ng-disabled="form.$invalid || !isCorrectPassword()">Update
+							your account informations</button>
+					</div>
+					<label ng-show="form.$invalid" for="weight">Some Elements
+						are missing (name, surname, valid E-mail, userName, Password) ?</label> 
+					<label ng-show="!isCorrectPassword()" for="weight">The passwords
+						are not exactly the same or null</label>
 				</form>
 			</div>
 		</div>

@@ -25,8 +25,7 @@ public class Cardio implements ICardio
 	protected double frequency;
 
 	@ManyToOne 
-	@JoinColumn(nullable = true) 
-	@JsonIgnore
+	@JoinColumn(nullable = true)
 	protected Seance seance;
 
 	@Id 
