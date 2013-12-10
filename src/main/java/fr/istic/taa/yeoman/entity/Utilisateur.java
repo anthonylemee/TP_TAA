@@ -116,6 +116,11 @@ public class Utilisateur extends APersonne implements IUtilisateur
 		return this.id;	
 	}
 	
+	@Override
+	public void setId(Long id) {
+		this.id = id;
+	}
+	
 	public void setPseudo(String myPseudo) {
 		this.pseudo = myPseudo;	
 	}

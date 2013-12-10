@@ -74,6 +74,11 @@ public class PointGPS implements IPointGPS
 		return this.id;	
 	}
 	
+	@Override
+	public void setId(Long id) {
+		this.id = id;
+	}
+	
 	public void basicSetParcours(Parcours myParcours) {
 		if (this.parcours != myParcours) {
 			if (myParcours != null){

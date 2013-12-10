@@ -1,5 +1,6 @@
 package fr.istic.taa.yeoman.entity;
 
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -16,8 +17,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 import org.codehaus.jackson.annotate.JsonBackReference;
 import org.codehaus.jackson.annotate.JsonManagedReference;
@@ -31,26 +30,21 @@ import fr.istic.taa.yeoman.entity.interfaces.ISeance;
 @Table(name = "seance")
 public class Seance implements ISeance {
 
-	@Temporal(TemporalType.TIMESTAMP)
 	@Column(nullable = false)
-	protected Date timeFin;
-
-	@Temporal(TemporalType.DATE)
-	@Column(nullable = false)
-	protected Date beginDate;
+	protected Timestamp timeFin;
 
 	@Column(nullable = false)
-	protected int time;
+	protected Timestamp beginDate;
 
 	@ManyToOne
 	@JoinColumn(nullable = false)
 	protected Sport sport;
 
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(nullable = false)
 	protected Utilisateur utilisateur;
 
-	@OneToOne(cascade=CascadeType.ALL)
+	@OneToOne
 	protected Parcours parcours;
 
 	@OneToOne
@@ -122,11 +116,6 @@ public class Seance implements ISeance {
 	}
 
 	@JsonManagedReference
-	public int getTime() {
-		return this.time;
-	}
-
-	@JsonManagedReference
 	public Sport getSport() {
 		return this.sport;
 	}
@@ -158,17 +147,18 @@ public class Seance implements ISeance {
 	public long getId() {
 		return this.id;
 	}
+	
+	@Override
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-	public void setTimeFin(Date myTimeFin) {
+	public void setTimeFin(Timestamp myTimeFin) {
 		this.timeFin = myTimeFin;
 	}
 
-	public void setBeginDate(Date myBeginDate) {
+	public void setBeginDate(Timestamp myBeginDate) {
 		this.beginDate = myBeginDate;
-	}
-
-	public void setTime(int myTime) {
-		this.time = myTime;
 	}
 
 	public void setSport(Sport mySport) {
@@ -245,15 +235,11 @@ public class Seance implements ISeance {
 	}
 
 	public void unsetTimeFin() {
-		this.timeFin = new Date();
+		this.timeFin = new Timestamp(0);
 	}
 
 	public void unsetBeginDate() {
-		this.beginDate = new Date();
-	}
-
-	public void unsetTime() {
-		this.time = 0;
+		this.beginDate = new Timestamp(0);
 	}
 
 	public void unsetSport() {
@@ -298,30 +284,10 @@ public class Seance implements ISeance {
 
 		return " [ID] " + this.id
 				+ " [DateDeb] " + this.beginDate.toString() + " [DateEnd] "
-				+ this.timeFin.toString() + " [Time] " + this.time
+				+ this.timeFin + " [Time] "
 				+ " [IDSport] " + this.sport.id + " [IDUser] "
-				+ this.utilisateur.id + " [IDParcours] " + this.parcours.id
-				+ " [IDMeteo] " + this.meteo.id + " [FreqCardio] "
-				+ this.logCardio();
-
+				+ this.utilisateur.id + " [IDParcours] " + 
+				this.parcours.id
+				+ " [IDMeteo] " + this.meteo.id ;
 	}
-
-	/**
-	 * Méthode qui permet d'afficher sous forme de log les fréquences cardiaques
-	 * lors de la séance.
-	 * 
-	 * @return String
-	 */
-	private String logCardio() {
-
-		String frequences = " / ";
-
-		for (Cardio cardio : this.cardio) {
-			frequences += cardio.frequency + " / ";
-		}
-
-		return frequences;
-
-	} // method
-
 } // class

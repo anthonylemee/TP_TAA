@@ -1,5 +1,6 @@
 package fr.istic.taa.yeoman.entity.factory;
 
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.Set;
 
@@ -17,11 +18,12 @@ public interface IEntityFactory {
 	public Meteo createMeteo(String weather, Integer humidity, Seance seance);
 	public Parcours createParcours(int nbKilom, int speed, Set<PointGPS> pointsGPS, Seance seance);
 	public PointGPS createPointGPS(int x, int y, int z, Parcours parcours);
-	public Seance createSeance(Date date, Date beginDate, Date endDate, 
-			int time, Meteo meteo, Parcours parcours, Sport sport, Utilisateur utilisateur, Set<Cardio> cardios);
+	public Seance createSeance(Timestamp beginDate, Timestamp endDate, 
+			Meteo meteo, Parcours parcours, Sport sport, Utilisateur utilisateur, Set<Cardio> cardios);
 	public Sport createSport(String nom, String type, Seance seance);
 	public Utilisateur createUtilisateur(String firstName, String avatar, Date birthDate,
 			String facebook, int height, String mail, String name,
 			String pseudo, Character sexe, String twitter, int weight, Seance seance);
+
 	
 }

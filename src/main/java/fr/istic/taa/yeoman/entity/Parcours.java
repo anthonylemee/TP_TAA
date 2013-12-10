@@ -35,7 +35,7 @@ public class Parcours implements IParcours {
 	@OneToMany(mappedBy = "parcours", fetch=FetchType.EAGER,cascade=CascadeType.ALL)
 	protected Set<PointGPS> pointsGPS;
 
-	@OneToOne(mappedBy = "parcours",cascade=CascadeType.ALL)
+	@OneToOne(mappedBy = "parcours")
 	protected Seance seance;
 
 	@Id
@@ -109,6 +109,11 @@ public class Parcours implements IParcours {
 	@Override
 	public long getId() {
 		return this.id;
+	}
+	
+	@Override
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public void setNbKilom(Integer myNbKilom) {

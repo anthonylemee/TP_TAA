@@ -9,6 +9,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.codehaus.jackson.annotate.JsonBackReference;
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
 import fr.istic.taa.yeoman.entity.interfaces.IMeteo;
 
@@ -70,6 +71,11 @@ public class Meteo implements IMeteo
 	@Override
 	public long getId() {
 		return this.id;	
+	}
+	
+	@Override
+	public void setId(Long ids) {
+		this.id = ids;	
 	}
 
 	public void setWeather(String myWeather) {

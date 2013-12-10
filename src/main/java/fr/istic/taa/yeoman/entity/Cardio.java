@@ -79,6 +79,11 @@ public class Cardio implements ICardio
 		return this.id;	
 	}
 	
+	@Override
+	public void setId(Long id) {
+		this.id = id;
+	}
+	
 	public void unsetFrequency() {
 		this.frequency = 0.0;	
 	}

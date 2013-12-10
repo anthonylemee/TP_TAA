@@ -87,6 +87,11 @@ public class Sport implements ISport
 		return this.id;	
 	}
 	
+	@Override
+	public void setId(Long id) {
+		this.id = id;
+	}
+	
 	@JsonManagedReference
 	public String getNom_sport() {
 		return this.nom_sport;	
@@ -103,10 +108,6 @@ public class Sport implements ISport
 				this.seance = new HashSet<Seance>();
 		}
 		return (Set<Seance>) this.seance;	
-	}
-	
-	public void setId(long myId) {
-		this.id = myId;	
 	}
 
 	public void setNom_sport(String myNom_sport) {

@@ -2,84 +2,52 @@
 	<div class="col-md-12">
 		<div class="panel panel-primary">
 			<div class="panel-heading">
-				<h3 class="panel-title">Sign in</h3>
+				<h3 class="panel-title">Add your last seance</h3>
 			</div>
 			<div class="panel-body">
-				<form name="form" role="form" ng-submit="createUser()">
+				<form name="form" role="form" ng-submit="createSeance()">
 					<div class="col-md-6">
 						<div class="form-group">
-							<label for="lastname">What's your lastname ?</label> <input
-								type="text" class="form-control" id="lastname"
-								placeholder="Enter lastname" ng-model="create.name" required>
+							<select ng-model="sport"
+								ng-options="sport as sport.nom_sport for sport in sports"
+								required></select>
 						</div>
 						<div class="form-group">
-							<label for="firstname">What's your firstname ?</label> <input
-								type="text" class="form-control" id="firstname"
-								placeholder="Enter firstname" ng-model="create.first_name"required">
+							<label for="dateBegin">Indicate the date you started the seance</label> <input
+								type="datetime" class="form-control" id="dateBegin"
+								ng-model="time.timeBegin" value="{{time.timeBegin | date:'AAAA-MM-JJ HH:MM:SS'}}"
+								placeholder="'AAAA-MM-JJ HH:MM:SS" required>
 						</div>
 						<div class="form-group">
-							<label for="birth">Indicate your birth date</label> <input
-								type="date" class="form-control" id="birth"
-								placeholder="Indicate your birth date"
-								ng-model="create.birthDate" value="{{$scope.create.birthDate}}">
-						</div>
-						<div class="form-group">
-							<label for="username">Choose a username</label> <input
-								type="text" class="form-control" id="username"
-								placeholder="Choose a username" ng-model="create.pseudo"
+							<label for="timeFin">What time did you end it ?</label> <input
+								type="datetime" class="form-control" id="timeFin"
+								value="{{time.timeFin | date:'AAAA-MM-JJ HH:MM:SS'}}"
+								placeholder="AAAA-MM-JJ HH:MM:SS" ng-model="time.timeFin"
 								required>
 						</div>
-						<div class="form-group">
-							<label for="password">Choose a password</label> <input
-								type="password" class="form-control" id="password"
-								placeholder="Choose a password" ng-model="create.password"
-								required>
-						</div>
-						<div class="form-group">
-							<label for="passwordCOnf">Confirm your password</label> <input
-								type="password" class="form-control" id="passwordCOnf"
-								placeholder="Confirm your password<" ng-model="pass.passConfirm"
-								required>
-						</div>
-						<div class="form-group">
-							<label for="avatar">Import an avatar image</label> <input
-								type="file" class="form-control" id="avatar"
-								placeholder="Import an avatar image" ng-model="create.avatar">
-						</div>
+						
+						<button type="submit" value="signin" class="btn btn-success"
+							ng-disabled="form.$invalid">Create
+							my seance</button>
 					</div>
 					<div class="col-md-6">
 						<div class="form-group">
-							<label for="email">Indicate your email address</label> <input
-								type="email" class="form-control" id="email"
-								placeholder="Indicate your email address" ng-model="create.mail"
-								required>
+							<select ng-model="meteo"
+								ng-options="meteo as meteo.weather for meteo in meteos"
+								required></select>
 						</div>
 						<div class="form-group">
-							<label for="twitter">Indicate your twitter profile</label> <input
-								type="text" class="form-control" id="twitter"
-								placeholder="Indicate your twitter profile"
-								ng-model="create.twitter">
+							<label for="km">Indicate the number of KM(s)</label>
+							<input type="number" class="form-control" id="email"
+								placeholder="Indicate your number of kms" ng-model="parcours.nbKilom" required>
 						</div>
 						<div class="form-group">
-							<label for="height">Indicate your height</label> <input
-								type="number" class="form-control" id="height"
-								placeholder="Indicate your height" ng-model="create.height">
+							<label for="vitesse (km/h)">Indicate your average speed</label> <input
+								type="number" class="form-control" id="twitter"
+								placeholder="Indicate your speed" ng-model="parcours.speed" required>
 						</div>
-						<div class="form-group">
-							<label for="weight">Indicate your weight</label> <input
-								type="number" class="form-control" id="weight"
-								placeholder="Indicate your weight" ng-model="create.weight">
-						</div>
-						<div class="form-group">
-							<input type="radio" name="sex" value="H" checked>Male <input
-								type="radio" name="sex" value="F">Female
-						</div>
-
-						<button type="submit" value="signin" class="btn btn-success"
-							ng-disabled="form.$invalid || !isCorrectPassword()">Create my account</button>
-							
-						<label ng-show="form.$invalid" for="weight">Some Elements are missing (name, surname, valid E-mail, userName, Password) ?</label>
-						<label ng-show="!isCorrectPassword()" for="weight">The passwords are not exactly the same or null</label>
+						<label ng-show="form.$invalid" for="weight">Some Elements
+							are missing ?</label>
 					</div>
 				</form>
 			</div>

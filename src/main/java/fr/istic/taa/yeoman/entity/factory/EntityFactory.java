@@ -1,5 +1,6 @@
 package fr.istic.taa.yeoman.entity.factory;
 
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.Set;
 
@@ -56,12 +57,11 @@ public class EntityFactory implements IEntityFactory {
 	}
 
 	@Override
-	public Seance createSeance(Date date, Date beginDate, Date endDate,
-			int time, Meteo meteo, Parcours parcours, Sport sport, Utilisateur utilisateur, Set<Cardio> cardios) {
+	public Seance createSeance(Timestamp beginDate, Timestamp endDate,
+			Meteo meteo, Parcours parcours, Sport sport, Utilisateur utilisateur, Set<Cardio> cardios) {
 		Seance seance = new Seance();
 		seance.setBeginDate(beginDate);
 		seance.setTimeFin(endDate);
-		seance.setTime(time);
 		seance.basicSetMeteo(meteo);
 		seance.basicSetParcours(parcours);
 		seance.basicSetSport(sport);

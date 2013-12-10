@@ -85,7 +85,7 @@ public class DaoSeance implements IDao<ISeance> {
 	public List<ISeance> findAll() {
 		
 		if (DEBUG) System.out.println("[DaoSeance][FINDALL] ");
-		Query q = em.createQuery("select s from Seance s ORDER BY s.date ASC");
+		Query q = em.createQuery("select s from Seance s ORDER BY s.beginDate ASC");
 		return (List<ISeance>)q.getResultList();
 		
 	}

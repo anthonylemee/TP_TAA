@@ -54,7 +54,8 @@ public abstract class APersonne implements IAPersonne
 		super();
 	}
 	
-	public void setId(long id){
+	@Override
+	public void setId(Long id){
 		this.id = id;
 	}
 	
