@@ -74,7 +74,7 @@ public class DaoSeance implements IDao<ISeance> {
 	public List<ISeance> findOfUser(String name) {
 
 		if (DEBUG) System.out.println("[DaoSeance][findOfUser] " + name);
-		Query q = em.createQuery("SELECT s FROM Seance s "); // WHERE s.utilisateur.pseudo = '" + name + "'"); 
+		Query q = em.createQuery("SELECT s FROM Seance s WHERE s.utilisateur.pseudo = '" + name + "'"); 
 		
 		return (List<ISeance>)q.getResultList();
 		

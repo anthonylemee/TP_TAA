@@ -1,17 +1,16 @@
 'use strict';
 
-describe('Controller: SeancesCtrl', function () {
+describe('Controller: SeancesController', function () {
 
   // load the controller's module
-  beforeEach(module('yoApp'));
+  beforeEach(module('runTracker'));
 
-  var SeancesCtrl,
-    scope;
+  var SeancesCtrl,scope;
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope) {
     scope = $rootScope.$new();
-    SeancesCtrl = $controller('SeancesCtrl', {
+    SeancesCtrl = $controller('SeancesController', {
       $scope: scope
     });
   }));

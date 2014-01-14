@@ -3,6 +3,7 @@
 angular.module('runTracker').controller(
 		'UserCtrl',
 		function($scope, $http, $rootScope, $location) {
+			
 			// Menu
 			$scope.user = {};
 
@@ -19,9 +20,19 @@ angular.module('runTracker').controller(
 							$scope.seancesOfUser = data;
 							console.log("Succès de la récupération des séances de " + $scope.user.pseudo);
 							console.log($scope.seancesOfUser);
+							angular.element( document.querySelector( '.alert-danger' ) ).css('display', 'none');
+							angular.element( document.querySelector( '.alert-info' ) ).css('display', 'none');
+				    		  angular.element( document.querySelector( '.alert-warning' ) ).css('display', 'none');
+				    		  angular.element( document.querySelector( '.alert-success' ) ).css('display', 'block');
+				    		  angular.element( document.querySelector( '.alert-success' ) ).html("Succès de la récupération des séances de " + $scope.user.pseudo);
 						}).error(
 						function(data, status, headers, config) {
 							console.log("Impossible de récupérer les séances de " + $scope.user.pseudo);
+							angular.element( document.querySelector( '.alert-danger' ) ).css('display', 'block');
+				    		  angular.element( document.querySelector( '.alert-info' ) ).css('display', 'none');
+				    		  angular.element( document.querySelector( '.alert-warning' ) ).css('display', 'none');
+				    		  angular.element( document.querySelector( '.alert-success' ) ).css('display', 'none');
+				    		  angular.element( document.querySelector( '.alert-danger' ) ).html("Impossible de récupérer les séances de " + $scope.user.pseudo);
 						});
 
 			} else {

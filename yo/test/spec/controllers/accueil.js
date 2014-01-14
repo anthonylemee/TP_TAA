@@ -1,17 +1,17 @@
 'use strict';
 
-describe('Controller: AccueilCtrl', function () {
+describe('Controller: AccueilController', function () {
 
   // load the controller's module
-  beforeEach(module('yoApp'));
+  beforeEach(module('runTracker'));
 
-  var AccueilCtrl,
+  var AccueilController,
     scope;
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope) {
     scope = $rootScope.$new();
-    AccueilCtrl = $controller('AccueilCtrl', {
+    AccueilController = $controller('AccueilController', {
       $scope: scope
     });
   }));

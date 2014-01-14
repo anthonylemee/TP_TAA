@@ -70,6 +70,12 @@ public class DaoPointGPS implements IDao<IPointGPS> {
 		Query q = em.createQuery("select p from PointGPS p");
 		return (List<IPointGPS>)q.getResultList();
 	}
+
+	public List<IPointGPS> findByParcours(int idParcours) {
+		if (DEBUG) System.out.println("[DaoPointGPS][FINDBYPARCOURS] ");
+		Query q = em.createQuery("select p FROM PointGPS p WHERE p.parcours = " + idParcours);
+		return (List<IPointGPS>)q.getResultList();
+	}
 	
 } // class
 

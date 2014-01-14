@@ -85,7 +85,7 @@ public class DaoUtilisateur implements IDao<IUtilisateur> {
 	public List<IUtilisateur> findAll() {
 		
 		if (DEBUG) System.out.println("[DaoUtilisateur][FINDALL] ");
-		Query q = em.createQuery("select u from Utilisateur u ORDER BY u.pseudo ASC");
+		Query q = em.createQuery("select u from APersonne u ORDER BY u.pseudo ASC");
 		return (List<IUtilisateur>)q.getResultList();
 		
 	}

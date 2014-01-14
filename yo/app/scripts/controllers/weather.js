@@ -38,7 +38,14 @@ angular.module('runTracker').filter('temp', function($filter) {
 });
 
 angular.module('runTracker').controller('WeatherCtrl', function ($scope, weatherService) {
+	
     $scope.weather = weatherService.getWeather();
+    
+    // Fonction qui retourne le lien absolu vers l'image de la météo passée en paramètre
+    $scope.getSmallIconWeather = function ($weather) {
+    	return "/images/weather/" + $weather + "_small.png";
+    };
+    
 });
 
 angular.module('runTracker').directive('weatherIcon', function() {

@@ -24,6 +24,7 @@
 				<img src="{{user.avatar}}" alt="your image profile"
 					class="img-thumbnail" style="width: 140px; height: 140px;display:inline !important;" />
 				</div>
+				
 				<div class="col-md-9">
 				<table class="table table-hover">
 					<thead>
@@ -38,13 +39,19 @@
 					</thead>
 					<tbody>
 						<tr ng-repeat="s in seancesOfUser">
-							<td>{{s.date}}</td>
-							<td>{{s.time | date:'h:mma'}}</td>
-							<td>{{s.meteo.weather}}</td>
-							<td></td>
+							<td>{{s.id}}</td>
+							<td>{{s.sport.nom_sport}}</td>
+							<td>{{s.beginDate | date:longDate}}</td>
+							<td>{{s.beginDate | date:'h:mma'}}</td>
+							<td><img src="../images/weather/{{s.meteo.weather}}_small.png"/></td>
+							<td><a target="_blank" href="/#/Parcours/{{s.parcours.id}}">visualiser le parcours</a></td>
 						</tr>
 					</tbody>
 				</table>
+				<div class="alert alert-success" style="display:none;"></div>
+				<div class="alert alert-info" style="display:none;"></div>
+				<div class="alert alert-warning" style="display:none;"></div>
+				<div class="alert alert-danger" style="display:none;"></div>
 				</div>
 				
 			</div>

@@ -17,7 +17,7 @@ public interface IEntityFactory {
 	public Cardio createCardio(double frequency, Seance seance);
 	public Meteo createMeteo(String weather, Integer humidity, Seance seance);
 	public Parcours createParcours(int nbKilom, int speed, Set<PointGPS> pointsGPS, Seance seance);
-	public PointGPS createPointGPS(int x, int y, int z, Parcours parcours);
+	public PointGPS createPointGPS(float x, float y, Parcours parcours);
 	public Seance createSeance(Timestamp beginDate, Timestamp endDate, 
 			Meteo meteo, Parcours parcours, Sport sport, Utilisateur utilisateur, Set<Cardio> cardios);
 	public Sport createSport(String nom, String type, Seance seance);

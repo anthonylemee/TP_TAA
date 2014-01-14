@@ -47,11 +47,10 @@ public class EntityFactory implements IEntityFactory {
 	}
 
 	@Override
-	public PointGPS createPointGPS(int x, int y, int z, Parcours parcours) {
+	public PointGPS createPointGPS(float x, float y, Parcours parcours) {
 		PointGPS p = new PointGPS();
-		p.setXPoint(x);
-		p.setYPoint(y);
-		p.setZPoint(z);
+		p.setLatitude(x);
+		p.setLongitude(y);
 		p.basicSetParcours(parcours);
 		return p;
 	}

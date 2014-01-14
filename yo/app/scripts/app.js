@@ -32,6 +32,10 @@ angular.module('runTracker', [
         templateUrl: 'views/DeleteUser.html',
         controller: 'DeleteuserCtrl'
       })
+      .when('/Parcours/:id', {
+        templateUrl: 'views/Parcours.html',
+        controller: 'ParcoursCtrl'
+      })
       .when('/Parcours', {
         templateUrl: 'views/Parcours.html',
         controller: 'ParcoursCtrl'

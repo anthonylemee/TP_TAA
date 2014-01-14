@@ -13,6 +13,11 @@ angular.module('runTracker')
 		    		  	  if(data.password == $scope.user.password){
 			    		  console.log(data);
 			    		  $rootScope.user = data;
+			    		  angular.element( document.querySelector( '.alert-danger' ) ).css('display', 'none');
+			    		  angular.element( document.querySelector( '.alert-info' ) ).css('display', 'none');
+			    		  angular.element( document.querySelector( '.alert-warning' ) ).css('display', 'none');
+			    		  angular.element( document.querySelector( '.alert-success' ) ).css('display', 'block');
+			    		  angular.element( document.querySelector( '.alert-success' ) ).html("Connexion réussie");
 			    		  $location.path("/accueil");
 		    		  }
 		    		  //else console.log("login / mot de passe incorrect")
@@ -20,7 +25,11 @@ angular.module('runTracker')
 		    	  error(function (data, status, headers, config) {
 		    	    // ...
 		    		  console.log("login / mot de passe incorrect");
-		    		  console.log(angular.element( document.querySelector( '#my_alert' ) )[0]);
+		    		  angular.element( document.querySelector( '.alert-danger' ) ).css('display', 'block');
+		    		  angular.element( document.querySelector( '.alert-info' ) ).css('display', 'none');
+		    		  angular.element( document.querySelector( '.alert-warning' ) ).css('display', 'none');
+		    		  angular.element( document.querySelector( '.alert-success' ) ).css('display', 'none');
+		    		  angular.element( document.querySelector( '.alert-danger' ) ).html("login / mot de passe incorrect");
 		    	  });
 	    	} else {
 	    		console.log("login / mot de passe inexistant");

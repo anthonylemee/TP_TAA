@@ -25,13 +25,10 @@ public class PointGPS implements IPointGPS
 {
 
 	@Column(nullable = false) 
-	protected int xPoint;
+	protected float latitude;
 
 	@Column(nullable = false) 
-	protected int yPoint;
-
-	@Column(nullable = false) 
-	protected int zPoint;
+	protected float longitude;
 
 	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(nullable = false)
@@ -50,18 +47,13 @@ public class PointGPS implements IPointGPS
 	}
 
 	@JsonManagedReference
-	public int getXPoint() {
-		return this.xPoint;	
+	public float getLatitude() {
+		return this.latitude;	
 	}
 	
 	@JsonManagedReference
-	public int getYPoint() {
-		return this.yPoint;	
-	}
-
-	@JsonManagedReference
-	public int getZPoint() {
-		return this.zPoint;	
+	public float getLongitude() {
+		return this.longitude;	
 	}
 
 	@JsonBackReference
@@ -92,18 +84,14 @@ public class PointGPS implements IPointGPS
 		}	
 	}
 
-	public void setXPoint(int myXPoint) {
-		this.xPoint = myXPoint;	
+	public void setLatitude(float myLatitude) {
+		this.latitude = myLatitude;	
 	}
 	
-	public void setYPoint(int myYPoint) {
-		this.yPoint = myYPoint;	
+	public void setLongitude(float y) {
+		this.longitude = y;	
 	}
-	
-	public void setZPoint(int myZPoint) {
-		this.zPoint = myZPoint;	
-	}
-	
+
 	public void setParcours(Parcours myParcours) {
 		this.basicSetParcours(myParcours);
 		myParcours.addPointGPS(this);	
@@ -118,15 +106,11 @@ public class PointGPS implements IPointGPS
 	}
 
 	public void unsetXPoint() {
-		this.xPoint = 0;	
+		this.latitude = 0;	
 	}
 	
 	public void unsetYPoint() {
-		this.yPoint = 0;	
-	}
-	
-	public void unsetZPoint() {
-		this.zPoint = 0;	
+		this.longitude = 0;	
 	}
 	
 	/**
@@ -137,9 +121,8 @@ public class PointGPS implements IPointGPS
 	public String log() { 
 		
 		return " [ID] " + this.id +
-				" [X] " + this.xPoint +
-				" [Y] " + this.yPoint +
-				" [Z] " + this.zPoint +
+				" [lat] " + this.latitude +
+				" [lon] " + this.longitude +
 				" [PARCOURS] " + this.parcours.id; 
 	} // method
 
