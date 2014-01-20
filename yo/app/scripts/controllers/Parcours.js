@@ -4,10 +4,12 @@ angular
 		.module('runTracker')
 		.directive(
 				'helloMaps',
-				function($routeParams) {
+				function() {
 					return function(scope,elem, attrs) {
-						var mapOptions, latitude = attrs.latitude, longitude = attrs.longitude, map, mapStyles, markers = $routeParams.markers;
+						var mapOptions, latitude = attrs.latitude, longitude = attrs.longitude, map, mapStyles, markers = attrs.markers;
 
+						console.info("kikoo " + markers);
+						
 						latitude = latitude && parseFloat(latitude, 10);
 						longitude = longitude && parseFloat(longitude, 10);
 
@@ -45,25 +47,22 @@ angular
 				});
 
 angular.module('runTracker').controller('ParcoursCtrl',
-		function($scope, $routeParams, $http) {
+		function($scope, $rootScope,$routeParams, $http) {
 
 			console.log("Parcours : 	" + $routeParams.id);
 
-			$routeParams.markers = [];
 			$http.get("http://localhost:8080/taa/rest/ptsgps/search/Parcours/" + $routeParams.id).success(
 					function(data, status, headers, config) {
 						
 					}).error(function(data, status, headers, config) {
 				console.log("error" + data);
 			}).then((function(data){
-				console.log(data);
-				$scope.myMakers = [];
-				for (var point in data["data"]) {
+				$scope.myMarkers = {};
+				for (var point in data.data) {
 					console.info(new google.maps.LatLng(data["data"][point].latitude, data["data"][point].longitude));
-					$scope.myMakers += ["coucou" + point];
-					console.info("Markers : " + $scope.myMarkers);
+					$scope.myMarkers[point] = new google.maps.LatLng(data["data"][point].latitude, data["data"][point].longitude);
 				}
-				
+				console.info("Markers : " + $scope.myMarkers);
 			}));
 
 			
